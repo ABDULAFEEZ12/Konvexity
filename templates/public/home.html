@@ -1,457 +1,106 @@
+<!-- home.html -->
 {% extends "base.html" %}
-
-{% block content %}
-<div class="relative bg-[#020610]">
-
-<div class="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
-    <div class="absolute top-0 -left-32 w-[800px] h-[800px] bg-accent-gold/[0.012] rounded-full blur-[180px] floating-slower"></div>
-    <div class="absolute bottom-0 -right-32 w-[700px] h-[700px] bg-accent-gold/[0.008] rounded-full blur-[160px] floating-slow"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-accent-gold/[0.004] rounded-full blur-[200px]"></div>
-</div>
-
-<section class="relative min-h-screen flex items-center z-10 overflow-hidden">
-    <div class="absolute inset-0 opacity-[0.006]" style="background-image: radial-gradient(circle at 1px 1px, rgba(200,169,110,0.7) 1px, transparent 0); background-size: 96px 96px;"></div>
-
-    <div class="absolute top-1/2 right-[7%] -translate-y-1/2 hidden xl:flex items-center justify-center" data-parallax="0.03">
-        <div class="relative w-[380px] h-[380px]">
-            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="ringGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#C8A96E" stop-opacity="0.12"/>
-                        <stop offset="100%" stop-color="#C8A96E" stop-opacity="0"/>
-                    </linearGradient>
-                    <linearGradient id="ringGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#C8A96E" stop-opacity="0.08"/>
-                        <stop offset="100%" stop-color="#C8A96E" stop-opacity="0"/>
-                    </linearGradient>
-                </defs>
-                <circle cx="190" cy="190" r="170" stroke="url(#ringGrad1)" stroke-width="0.5" fill="none"/>
-                <circle cx="190" cy="190" r="130" stroke="url(#ringGrad2)" stroke-width="0.5" fill="none"/>
-                <circle cx="190" cy="190" r="90" stroke="rgba(200,169,110,0.06)" stroke-width="0.5" fill="none"/>
-                <circle cx="190" cy="190" r="50" stroke="rgba(200,169,110,0.08)" stroke-width="0.5" fill="none"/>
-                <circle cx="190" cy="190" r="6" fill="#C8A96E" opacity="0.6">
-                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="260" cy="120" r="2" fill="#C8A96E" opacity="0.5">
-                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="120" cy="260" r="1.5" fill="#C8A96E" opacity="0.4">
-                    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="5s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="300" cy="240" r="1" fill="#C8A96E" opacity="0.35">
-                    <animate attributeName="opacity" values="0.25;0.55;0.25" dur="6s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="140" cy="100" r="1.5" fill="#C8A96E" opacity="0.45">
-                    <animate attributeName="opacity" values="0.3;0.65;0.3" dur="4.5s" repeatCount="indefinite"/>
-                </circle>
-            </svg>
-            <div class="absolute inset-0 rounded-full bg-accent-gold/[0.02] backdrop-blur-3xl"></div>
-        </div>
-    </div>
-
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-48 pb-40 lg:pt-56 lg:pb-48 z-20">
-        <div class="max-w-4xl">
-            <div class="inline-flex items-center gap-3 px-4 py-2.5 mb-14 rounded-full border border-white/[0.04] bg-white/[0.01] backdrop-blur-2xl text-accent-gold/55 text-xs font-medium uppercase tracking-[0.25em] reveal">
-                <span class="relative flex h-1.5 w-1.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-gold/25"></span>
-                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-gold"></span>
-                </span>
-                Leadership &bull; Organizational Transformation &bull; Human Performance
-            </div>
-
-            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] font-display text-white font-bold leading-[0.9] tracking-[-0.02em] mb-10 reveal relative" data-delay="100">
-                <span class="absolute -inset-x-12 -inset-y-8 bg-accent-gold/[0.02] blur-3xl rounded-full opacity-70"></span>
-                <span class="relative">
-                    Where clarity<br>
-                    <span class="text-accent-gold italic relative inline-block">
-                        meets growth
-                        <span class="absolute -bottom-4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent"></span>
-                    </span>
-                </span>
-            </h1>
-
-            <p class="text-lg md:text-xl lg:text-2xl text-neutral-500 max-w-xl leading-relaxed mb-16 font-light reveal" data-delay="250">
-                Konvexity partners with founders, executives, and institutions to build structured, scalable organizations through premium leadership development, organizational systems design, and human performance consulting.
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-start gap-5 reveal" data-delay="400">
-                <a href="{{ url_for('public.solutions') }}"
-                   class="group relative inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-[#020610] bg-accent-gold rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_0_80px_rgba(200,169,110,0.35)] magnetic">
-                    <span class="relative z-10 flex items-center">
-                        Explore our solutions
-                        <svg class="w-4.5 h-4.5 ml-3 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </span>
-                    <div class="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full"></div>
-                </a>
-                <a href="{{ url_for('public.about') }}"
-                   class="group inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-white border border-white/8 rounded-full hover:border-white/18 transition-all duration-500 hover:bg-white/[0.02] magnetic">
-                    About Konvexity
-                    <span class="ml-3 w-5 h-5 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <div class="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/[0.06] to-transparent floating"></div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-3xl mb-24 reveal">
-            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Who We Serve</p>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em]">
-                Trusted by the leaders building Africa's future.
-            </h2>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {% set audiences = ['Founders', 'Executives', 'Corporate Organizations', 'Universities', 'Government Agencies', 'NGOs', 'Institutions', 'Emerging Leaders', 'Professionals', 'Students'] %}
-            {% for audience in audiences %}
-            <div class="p-5 rounded-2xl border border-white/[0.012] bg-white/[0.003] backdrop-blur-sm text-center hover:border-accent-gold/6 hover:bg-white/[0.008] transition-all duration-500 reveal" data-delay="{{ loop.index * 40 }}">
-                <p class="text-white/55 font-medium text-sm">{{ audience }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-3xl mb-24 reveal">
-            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Our Solutions</p>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em]">
-                Four pathways to organizational excellence.
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/[0.006] rounded-3xl overflow-hidden border border-white/[0.006] shadow-[0_0_100px_rgba(0,0,0,0.3)]">
-            {% set sols = [
-                {'slug': 'leadership-lab', 'name': 'Leadership Lab™', 'tagline': 'Built on the 5D Leadership Architecture', 'desc': 'Executive leadership development, coaching, influence, and strategic alignment for lasting organizational transformation.', 'icon': 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'},
-                {'slug': 'professional-accelerator', 'name': 'Professional Accelerator™', 'tagline': 'Business communication and interpersonal intelligence', 'desc': 'Workshops, masterclasses, and reinforcement programs that sharpen the skills driving measurable performance improvement.', 'icon': 'M13 10V3L4 14h7v7l9-11h-7z'},
-                {'slug': 'adi-performance-model', 'name': 'ADI Performance Model™', 'tagline': 'Organizational diagnostics, accountability, and culture transformation', 'desc': 'A complete transformation system operating across three organizational tiers with optional individual executive coaching.', 'icon': 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'},
-                {'slug': 'clarity-room', 'name': 'Konvexity Clarity Room™', 'tagline': 'Premium strategic advisory for critical decisions', 'desc': 'Designed for founders, CEOs, executives, and emerging leaders navigating high-stakes strategic decisions.', 'icon': 'M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14a4 4 0 100-8 4 4 0 000 8z'}
-            ] %}
-            {% for sol in sols %}
-            <a href="{{ url_for('public.solution_detail', slug=sol.slug) }}"
-               class="solution-card group relative p-12 lg:p-14 bg-[#030914] hover:bg-[#050d1a] transition-all duration-700 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-accent-gold/[0.025] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <div class="absolute inset-0 border border-transparent group-hover:border-accent-gold/[0.04] rounded-3xl transition-all duration-700"></div>
-                <div class="relative z-10 flex items-start gap-8">
-                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-accent-gold/[0.035] flex items-center justify-center text-accent-gold group-hover:bg-accent-gold group-hover:text-[#020610] transition-all duration-700 shadow-[0_0_30px_rgba(200,169,110,0.05)]">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ sol.icon }}"/></svg>
-                    </div>
-                    <div class="flex-1 pt-1">
-                        <h3 class="text-xl lg:text-2xl font-display text-white font-semibold mb-2 group-hover:text-accent-gold transition-colors duration-500">{{ sol.name }}</h3>
-                        <p class="text-accent-gold/30 text-sm mb-4">{{ sol.tagline }}</p>
-                        <p class="text-neutral-600 leading-relaxed text-sm max-w-sm">{{ sol.desc }}</p>
-                    </div>
-                </div>
-                <div class="absolute bottom-10 right-10 w-10 h-10 rounded-full border border-white/[0.02] flex items-center justify-center text-neutral-600 group-hover:border-accent-gold/18 group-hover:text-accent-gold transition-all duration-500 group-hover:translate-x-2 group-hover:shadow-[0_0_20px_rgba(200,169,110,0.08)]">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-
-        <div class="mt-16 text-center reveal">
-            <a href="{{ url_for('public.programs') }}"
-               class="inline-flex items-center px-7 py-3.5 text-sm font-semibold text-accent-gold border border-accent-gold/10 rounded-full hover:bg-accent-gold/[0.04] transition-all duration-500 group magnetic">
-                View combination programs
-                <svg class="w-4 h-4 ml-2 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10 overflow-hidden">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-gold/[0.008] rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
-    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <div class="reveal">
-            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-10">Our Philosophy</p>
-            <blockquote class="text-2xl md:text-3xl lg:text-4xl font-display text-white font-medium leading-[1.25] tracking-[-0.01em] mb-10">
-                Sustainable growth does not come from adding more people or processes.
-            </blockquote>
-            <p class="text-neutral-500 text-lg max-w-xl mx-auto leading-relaxed font-light">
-                It comes from fixing leadership, behavior, and systems. This conviction shapes every engagement, every program, and every relationship at Konvexity.
-            </p>
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10 overflow-hidden">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-gold/[0.008] rounded-full blur-[130px] translate-x-1/3 -translate-y-1/3"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-gold/[0.006] rounded-full blur-[110px] -translate-x-1/3 translate-y-1/3"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-36 items-center">
-            <div class="reveal">
-                <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Founder & Performance Architect</p>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-6">
-                    Dr. Tioluwalogo Olakunbi-Black
-                </h2>
-                <p class="text-accent-gold/30 text-lg mb-8 font-light">PhD. Founder, TechTrybe Africa.</p>
-                <p class="text-neutral-400 leading-relaxed text-lg mb-4 font-light">
-                    Dr. Olakunbi-Black is a performance architect, organizational systems designer, behavioral strategist, and executive coach.
-                </p>
-                <p class="text-neutral-600 leading-relaxed text-lg mb-12 font-light">
-                    He specializes in transforming informal organizations into structured, scalable institutions.
-                </p>
-                <a href="{{ url_for('public.founder') }}"
-                   class="group inline-flex items-center text-accent-gold font-semibold hover:text-white transition-colors duration-500 text-lg magnetic">
-                    Meet the founder
-                    <svg class="w-5 h-5 ml-3 transition-transform duration-500 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </a>
-            </div>
-
-            <div class="relative reveal" data-delay="200">
-                <div class="absolute -inset-8 bg-accent-gold/[0.01] rounded-3xl blur-3xl"></div>
-                <div class="absolute top-12 -right-3 w-32 h-32 bg-accent-gold/[0.02] rounded-full blur-2xl"></div>
-                <div class="absolute -bottom-4 -left-3 w-24 h-24 bg-accent-gold/[0.015] rounded-full blur-2xl"></div>
-
-                <div class="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/[0.025] bg-gradient-to-br from-[#070d1a] via-[#050b16] to-[#020610] shadow-[0_0_120px_rgba(0,0,0,0.35)]">
-                    <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-accent-gold/[0.04] via-accent-gold/[0.01] to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#020610] via-[#020610]/80 to-transparent"></div>
-
-                    <div class="absolute top-10 right-10 w-16 h-[1px] bg-accent-gold/10"></div>
-                    <div class="absolute top-10 right-10 w-[1px] h-16 bg-accent-gold/10"></div>
-                    <div class="absolute bottom-10 left-10 w-16 h-[1px] bg-accent-gold/6"></div>
-                    <div class="absolute bottom-10 left-10 w-[1px] h-16 bg-accent-gold/6"></div>
-
-                    <div class="w-full h-full flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="w-28 h-28 mx-auto mb-8 rounded-full bg-accent-gold/[0.025] flex items-center justify-center border border-accent-gold/6 backdrop-blur-sm">
-                                <svg class="w-14 h-14 text-accent-gold/18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                            </div>
-                            <p class="text-neutral-600 text-xs uppercase tracking-[0.28em]">Photograph available soon</p>
-                        </div>
-                    </div>
-
-                    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6">
-                        <div class="text-center">
-                            <p class="text-accent-gold/40 text-sm font-display font-semibold">TechTrybe</p>
-                            <p class="text-neutral-600 text-[10px] uppercase tracking-[0.2em]">Founder</p>
-                        </div>
-                        <div class="w-[1px] h-8 bg-white/[0.025]"></div>
-                        <div class="text-center">
-                            <p class="text-accent-gold/40 text-sm font-display font-semibold">Konvexity</p>
-                            <p class="text-neutral-600 text-[10px] uppercase tracking-[0.2em]">Performance Architect</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-20">
-            <div class="max-w-2xl reveal">
-                <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Faculty</p>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em]">
-                    Multidisciplinary expertise across the domains that matter.
-                </h2>
-            </div>
-            <a href="{{ url_for('public.faculty') }}"
-               class="inline-flex items-center text-accent-gold font-semibold hover:text-white transition-colors duration-500 group flex-shrink-0 reveal magnetic">
-                View full faculty
-                <svg class="w-5 h-5 ml-2 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-            {% set expertise = ['Corporate Governance', 'Finance', 'Artificial Intelligence', 'Digital Transformation', 'Behavioral Psychology', 'Executive Coaching', 'Venture Building', 'Growth Strategy', 'Creative Direction', 'Brand Strategy', 'Marketing', 'Investment', 'Blockchain', 'Organizational Development'] %}
-            {% for item in expertise %}
-            <div class="p-5 rounded-2xl border border-white/[0.01] bg-white/[0.002] backdrop-blur-sm hover:border-accent-gold/6 hover:bg-white/[0.006] transition-all duration-500 reveal" data-delay="{{ loop.index * 35 }}">
-                <p class="text-white/55 text-sm font-medium">{{ item }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-3xl mb-24 reveal">
-            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Programs</p>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em]">
-                Programs designed for every stage of organizational growth.
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.006] rounded-3xl overflow-hidden border border-white/[0.006] shadow-[0_0_100px_rgba(0,0,0,0.3)]">
-            {% set programs = [
-                {'name': 'Institutional Anchor', 'desc': 'Leadership Lab combined with the ADI Performance Model for comprehensive transformation across leadership and systems.'},
-                {'name': 'High Execution Workforce Pack', 'desc': 'ADI Performance Model integrated with Professional Accelerator for operational excellence and skill mastery at scale.'},
-                {'name': 'Executive Presence Suite', 'desc': 'Leadership development combined with communication mastery for executives who need to command influence and inspire action.'}
-            ] %}
-            {% for program in programs %}
-            <div class="p-12 lg:p-14 bg-[#030914] hover:bg-[#050d1a] transition-all duration-700 reveal" data-delay="{{ loop.index * 100 }}">
-                <p class="text-accent-gold/25 text-xs font-medium uppercase tracking-[0.18em] mb-8">Combination Program</p>
-                <h3 class="text-xl font-display text-white font-semibold mb-5">{{ program.name }}</h3>
-                <p class="text-neutral-600 leading-relaxed text-sm font-light">{{ program.desc }}</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="mt-16 text-center reveal">
-            <a href="{{ url_for('public.programs') }}"
-               class="group relative inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-[#020610] bg-accent-gold rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_0_60px_rgba(200,169,110,0.35)] magnetic">
-                <span class="relative z-10 flex items-center">
-                    View all programs
-                    <svg class="w-4.5 h-4.5 ml-3 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-                <div class="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full"></div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-20">
-            <div class="max-w-2xl reveal">
-                <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Insights</p>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em]">
-                    Perspectives on leadership, systems, and human performance.
-                </h2>
-            </div>
-            <a href="{{ url_for('public.resources') }}"
-               class="inline-flex items-center text-accent-gold font-semibold hover:text-white transition-colors duration-500 group flex-shrink-0 reveal magnetic">
-                Explore resources
-                <svg class="w-5 h-5 ml-2 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {% set insights = [
-                {'type': 'Framework', 'title': 'The 5D Leadership Architecture', 'desc': "An introduction to Konvexity's proprietary leadership development model.", 'icon': 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'},
-                {'type': 'Article', 'title': 'Why Organizations Plateau', 'desc': 'Understanding the systemic causes of organizational stagnation and how to overcome them.', 'icon': 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z'},
-                {'type': 'Guide', 'title': 'From Informal to Institutional', 'desc': 'How African organizations can transition from founder-dependent to systems-driven institutions.', 'icon': 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'}
-            ] %}
-            {% for item in insights %}
-            <a href="#" class="group p-10 rounded-3xl border border-white/[0.015] bg-white/[0.004] backdrop-blur-sm hover:bg-white/[0.012] hover:border-accent-gold/[0.05] transition-all duration-700 reveal" data-delay="{{ loop.index * 100 }}">
-                <div class="w-10 h-10 rounded-xl bg-accent-gold/[0.03] flex items-center justify-center text-accent-gold/35 mb-8 group-hover:bg-accent-gold group-hover:text-[#020610] transition-all duration-500">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ item.icon }}"/></svg>
-                </div>
-                <p class="text-accent-gold/25 text-xs font-medium uppercase tracking-[0.18em] mb-6">{{ item.type }}</p>
-                <h3 class="text-lg font-display text-white font-semibold mb-4 group-hover:text-accent-gold transition-colors duration-500">{{ item.title }}</h3>
-                <p class="text-neutral-600 text-sm leading-relaxed mb-8 font-light">{{ item.desc }}</p>
-                <span class="flex items-center text-accent-gold/20 text-sm font-medium group-hover:text-accent-gold transition-colors duration-500">
-                    Read more
-                    <svg class="w-4 h-4 ml-2 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10 overflow-hidden">
-    <div class="absolute inset-0">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold/[0.008] rounded-full blur-[160px]"></div>
-    </div>
-
-    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <div class="reveal">
-            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-10">Global Impact</p>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-10">
-                The African organizations that will define the next century are those that invest intentionally in leadership and systems.
-            </h2>
-            <p class="text-neutral-500 text-lg max-w-2xl mx-auto leading-relaxed font-light">
-                Konvexity exists to build those institutions.
-            </p>
-        </div>
-    </div>
-</section>
-
-<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
-
-<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10 overflow-hidden">
-    <div class="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-accent-gold/18 rounded-full floating-slow hidden lg:block"></div>
-    <div class="absolute bottom-1/3 right-1/4 w-1 h-1 bg-accent-gold/12 rounded-full floating-slower hidden lg:block"></div>
-
-    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display text-white font-bold leading-[1.06] tracking-[-0.02em] mb-8 reveal relative">
-            <span class="absolute -inset-12 bg-accent-gold/[0.012] blur-3xl rounded-full"></span>
-            <span class="relative">Ready to build an institution that lasts?</span>
-        </h2>
-        <p class="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto mb-14 leading-relaxed reveal font-light" data-delay="100">
-            Let's start a conversation about how Konvexity can help your organization achieve clarity, drive growth, and sustain excellence.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-5 reveal" data-delay="200">
-            <a href="{{ url_for('public.contact') }}"
-               class="group relative inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-[#020610] bg-accent-gold rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_0_80px_rgba(200,169,110,0.4)] magnetic">
-                <span class="relative z-10 flex items-center">
-                    Start a conversation
-                    <svg class="w-4.5 h-4.5 ml-3 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-                <div class="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full"></div>
-            </a>
-            <a href="{{ url_for('public.solutions') }}"
-               class="inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-white border border-white/8 rounded-full hover:border-white/18 transition-all duration-500 hover:bg-white/[0.02] magnetic">
-                Explore solutions
-            </a>
-        </div>
-    </div>
-</section>
-
-</div>
+{% block title %}Konvexity — Clarity as Operating System{% endblock %}
+{% block extra_head %}
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle at 30% 30%, rgba(201,160,74,0.08) 0%, transparent 50%);
+  }
+  .hero h1 {
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 650;
+    line-height: 1.05;
+    margin-bottom: 1.8rem;
+    max-width: 1000px;
+  }
+  .hero-sub {
+    font-size: 1.3rem;
+    color: var(--smoke-muted);
+    max-width: 620px;
+    margin-bottom: 2.8rem;
+    font-weight: 350;
+  }
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-card);
+    padding: 2.2rem;
+    transition: transform 0.3s ease;
+  }
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 5rem 0;
+  }
+  .stat-line {
+    display: flex;
+    gap: 4rem;
+    margin: 4rem 0;
+    font-family: var(--font-display);
+  }
+  .stat-number {
+    font-size: 3rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    .solution-grid { grid-template-columns: 1fr; }
+  }
+</style>
 {% endblock %}
+{% block content %}
+<section class="hero container">
+  <div>
+    <h1>
+      We install <span class="accent-text">clarity</span> as the operating system for African institutions.
+    </h1>
+    <p class="hero-sub">
+      Konvexity transforms informal hustle into structured, scalable, enduring institutions through performance architecture, behavioral science, and leadership formation.
+    </p>
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <a href="/solutions" class="btn-filled">Explore Solutions</a>
+      <a href="/contact" class="btn-outline">Begin Conversation</a>
+    </div>
+  </div>
+</section>
 
-{% block scripts %}
-<script>
-(function() {
-    var nav = document.getElementById('site-header');
-    var navContainer = document.getElementById('nav-container');
-    if (!nav || !navContainer) return;
+<section class="container">
+  <div class="stat-line">
+    <div><span class="stat-number">120+</span><br>Institutions Transformed</div>
+    <div><span class="stat-number">18</span><br>African Markets</div>
+    <div><span class="stat-number">4</span><br>Flagship Architectures</div>
+  </div>
+</section>
 
-    function updateNav() {
-        var scrollY = window.scrollY;
-        if (scrollY > 60) {
-            nav.classList.add('py-3');
-            nav.classList.remove('py-5');
-            navContainer.style.transform = 'scale(0.985)';
-            navContainer.style.borderColor = 'rgba(255,255,255,0.05)';
-        } else {
-            nav.classList.add('py-5');
-            nav.classList.remove('py-3');
-            navContainer.style.transform = 'scale(1)';
-            navContainer.style.borderColor = 'rgba(255,255,255,0.03)';
-        }
-    }
-
-    var ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(function() {
-                updateNav();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }, { passive: true });
-
-    updateNav();
-})();
-</script>
+<section class="container">
+  <h2 style="font-size: 2.8rem; margin-bottom: 3rem;">Our Performance Architectures</h2>
+  <div class="solution-grid">
+    <div class="glass-panel">
+      <h3 style="color:var(--accent); letter-spacing:1px;">Leadership Lab™</h3>
+      <p style="font-size:1.2rem; margin:1rem 0;">5D Leadership Architecture to transform executives into institutional builders.</p>
+      <a href="/solutions/leadership-lab" style="color:var(--smoke);">Discover →</a>
+    </div>
+    <div class="glass-panel">
+      <h3 style="color:var(--accent);">Professional Accelerator™</h3>
+      <p style="font-size:1.2rem; margin:1rem 0;">Corporate capability-building for execution excellence.</p>
+      <a href="/solutions/professional-accelerator" style="color:var(--smoke);">Explore →</a>
+    </div>
+    <div class="glass-panel">
+      <h3 style="color:var(--accent);">ADI Performance Model™</h3>
+      <p style="font-size:1.2rem; margin:1rem 0;">Organizational diagnostics, accountability, culture transformation.</p>
+      <a href="/solutions/adi-model" style="color:var(--smoke);">View →</a>
+    </div>
+    <div class="glass-panel">
+      <h3 style="color:var(--accent);">Clarity Room™</h3>
+      <p style="font-size:1.2rem; margin:1rem 0;">Elite strategic advisory for founders and CEOs.</p>
+      <a href="/solutions/clarity-room" style="color:var(--smoke);">Enter →</a>
+    </div>
+  </div>
+</section>
 {% endblock %}
