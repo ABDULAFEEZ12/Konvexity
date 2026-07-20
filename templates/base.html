@@ -1,82 +1,259 @@
+<!-- base.html -->
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ seo.description if seo and seo.description else 'Konvexity is a premium leadership, organizational transformation, and human performance consulting company helping founders, executives, and institutions achieve sustainable growth through clarity.' }}">
-    <meta name="theme-color" content="#0A1428">
-    <meta name="robots" content="index, follow">
-
-    <title>{{ seo.title if seo and seo.title else 'Konvexity — Where Clarity Meets Growth' }}</title>
-
-    <link rel="canonical" href="{{ seo.canonical_url if seo and seo.canonical_url else request.url }}">
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/brand/favicon.svg') }}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'deep': '#0A1428',
-                        'deeper': '#060E1E',
-                        'teal': '#00D4C5',
-                        'cyan': '#67F0E0',
-                        'gold': '#D4AF37',
-                        'neutral': {
-                            200: '#F5F7FA',
-                            300: '#E2E6ED',
-                            400: '#8B95A8',
-                            500: '#5A6577',
-                            600: '#3A4555',
-                        },
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', '-apple-system', 'sans-serif'],
-                        'display': ['Inter', 'sans-serif'],
-                        'serif': ['Playfair Display', 'Georgia', 'serif'],
-                    },
-                },
-            },
-        };
-    </script>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-
-    <script>
-        (function() {
-            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) {
-                document.documentElement.classList.add('reduced-motion');
-            }
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Konvexity is a premium African-rooted performance architecture firm. We install clarity as the operating system for ambitious organizations.">
+  <title>{% block title %}Konvexity — Performance Architecture{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --obsidian: #0a0c0f;
+      --obsidian-soft: #14171c;
+      --smoke: #f2f0eb;
+      --smoke-muted: rgba(242, 240, 235, 0.7);
+      --accent: #c9a04a;
+      --accent-glow: rgba(201, 160, 74, 0.18);
+      --glass-bg: rgba(20, 23, 28, 0.7);
+      --glass-border: rgba(201, 160, 74, 0.15);
+      --glass-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --border-radius-card: 1.25rem;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--obsidian);
+    }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--obsidian);
+      color: var(--smoke);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* subtle animated texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 20% 30%, rgba(201, 160, 74, 0.03) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(242, 240, 235, 0.02) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    /* typography */
+    h1, h2, h3, .display-font {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .accent-text {
+      color: var(--accent);
+    }
+    /* glass navigation */
+    .nav-glass {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 4rem);
+      max-width: 1200px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 4rem;
+      padding: 0.9rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      transition: all 0.3s var(--transition-smooth);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--smoke);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .logo span {
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--smoke-muted);
+      text-decoration: none;
+      font-weight: 450;
+      font-size: 0.9rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--smoke);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .btn-outline {
+      border: 1px solid var(--accent);
+      color: var(--smoke);
+      padding: 0.65rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      background: transparent;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--obsidian);
+      border-color: var(--accent);
+    }
+    .btn-filled {
+      background: var(--accent);
+      color: var(--obsidian);
+      padding: 0.75rem 2.2rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-filled:hover {
+      background: #dbb458;
+      box-shadow: 0 8px 22px var(--accent-glow);
+    }
+    footer {
+      background: var(--obsidian-soft);
+      border-top: 1px solid rgba(201, 160, 74, 0.15);
+      padding: 4rem 0 2rem;
+      margin-top: 6rem;
+      color: var(--smoke-muted);
+      font-size: 0.9rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
 </head>
-<body class="font-sans antialiased text-neutral-200 bg-deeper min-h-screen flex flex-col">
-
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    {% include 'components/navigation.html' %}
-
-    <main id="main-content" class="flex-1">
-        {% block content %}{% endblock %}
-    </main>
-
-    {% include 'components/footer.html' %}
-
-    <div id="back-to-top" class="fixed bottom-8 right-8 z-50 opacity-0 invisible translate-y-4 transition-all duration-500 pointer-events-none">
-        <button aria-label="Back to top" class="w-12 h-12 rounded-full bg-teal text-deeper flex items-center justify-center shadow-lg hover:shadow-[0_0_30px_rgba(0,212,197,0.3)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 focus:ring-offset-deeper">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-        </button>
+<body>
+  <nav class="nav-glass">
+    <a href="/" class="logo">Kon<span>vex</span>ity</a>
+    <div class="nav-links">
+      <a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a>
+      <a href="/solutions" class="{% if request.path == '/solutions' %}active{% endif %}">Solutions</a>
+      <a href="/programs" class="{% if request.path == '/programs' %}active{% endif %}">Programs</a>
+      <a href="/faculty" class="{% if request.path == '/faculty' %}active{% endif %}">Faculty</a>
+      <a href="/clients" class="{% if request.path == '/clients' %}active{% endif %}">Clients</a>
+      <a href="/contact" class="btn-outline" style="margin-left:1rem;">Connect</a>
     </div>
+  </nav>
 
-    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 
-    {% block scripts %}{% endblock %}
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo" style="font-size:1.6rem; margin-bottom:1rem;">Kon<span>vex</span>ity</div>
+        <p style="max-width:260px;">Performance architecture for African institutions. Installing clarity as your operating system.</p>
+      </div>
+      <div>
+        <h4 style="color:var(--smoke); margin-bottom:1rem;">Solutions</h4>
+        <p>Leadership Lab™</p>
+        <p>Professional Accelerator™</p>
+        <p>ADI Performance Model™</p>
+        <p>Clarity Room™</p>
+      </div>
+      <div>
+        <h4 style="color:var(--smoke); margin-bottom:1rem;">Company</h4>
+        <p><a href="/about" style="color:var(--smoke-muted); text-decoration:none;">About</a></p>
+        <p><a href="/founder" style="color:var(--smoke-muted); text-decoration:none;">Founder</a></p>
+        <p><a href="/clients" style="color:var(--smoke-muted); text-decoration:none;">Clients</a></p>
+      </div>
+      <div>
+        <h4 style="color:var(--smoke); margin-bottom:1rem;">Connect</h4>
+        <p>Lagos · Nairobi · London</p>
+        <p>hello@konvexity.com</p>
+      </div>
+    </div>
+    <div class="container" style="margin-top:2rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; text-align:center;">
+      © 2026 Konvexity Performance Architecture. All rights reserved.
+    </div>
+  </footer>
+  <script>
+    (function() {
+      const nav = document.querySelector('.nav-glass');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) nav.style.background = 'rgba(10,12,15,0.85)';
+        else nav.style.background = 'var(--glass-bg)';
+      });
+    })();
+  </script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>
