@@ -1,99 +1,19 @@
+<!-- founder.html -->
 {% extends "base.html" %}
-
+{% block title %}Founder — Konvexity{% endblock %}
+{% block extra_head %}
+<style>
+  .founder-layout { display:grid; grid-template-columns: 1fr 1fr; gap:4rem; padding-top:10rem; align-items:center; }
+  .founder-quote { font-size:2rem; font-style:italic; }
+</style>
+{% endblock %}
 {% block content %}
-<div class="relative bg-deeper">
-
-<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute top-0 -right-32 w-[800px] h-[800px] bg-teal/[0.02] rounded-full blur-[170px] float-ambient"></div>
-    <div class="absolute bottom-0 -left-32 w-[700px] h-[700px] bg-cyan/[0.012] rounded-full blur-[150px] float-ambient" style="animation-delay: -8s;"></div>
-</div>
-
-<section class="relative pt-44 pb-24 md:pt-52 md:pb-32 bg-deep z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-            <div class="lg:col-span-4 lens-reveal">
-                <div class="sticky top-32">
-                    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/[0.025] bg-gradient-to-br from-[#0C1A30] via-[#0A1628] to-deeper shadow-[0_0_120px_rgba(0,0,0,0.35)] mb-8">
-                        <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-teal/[0.06] via-teal/[0.02] to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-deeper via-deeper/80 to-transparent"></div>
-
-                        <div class="absolute top-10 right-10 w-16 h-[1px] bg-teal/15"></div>
-                        <div class="absolute top-10 right-10 w-[1px] h-16 bg-teal/15"></div>
-
-                        <div class="w-full h-full flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-teal/[0.04] flex items-center justify-center border border-teal/10 backdrop-blur-sm">
-                                    <svg class="w-16 h-16 text-teal/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                                </div>
-                                <p class="text-gray-600 text-xs uppercase tracking-[0.28em]">Portrait available soon</p>
-                            </div>
-                        </div>
-
-                        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6">
-                            <div class="text-center">
-                                <p class="text-teal/50 text-sm font-semibold">TechTrybe</p>
-                                <p class="text-gray-600 text-[10px] uppercase tracking-[0.2em]">Founder</p>
-                            </div>
-                            <div class="w-[1px] h-8 bg-white/[0.025]"></div>
-                            <div class="text-center">
-                                <p class="text-teal/50 text-sm font-semibold">Konvexity</p>
-                                <p class="text-gray-600 text-[10px] uppercase tracking-[0.2em]">Performance Architect</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/[0.025] flex items-center justify-center text-gray-500 hover:text-teal hover:bg-white/[0.05] transition-all duration-300" aria-label="LinkedIn">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/[0.025] flex items-center justify-center text-gray-500 hover:text-teal hover:bg-white/[0.05] transition-all duration-300" aria-label="Twitter">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-8">
-                <p class="section-eyebrow lens-reveal">Founder & Performance Architect</p>
-                <h1 class="heading-display mb-6 lens-reveal" data-delay="100" data-glow>Dr. Tioluwalogo Olakunbi-Black</h1>
-                <p class="text-xl text-teal/40 mb-12 lens-reveal font-light" data-delay="200">PhD. Founder, TechTrybe Africa.</p>
-
-                <div class="space-y-6 lens-reveal" data-delay="300">
-                    <p class="body-xl">Dr. Olakunbi-Black is a performance architect, organizational systems designer, behavioral strategist, and executive coach. He is the founder of TechTrybe Africa and the driving force behind Konvexity.</p>
-                    <p class="body-xl">His work sits at the intersection of leadership development, organizational design, and behavioral psychology. Over his career, he has helped founders, executives, and institutions across Africa build the leadership capability, operational systems, and organizational cultures required for sustained excellence.</p>
-                    <p class="text-gray-500 text-lg leading-relaxed font-light">Dr. Olakunbi-Black's approach is grounded in a fundamental conviction: that Africa's developmental challenges are not primarily resource constraints but leadership and systems constraints. The organizations that will transform the continent are those that invest intentionally in the quality of their leadership and the integrity of their organizational architecture.</p>
-                </div>
-
-                <div class="mt-16 lens-reveal" data-delay="400">
-                    <h3 class="text-2xl font-semibold text-white mb-8">Areas of Expertise</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {% set skills = ['Leadership Development', 'Organizational Systems Design', 'Behavioral Strategy', 'Executive Coaching', 'Strategic Clarity', 'Decision Architecture', 'Founder Development', 'Venture Building'] %}
-                        {% for skill in skills %}
-                        <div class="flex items-center gap-3 p-4 rounded-xl border border-white/[0.015] bg-white/[0.003]">
-                            <svg class="w-4 h-4 text-teal flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-gray-400 text-sm font-light">{{ skill }}</span>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="mt-16 lens-reveal" data-delay="500">
-                    <blockquote class="border-l-2 border-teal/20 pl-8 py-3 mb-8">
-                        <p class="text-xl font-serif italic text-white leading-relaxed">"Sustainable growth comes from fixing leadership, behavior, and systems — not from simply adding more people or processes. The quality of an organization is a direct reflection of the quality of its thinking."</p>
-                    </blockquote>
-                </div>
-
-                <div class="mt-12 lens-reveal" data-delay="600">
-                    <a href="{{ url_for('public.contact') }}" class="btn-primary magnetic">
-                        <span>Work with Dr. Olakunbi-Black<svg class="w-4.5 h-4.5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{% include 'components/cta_section.html' %}
-
+<div class="container founder-layout">
+  <div><div style="height:400px; background:var(--glass-bg); border-radius:2rem;"></div></div>
+  <div>
+    <h1 style="font-size:3rem;">Adebola <span class="accent-text">Okunola</span></h1>
+    <p>Founder & Chief Performance Architect. Adebola has spent two decades engineering institutional clarity across Africa.</p>
+    <p class="founder-quote" style="margin-top:2rem;">"Clarity is not a soft skill. It is the hardest structural asset an organization can own."</p>
+  </div>
 </div>
 {% endblock %}
