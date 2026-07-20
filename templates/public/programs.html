@@ -1,66 +1,19 @@
+<!-- programs.html -->
 {% extends "base.html" %}
-
+{% block title %}Programs — Konvexity{% endblock %}
+{% block extra_head %}
+<style>
+  .programs-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:2rem; margin:4rem 0; }
+</style>
+{% endblock %}
 {% block content %}
-<div class="relative bg-deeper">
-
-<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute top-0 -right-32 w-[700px] h-[700px] bg-teal/[0.018] rounded-full blur-[160px] float-ambient"></div>
-    <div class="absolute bottom-0 -left-32 w-[600px] h-[600px] bg-cyan/[0.01] rounded-full blur-[140px] float-ambient" style="animation-delay: -7s;"></div>
-</div>
-
-<section class="relative pt-44 pb-24 md:pt-52 md:pb-32 bg-deep z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-4xl">
-            <p class="section-eyebrow lens-reveal">Programs & Investment</p>
-            <h1 class="heading-display mb-10 lens-reveal" data-delay="100" data-glow>Programs for every stage of growth.</h1>
-            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light lens-reveal" data-delay="250">
-                From individual leadership development to enterprise-wide organizational transformation.
-            </p>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="relative py-36 md:py-48 lg:py-56 bg-deeper z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {% set programs = [
-                {'title': 'Executive Leadership Program', 'subtitle': 'For C-suite and senior executives', 'category': 'Leadership Lab', 'desc': 'A comprehensive leadership development journey built on the 5D Leadership Architecture.', 'duration': '12 weeks', 'format': 'Blended'},
-                {'title': 'Leadership Coaching', 'subtitle': 'Individualized executive coaching', 'category': 'Leadership Lab', 'desc': 'One-on-one coaching engagements tailored to specific leadership challenges and goals.', 'duration': '6–12 months', 'format': 'Virtual + In-person'},
-                {'title': 'Executive Influence & Communication', 'subtitle': 'Master executive presence', 'category': 'Professional Accelerator', 'desc': 'Develop the communication skills and persuasive ability required at the highest levels.', 'duration': '4 weeks', 'format': 'Workshop + Reinforcement'},
-                {'title': 'Emotional Intelligence for Leaders', 'subtitle': 'Lead with emotional mastery', 'category': 'Professional Accelerator', 'desc': 'Build self-awareness, empathy, and relationship management skills.', 'duration': '3 weeks', 'format': 'Workshop + Coaching'},
-                {'title': 'Organizational Diagnostics & Design', 'subtitle': 'Understand your organization deeply', 'category': 'ADI Performance Model', 'desc': 'Rigorous assessment of organizational health and performance gaps.', 'duration': '8–12 weeks', 'format': 'Consulting Engagement'},
-                {'title': 'Culture Transformation Program', 'subtitle': 'Shape culture intentionally', 'category': 'ADI Performance Model', 'desc': 'Move from accidental culture to intentional culture through systems design.', 'duration': '6–9 months', 'format': 'Consulting + Coaching'},
-                {'title': 'Institutional Anchor', 'subtitle': 'Leadership Lab + ADI', 'category': 'Combination Program', 'desc': 'Comprehensive transformation combining leadership development with organizational systems redesign.', 'duration': '9–12 months', 'format': 'Integrated'},
-                {'title': 'Executive Presence Suite', 'subtitle': 'Leadership + Communication Mastery', 'category': 'Combination Program', 'desc': 'The complete executive presence package for commanding influence and inspiring action.', 'duration': '8 weeks', 'format': 'Blended'}
-            ] %}
-
-            {% for program in programs %}
-            <div class="card-glass p-10 lens-reveal" data-delay="{{ loop.index * 60 }}">
-                <div class="flex items-start justify-between mb-4">
-                    <span class="px-3 py-1 text-xs font-medium text-teal/40 bg-teal/[0.04] border border-teal/10 rounded-full">{{ program.category }}</span>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-2">{{ program.title }}</h3>
-                <p class="text-teal/30 text-sm mb-4">{{ program.subtitle }}</p>
-                <p class="body-sm mb-6">{{ program.desc }}</p>
-                <div class="flex items-center gap-6 text-sm text-gray-600">
-                    <span class="flex items-center gap-1.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        {{ program.duration }}
-                    </span>
-                    <span class="flex items-center gap-1.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                        {{ program.format }}
-                    </span>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-{% include 'components/cta_section.html' %}
-
+<div class="container" style="padding-top:9rem;">
+  <h1 style="font-size:3.5rem;">Executive <span class="accent-text">Programs</span></h1>
+  <div class="programs-grid">
+    <div class="glass-panel"><h3>Emerging Leaders</h3><p>5D foundation for high-potential managers.</p></div>
+    <div class="glass-panel"><h3>Mid-Career Accelerator</h3><p>Execution and influence at scale.</p></div>
+    <div class="glass-panel"><h3>C-Suite Institute</h3><p>Institutional legacy and governance.</p></div>
+    <div class="glass-panel"><h3>Board Performance</h3><p>Strategic oversight mastery.</p></div>
+  </div>
 </div>
 {% endblock %}
