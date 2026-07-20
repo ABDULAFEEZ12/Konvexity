@@ -1,0 +1,20 @@
+<section class="relative py-36 md:py-48 lg:py-56 bg-deep z-10 overflow-hidden">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal/[0.012] rounded-full blur-[160px]"></div>
+    </div>
+    <div class="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-teal/20 rounded-full float-slow hidden lg:block"></div>
+
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <h2 class="heading-display mb-8 lens-reveal relative">
+            <span class="absolute -inset-12 bg-teal/[0.015] blur-3xl rounded-full"></span>
+            <span class="relative">Ready to build an institution that lasts?</span>
+        </h2>
+        <p class="body-xl max-w-2xl mx-auto mb-14 lens-reveal font-light" data-delay="100">Let's start a conversation about how Konvexity can help your organization achieve clarity, drive growth, and sustain excellence.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-5 lens-reveal" data-delay="200">
+            <a href="{{ url_for('public.contact') }}" class="btn-primary magnetic">
+                <span>Start a conversation<svg class="w-4.5 h-4.5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+            </a>
+            <a href="{{ url_for('public.solutions') }}" class="btn-ghost magnetic">Explore solutions</a>
+        </div>
+    </div>
+</section>

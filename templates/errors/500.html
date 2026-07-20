@@ -1,0 +1,15 @@
+<!-- templates/errors/500.html -->
+{% extends "base.html" %}
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-code reveal">500</div>
+        <h2 class="reveal" data-delay="100">Internal Server Error</h2>
+        <p class="reveal" data-delay="200">Something went wrong on our end. Our team has been notified.</p>
+        <div class="cta-buttons reveal" data-delay="300">
+            <a href="{{ url_for('public.home') }}" class="btn btn-primary">Return Home <span class="btn-arrow">&rarr;</span></a>
+            <a href="{{ url_for('public.contact') }}" class="btn btn-secondary">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

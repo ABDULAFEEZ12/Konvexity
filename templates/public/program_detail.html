@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-deep via-primary to-primary-deep"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,rgba(200,169,110,0.05),transparent)]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <a href="{{ url_for('public.programs') }}" class="inline-flex items-center text-neutral-400 hover:text-white text-sm mb-8 transition-colors duration-200">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                All Programs
+            </a>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-display text-white font-bold leading-tight tracking-tight mb-8">
+                Program Details
+            </h1>
+            <p class="text-lg text-neutral-300 leading-relaxed mb-10">
+                Complete program details, learning outcomes, and enrollment information will be available soon. In the meantime, we invite you to start a conversation about how this program can support your goals.
+            </p>
+            <a href="{{ url_for('public.contact') }}"
+               class="inline-flex items-center px-8 py-4 text-base font-semibold text-primary-deep bg-accent-gold rounded-full hover:bg-accent-gold-alt transition-all duration-300 shadow-xl shadow-accent-gold/20">
+                Inquire About This Program
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
+{% endblock %}

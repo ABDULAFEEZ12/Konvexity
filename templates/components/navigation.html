@@ -1,0 +1,67 @@
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-700 py-5" role="banner">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <nav class="relative flex items-center justify-between px-6 py-3.5 rounded-2xl border border-white/[0.04] bg-deep/70 backdrop-blur-2xl shadow-lg nav-container" aria-label="Main navigation" id="nav-container">
+            <a href="{{ url_for('public.home') }}" class="flex items-center gap-3 group z-10" aria-label="Konvexity Home">
+                <div class="w-9 h-9 bg-teal rounded-lg flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(0,212,197,0.3)]">
+                    <span class="font-display text-deeper font-bold text-lg leading-none">K</span>
+                </div>
+                <span class="font-display text-white text-lg font-semibold tracking-tight hidden sm:block">Konvexity</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-1 z-10" role="list">
+                {% for item in navigation.primary %}
+                <li>
+                    <a href="{{ item.url }}"
+                       class="relative px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/[0.04] {% if request.path == item.url %}text-teal{% endif %}"
+                       {% if request.path == item.url %}aria-current="page"{% endif %}>
+                        {{ item.label }}
+                        {% if request.path == item.url %}
+                        <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-teal rounded-full"></span>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="flex items-center gap-4 z-10">
+                <a href="{{ url_for('public.contact') }}"
+                   class="hidden sm:inline-flex items-center px-5 py-2.5 text-sm font-semibold text-deeper bg-teal rounded-full hover:bg-cyan transition-all duration-500 shadow-lg shadow-teal/10 hover:shadow-teal/20 magnetic">
+                    Connect
+                </a>
+
+                <button id="mobile-menu-toggle"
+                        class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/[0.06] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal/50 focus:ring-offset-2 focus:ring-offset-deeper"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false">
+                    <span class="block w-4 h-px bg-white transition-all duration-300 origin-center"></span>
+                    <span class="block w-4 h-px bg-white transition-all duration-300 origin-center"></span>
+                    <span class="block w-4 h-px bg-white transition-all duration-300 origin-center"></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div id="mobile-menu"
+         class="fixed inset-0 z-40 bg-deeper/98 backdrop-blur-3xl flex flex-col items-center justify-center opacity-0 invisible pointer-events-none transition-all duration-500 lg:hidden"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Mobile navigation">
+        <ul class="flex flex-col items-center gap-8" role="list">
+            {% for item in navigation.primary %}
+            <li>
+                <a href="{{ item.url }}"
+                   class="text-2xl font-display text-white hover:text-teal transition-colors duration-200 {% if request.path == item.url %}text-teal{% endif %}"
+                   {% if request.path == item.url %}aria-current="page"{% endif %}>
+                    {{ item.label }}
+                </a>
+            </li>
+            {% endfor %}
+            <li class="mt-10">
+                <a href="{{ url_for('public.contact') }}"
+                   class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-deeper bg-teal rounded-full hover:bg-cyan transition-all duration-500 shadow-xl shadow-teal/20">
+                    Connect
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,13 @@
+{
+  "name": "konvexity",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Konvexity - Where Clarity Meets Growth",
+  "scripts": {
+    "build:css": "tailwindcss -i ./app/static/css/tailwind.src.css -o ./app/static/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./app/static/css/tailwind.src.css -o ./app/static/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

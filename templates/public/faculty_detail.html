@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-deep via-primary to-primary-deep"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_30%,rgba(200,169,110,0.05),transparent)]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <a href="{{ url_for('public.faculty') }}" class="inline-flex items-center text-neutral-400 hover:text-white text-sm mb-8 transition-colors duration-200">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                All Faculty
+            </a>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-display text-white font-bold leading-tight tracking-tight mb-8">
+                Faculty Profile
+            </h1>
+            <p class="text-lg text-neutral-300 leading-relaxed">
+                Detailed faculty profiles will be available as our dynamic platform launches. Each profile will include full biographies, publications, program affiliations, and booking options.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="relative bg-deeper">
+
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-teal/[0.015] rounded-full blur-[150px] float-ambient"></div>
+</div>
+
+<section class="relative pt-44 pb-24 md:pt-52 md:pb-32 bg-deep z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-4xl">
+            <p class="section-eyebrow lens-reveal">Insights</p>
+            <h1 class="heading-display mb-10 lens-reveal" data-delay="100" data-glow>Perspectives on leadership, systems, and performance.</h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light lens-reveal" data-delay="250">
+                Frameworks, research, and thought leadership from Konvexity's faculty and research center.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="relative py-36 md:py-48 lg:py-56 bg-deeper z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% set resources = [
+                {'type': 'Framework', 'title': 'The 5D Leadership Architecture', 'desc': "An introduction to Konvexity's proprietary leadership development model.", 'icon': 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'},
+                {'type': 'Article', 'title': 'Why Organizations Plateau', 'desc': 'Understanding the systemic causes of organizational stagnation and how to overcome them.', 'icon': 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z'},
+                {'type': 'Research Paper', 'title': 'The Accountability Equation', 'desc': 'How accountability systems drive performance across organizational tiers.', 'icon': 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'},
+                {'type': 'Guide', 'title': 'Leading Through Uncertainty', 'desc': 'A practical framework for leadership decision-making in volatile environments.', 'icon': 'M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14a4 4 0 100-8 4 4 0 000 8z'},
+                {'type': 'Article', 'title': 'Building Psychological Safety', 'desc': "The leader's role in creating environments where teams perform at their best.", 'icon': 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z'},
+                {'type': 'Case Study', 'title': 'From Informal to Institutional', 'desc': 'How African organizations can transition from founder-dependent to systems-driven.', 'icon': 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'}
+            ] %}
+
+            {% for resource in resources %}
+            <a href="#" class="card-glass p-10 lens-reveal group" data-delay="{{ loop.index * 80 }}">
+                <div class="w-11 h-11 rounded-xl bg-teal/[0.04] flex items-center justify-center text-teal/40 mb-6 group-hover:bg-teal group-hover:text-deeper transition-all duration-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ resource.icon }}"/></svg>
+                </div>
+                <p class="text-teal/30 text-xs font-medium uppercase tracking-widest mb-5">{{ resource.type }}</p>
+                <h3 class="text-lg font-semibold text-white mb-3 group-hover:text-teal transition-colors duration-500">{{ resource.title }}</h3>
+                <p class="body-sm mb-8">{{ resource.desc }}</p>
+                <span class="flex items-center text-teal/25 text-sm font-medium group-hover:text-teal transition-colors duration-500">
+                    Read more
+                    <svg class="w-4 h-4 ml-2 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
+</div>
+{% endblock %}

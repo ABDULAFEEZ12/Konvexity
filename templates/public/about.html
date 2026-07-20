@@ -1,0 +1,994 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="relative bg-[#020610]">
+
+<style>
+:root {
+  --bg-deep: #060612;
+  --surface: rgba(15, 15, 35, 0.6);
+  --surface-hover: rgba(22, 22, 50, 0.7);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --text: #f0f0f8;
+  --text-secondary: #b8b8d0;
+  --text-muted: #707088;
+  --accent-blue: #4d8cf7;
+  --accent-purple: #9b6ff6;
+  --accent-cyan: #22c9e0;
+  --accent-soft: #7b9fff;
+  --accent-gold: #f59e0b;
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(77, 140, 247, 0.18), transparent 55%);
+  --gradient-purple: radial-gradient(ellipse at 80% 100%, rgba(155, 111, 246, 0.12), transparent 50%);
+  --gradient-cyan: radial-gradient(ellipse at 20% 50%, rgba(34, 201, 224, 0.08), transparent 50%);
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --radius-sm: 0.75rem;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deep);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+#particleCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+.bg-gradient-1, .bg-gradient-2, .bg-gradient-3, .bg-grid {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+.bg-gradient-1 { background: var(--gradient-hero); }
+.bg-gradient-2 { background: var(--gradient-purple); }
+.bg-gradient-3 { background: var(--gradient-cyan); }
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 8, 20, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+}
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.logo-icon { 
+  color: var(--accent-soft);
+  font-size: 1.1rem;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: rgba(255,255,255,0.06);
+  padding: 0.45rem 1.1rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all var(--transition);
+}
+.nav-cta:hover { 
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.15);
+}
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.mobile-menu-btn span {
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.hero {
+  padding: 4rem 0 5rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(77, 140, 247, 0.08);
+  border: 1px solid rgba(77, 140, 247, 0.2);
+  padding: 0.45rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  color: var(--accent-soft);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.live-dot {
+  width: 7px; height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse-dot 2.5s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+.hero-brand {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(160deg, #ffffff 0%, #c4d4ff 50%, #a0b8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hero-event {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  font-weight: 500;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  padding: 0.85rem 2rem;
+  border-radius: 3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-blue), #6b8cf7);
+  color: white;
+  box-shadow: 0 4px 18px rgba(77, 140, 247, 0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(77, 140, 247, 0.35);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+.btn-large { padding: 1rem 2.5rem; font-size: 1rem; }
+.btn-arrow { 
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+}
+.btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem 2.5rem;
+  background: rgba(20, 20, 45, 0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px);
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1.2;
+}
+.stat-label { 
+  font-size: 0.78rem; 
+  color: var(--text-muted); 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  font-weight: 500;
+}
+.stat-divider { 
+  width: 1px; 
+  height: 36px; 
+  background: rgba(255,255,255,0.08); 
+}
+
+.section { padding: 6rem 0; position: relative; z-index: 1; }
+.section-label {
+  text-align: center;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent-soft);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+.section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 1.8rem;
+  transition: all var(--transition);
+}
+.about-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.about-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+.about-card h3 { 
+  margin-bottom: 0.5rem; 
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.about-card p { 
+  color: var(--text-secondary); 
+  font-size: 0.92rem; 
+  line-height: 1.6;
+}
+
+.cta-final {
+  text-align: center;
+  padding: 6rem 0;
+}
+.cta-final h2 { 
+  font-size: clamp(2rem, 5vw, 2.8rem); 
+  margin-bottom: 0.8rem; 
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.cta-final p { 
+  color: var(--text-secondary); 
+  margin-bottom: 2rem; 
+  font-size: 1.05rem;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+.footer {
+  background: rgba(8, 8, 20, 0.7);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 4rem 0 2rem;
+  margin-top: 2rem;
+  backdrop-filter: blur(10px);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.footer-brand p { 
+  color: var(--text-muted); 
+  margin-top: 0.4rem; 
+  font-size: 0.88rem; 
+  line-height: 1.5;
+}
+.footer-links h4 { 
+  margin-bottom: 0.8rem; 
+  font-size: 0.82rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+  color: var(--text-muted); 
+  font-weight: 600;
+}
+.footer-links a {
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 0.45rem;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: flex; }
+  .hero-stats { gap: 1rem; padding: 1rem 1.5rem; }
+  .stat-number { font-size: 1.5rem; }
+  .stat-divider { height: 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .section { padding: 4rem 0; }
+}
+@media (max-width: 480px) {
+  .hero-meta { flex-direction: column; gap: 0.4rem; font-size: 0.85rem; }
+  .hero-stats { gap: 0.5rem; }
+  .stat-number { font-size: 1.3rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+    <div class="absolute top-0 -left-32 w-[800px] h-[800px] bg-accent-gold/[0.012] rounded-full blur-[180px] floating-slower"></div>
+    <div class="absolute bottom-0 -right-32 w-[700px] h-[700px] bg-accent-gold/[0.008] rounded-full blur-[160px] floating-slow"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-accent-gold/[0.004] rounded-full blur-[200px]"></div>
+</div>
+
+<section class="relative min-h-screen flex items-center z-10 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.006]" style="background-image: radial-gradient(circle at 1px 1px, rgba(200,169,110,0.7) 1px, transparent 0); background-size: 96px 96px;"></div>
+
+    <div class="absolute top-1/2 right-[7%] -translate-y-1/2 hidden xl:flex items-center justify-center" data-parallax="0.03">
+        <div class="relative w-[380px] h-[380px]">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ringGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#C8A96E" stop-opacity="0.12"/>
+                        <stop offset="100%" stop-color="#C8A96E" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="ringGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#C8A96E" stop-opacity="0.08"/>
+                        <stop offset="100%" stop-color="#C8A96E" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="190" cy="190" r="170" stroke="url(#ringGrad1)" stroke-width="0.5" fill="none"/>
+                <circle cx="190" cy="190" r="130" stroke="url(#ringGrad2)" stroke-width="0.5" fill="none"/>
+                <circle cx="190" cy="190" r="90" stroke="rgba(200,169,110,0.06)" stroke-width="0.5" fill="none"/>
+                <circle cx="190" cy="190" r="50" stroke="rgba(200,169,110,0.08)" stroke-width="0.5" fill="none"/>
+                <circle cx="190" cy="190" r="6" fill="#C8A96E" opacity="0.6">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="260" cy="120" r="2" fill="#C8A96E" opacity="0.5">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="120" cy="260" r="1.5" fill="#C8A96E" opacity="0.4">
+                    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="300" cy="240" r="1" fill="#C8A96E" opacity="0.35">
+                    <animate attributeName="opacity" values="0.25;0.55;0.25" dur="6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="140" cy="100" r="1.5" fill="#C8A96E" opacity="0.45">
+                    <animate attributeName="opacity" values="0.3;0.65;0.3" dur="4.5s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+            <div class="absolute inset-0 rounded-full bg-accent-gold/[0.02] backdrop-blur-3xl"></div>
+        </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-48 pb-40 lg:pt-56 lg:pb-48 z-20">
+        <div class="max-w-4xl">
+            <div class="inline-flex items-center gap-3 px-4 py-2.5 mb-14 rounded-full border border-white/[0.04] bg-white/[0.01] backdrop-blur-2xl text-accent-gold/55 text-xs font-medium uppercase tracking-[0.25em] reveal">
+                <span class="relative flex h-1.5 w-1.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-gold/25"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-gold"></span>
+                </span>
+                About Konvexity
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[7rem] font-display text-white font-bold leading-[0.9] tracking-[-0.02em] mb-10 reveal relative" data-delay="100">
+                <span class="absolute -inset-x-12 -inset-y-8 bg-accent-gold/[0.02] blur-3xl rounded-full opacity-70"></span>
+                <span class="relative">
+                    We are a<br>
+                    <span class="text-accent-gold italic relative inline-block">
+                        clarity movement
+                        <span class="absolute -bottom-4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent"></span>
+                    </span>
+                </span>
+            </h1>
+
+            <p class="text-lg md:text-xl lg:text-2xl text-neutral-500 max-w-xl leading-relaxed mb-16 font-light reveal" data-delay="250">
+                Konvexity is a premium African-rooted performance architecture firm. We combine behavioral science, systems thinking, and leadership formation to transform organizations from informal hustle into structured, scalable institutions that define the future of the continent.
+            </p>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <div class="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/[0.06] to-transparent floating"></div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mb-24 reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Why Konvexity Exists</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-10">
+                Most organizations do not struggle from lack of effort. They struggle from lack of clarity.
+            </h2>
+            <p class="text-neutral-400 text-lg leading-relaxed font-light max-w-2xl">
+                Across Africa, ambitious founders and executives pour extraordinary energy into their organizations. Yet many remain trapped in cycles of stalled growth, misaligned teams, inconsistent execution, and constant firefighting. The missing ingredient is not more people, more capital, or more technology. It is clarity — the foundational force that turns effort into exponential, sustainable growth.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl reveal" data-delay="100">
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm">
+                <div class="w-3 h-3 bg-accent-gold/60 rounded-full mb-5"></div>
+                <h3 class="text-lg font-semibold text-white mb-3">Leadership Confusion</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Leaders operate without a coherent architecture for decision-making, delegation, and influence. Strategy becomes reactive rather than intentional.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm">
+                <div class="w-3 h-3 bg-accent-gold/60 rounded-full mb-5"></div>
+                <h3 class="text-lg font-semibold text-white mb-3">Misaligned Systems</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Processes evolve organically without design. Departments operate in silos. The organization becomes a collection of parts rather than an integrated whole.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm">
+                <div class="w-3 h-3 bg-accent-gold/60 rounded-full mb-5"></div>
+                <h3 class="text-lg font-semibold text-white mb-3">Inconsistent Behavior</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Without clarity, culture becomes accidental. Values are stated but not lived. Accountability becomes a conversation rather than a system.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm">
+                <div class="w-3 h-3 bg-accent-gold/60 rounded-full mb-5"></div>
+                <h3 class="text-lg font-semibold text-white mb-3">Chaotic Growth</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Growth without clarity creates complexity that compounds. Organizations hit invisible ceilings and cannot scale beyond the founder's personal capacity.</p>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mt-16 reveal" data-delay="200">
+            <p class="text-neutral-400 text-lg leading-relaxed font-light">
+                Konvexity exists to solve these four problems at their root. We do not offer surface-level consulting. We install clarity as your organization's operating system — transforming how you lead, how your systems function, how your people behave, and how your institution grows.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-24 reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">The Konvexity Core</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-8">
+                Clarity at the center. Four dimensions of transformation.
+            </h2>
+            <p class="text-neutral-500 text-lg max-w-2xl mx-auto leading-relaxed font-light">
+                Everything we do is organized around a singular conviction: clarity is the foundational force that makes every other organizational investment work harder. Our proprietary framework addresses the four dimensions that determine whether an institution thrives or stalls.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            <div class="relative p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="80">
+                <div class="w-12 h-12 mx-auto mb-5 rounded-xl bg-accent-gold/[0.05] flex items-center justify-center text-accent-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-3">Company</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Organizational architecture, systems design, and operational clarity that turns chaos into coherence.</p>
+            </div>
+            <div class="relative p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="160">
+                <div class="w-12 h-12 mx-auto mb-5 rounded-xl bg-accent-gold/[0.05] flex items-center justify-center text-accent-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-3">Client</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Stakeholder alignment, brand positioning, and trust architecture that builds enduring relationships.</p>
+            </div>
+            <div class="relative p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="240">
+                <div class="w-12 h-12 mx-auto mb-5 rounded-xl bg-accent-gold/[0.05] flex items-center justify-center text-accent-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-3">Commerce</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Growth strategy, revenue systems, and market positioning that drive sustainable commercial success.</p>
+            </div>
+            <div class="relative p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="320">
+                <div class="w-12 h-12 mx-auto mb-5 rounded-xl bg-accent-gold/[0.05] flex items-center justify-center text-accent-gold">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-3">Change</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">Transformation management, culture shift, and future-proofing that ensure your institution endures.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-gold/[0.008] rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-28 items-start">
+            <div class="reveal">
+                <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Vision</p>
+                <h2 class="text-2xl md:text-3xl font-display text-white font-bold leading-[1.15] tracking-[-0.01em] mb-6">
+                    An Africa where every institution operates with clarity, executes with precision, and grows with intention.
+                </h2>
+                <p class="text-neutral-500 text-base leading-relaxed font-light">
+                    We envision a continent where organizations — from startups to governments — are built on foundations of architectural clarity rather than improvisation. Where leadership is intentional, systems are designed, and growth is sustainable across generations.
+                </p>
+            </div>
+
+            <div class="reveal" data-delay="150">
+                <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">Mission</p>
+                <h2 class="text-2xl md:text-3xl font-display text-white font-bold leading-[1.15] tracking-[-0.01em] mb-6">
+                    To install clarity as the operating system of ambitious African organizations.
+                </h2>
+                <p class="text-neutral-500 text-base leading-relaxed font-light">
+                    We do this through premium leadership development, organizational systems design, behavioral strategy, and executive coaching — transforming informal enterprises into structured, scalable institutions that compete globally and endure locally.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-gold/[0.008] rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div class="reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-10">Our Philosophy</p>
+            <blockquote class="text-2xl md:text-3xl lg:text-4xl font-display text-white font-medium leading-[1.25] tracking-[-0.01em] mb-10">
+                Sustainable growth does not come from adding more people or processes.
+            </blockquote>
+            <p class="text-neutral-400 text-lg max-w-2xl mx-auto leading-relaxed font-light mb-6">
+                It comes from fixing leadership, behavior, and systems. This conviction shapes every engagement, every program, and every relationship at Konvexity.
+            </p>
+            <p class="text-neutral-500 text-base max-w-xl mx-auto leading-relaxed font-light">
+                We do not believe in temporary interventions that create dependency. We believe in architectural transformation that builds capability from within. Our work is complete not when we leave, but when our clients no longer need us — because clarity has become the way they think, decide, and execute.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mb-24 reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">The Konvexity Difference</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-10">
+                What sets us apart from ordinary consulting firms.
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl reveal" data-delay="100">
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm flex gap-5">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-gold/[0.06] flex items-center justify-center text-accent-gold text-sm font-bold">01</div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Clarity as an Operating System</h3>
+                    <p class="text-neutral-500 text-sm leading-relaxed font-light">Most consultants deliver reports and recommendations. We install clarity as a permanent capability — a way of thinking that transforms how your organization makes decisions, designs systems, and develops leaders long after our engagement ends.</p>
+                </div>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm flex gap-5">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-gold/[0.06] flex items-center justify-center text-accent-gold text-sm font-bold">02</div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Measurable Transformation, Not Billable Hours</h3>
+                    <p class="text-neutral-500 text-sm leading-relaxed font-light">We structure our engagements around outcomes, not activity. Our success is measured by the institutional strength our clients achieve — their clarity of strategy, coherence of systems, and consistency of execution.</p>
+                </div>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm flex gap-5">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-gold/[0.06] flex items-center justify-center text-accent-gold text-sm font-bold">03</div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Leadership Architecture, Not Motivation</h3>
+                    <p class="text-neutral-500 text-sm leading-relaxed font-light">Inspiration fades. Systems endure. We build the structural foundations — accountability frameworks, decision architectures, communication protocols — that make high performance inevitable rather than dependent on heroic individual effort.</p>
+                </div>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm flex gap-5">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-gold/[0.06] flex items-center justify-center text-accent-gold text-sm font-bold">04</div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-3">Institutional Legacy, Not Short-Term Projects</h3>
+                    <p class="text-neutral-500 text-sm leading-relaxed font-light">We are not interested in quick wins that evaporate. We build institutions designed to outlast their founders — organizations with the clarity, capability, and culture to thrive across decades and generations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-24 reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-8">The Emotional Journey</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-8">
+                Every transformation follows a path.
+            </h2>
+            <p class="text-neutral-500 text-lg max-w-2xl mx-auto leading-relaxed font-light">
+                Our clients move through four distinct stages on their journey from organizational chaos to institutional excellence.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="80">
+                <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-accent-gold/[0.06] flex items-center justify-center text-accent-gold/50 text-xl font-semibold">1</div>
+                <h3 class="text-lg font-semibold text-white mb-3">Confusion</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">The fog of misalignment. Leaders sense something is wrong but cannot diagnose it. Teams work hard but results remain elusive. The organization is busy without being productive.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="160">
+                <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-accent-gold/[0.08] flex items-center justify-center text-accent-gold/60 text-xl font-semibold">2</div>
+                <h3 class="text-lg font-semibold text-white mb-3">Clarity</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">The breakthrough. Through rigorous diagnosis and architectural design, the organization gains visibility into what was hidden. Priorities crystallize. The path forward becomes unmistakably clear.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="240">
+                <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-accent-gold/[0.1] flex items-center justify-center text-accent-gold/70 text-xl font-semibold">3</div>
+                <h3 class="text-lg font-semibold text-white mb-3">Confidence</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">The shift. With clarity comes conviction. Leaders make decisions with speed and precision. Teams execute with alignment. The organization moves from reactive to intentional, from hoping to knowing.</p>
+            </div>
+            <div class="p-8 rounded-2xl border border-white/[0.015] bg-white/[0.003] backdrop-blur-sm text-center reveal" data-delay="320">
+                <div class="w-14 h-14 mx-auto mb-5 rounded-full bg-accent-gold/[0.12] flex items-center justify-center text-accent-gold/80 text-xl font-semibold">4</div>
+                <h3 class="text-lg font-semibold text-white mb-3">Growth</h3>
+                <p class="text-neutral-500 text-sm leading-relaxed font-light">The outcome. Exponential, sustainable growth — not from working harder, but from operating with clarity. The institution scales. Its leaders develop. Its systems strengthen. Its legacy is secured.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#030914] z-10 overflow-hidden">
+    <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold/[0.008] rounded-full blur-[160px]"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div class="reveal">
+            <p class="text-accent-gold/35 text-xs font-medium uppercase tracking-[0.22em] mb-10">Global Impact</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display text-white font-bold leading-[1.08] tracking-[-0.01em] mb-10">
+                The African organizations that will define the next century are those that invest intentionally in leadership and systems.
+            </h2>
+            <p class="text-neutral-400 text-lg max-w-2xl mx-auto leading-relaxed font-light mb-6">
+                Konvexity exists to build those institutions.
+            </p>
+            <p class="text-neutral-500 text-base max-w-xl mx-auto leading-relaxed font-light">
+                We are not merely a consulting firm. We are architects of Africa's institutional future — building the leadership capability, organizational clarity, and systemic strength that will enable the continent's enterprises, governments, and communities to compete and lead on the global stage.
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="relative z-10"><div class="h-px bg-gradient-to-r from-transparent via-white/[0.015] to-transparent mx-[10%]"></div></div>
+
+<section class="relative py-40 md:py-52 lg:py-60 bg-[#020610] z-10 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-accent-gold/18 rounded-full floating-slow hidden lg:block"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-1 h-1 bg-accent-gold/12 rounded-full floating-slower hidden lg:block"></div>
+
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display text-white font-bold leading-[1.06] tracking-[-0.02em] mb-8 reveal relative">
+            <span class="absolute -inset-12 bg-accent-gold/[0.012] blur-3xl rounded-full"></span>
+            <span class="relative">Ready to build an institution that lasts?</span>
+        </h2>
+        <p class="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto mb-14 leading-relaxed reveal font-light" data-delay="100">
+            Let's start a conversation about how Konvexity can help your organization achieve clarity, drive growth, and sustain excellence.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-5 reveal" data-delay="200">
+            <a href="{{ url_for('public.contact') }}"
+               class="group relative inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-[#020610] bg-accent-gold rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_0_80px_rgba(200,169,110,0.4)] magnetic">
+                <span class="relative z-10 flex items-center">
+                    Start a conversation
+                    <svg class="w-4.5 h-4.5 ml-3 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+                <div class="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left rounded-full"></div>
+            </a>
+            <a href="{{ url_for('public.solutions') }}"
+               class="inline-flex items-center px-9 py-4.5 text-[15px] font-semibold text-white border border-white/8 rounded-full hover:border-white/18 transition-all duration-500 hover:bg-white/[0.02] magnetic">
+                Explore solutions
+            </a>
+        </div>
+    </div>
+</section>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+    var nav = document.getElementById('site-header');
+    var navContainer = document.getElementById('nav-container');
+    if (!nav || !navContainer) return;
+
+    function updateNav() {
+        var scrollY = window.scrollY;
+        if (scrollY > 60) {
+            nav.classList.add('py-3');
+            nav.classList.remove('py-5');
+            navContainer.style.transform = 'scale(0.985)';
+            navContainer.style.borderColor = 'rgba(255,255,255,0.05)';
+        } else {
+            nav.classList.add('py-5');
+            nav.classList.remove('py-3');
+            navContainer.style.transform = 'scale(1)';
+            navContainer.style.borderColor = 'rgba(255,255,255,0.03)';
+        }
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                updateNav();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateNav();
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    function initReveal() {
+        if (reducedMotion) {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay');
+                    if (delay) {
+                        setTimeout(() => entry.target.classList.add('visible'), parseInt(delay, 10));
+                    } else {
+                        entry.target.classList.add('visible');
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: '0px 0px -40px 0px', threshold: 0.06 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    function initMagnetic() {
+        if (reducedMotion) return;
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = 'translate(' + (x * 0.08) + 'px, ' + (y * 0.08) + 'px)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+    }
+
+    function initMobileMenu() {
+        const btn = document.querySelector('.mobile-menu-btn');
+        const menu = document.querySelector('.mobile-menu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', () => {
+            const isActive = menu.classList.contains('active');
+            if (isActive) {
+                menu.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                menu.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    function initBackToTop() {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        let ticking = false;
+        function update() {
+            if (window.scrollY > 600) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => { update(); ticking = false; });
+                ticking = true;
+            }
+        }, { passive: true });
+        btn.querySelector('button').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    function initParticles() {
+        if (reducedMotion) return;
+        const canvas = document.getElementById('particleCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animId;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        function createParticles() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 18000);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.2 + 0.3,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.5 + 0.2,
+                });
+            }
+        }
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(123, 159, 255, ' + p.opacity + ')';
+                ctx.fill();
+            });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = 'rgba(123, 159, 255, ' + (0.06 * (1 - dist / 120)) + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            animId = requestAnimationFrame(draw);
+        }
+        resize();
+        createParticles();
+        draw();
+        window.addEventListener('resize', () => {
+            resize();
+            createParticles();
+        });
+    }
+
+    initReveal();
+    initMagnetic();
+    initMobileMenu();
+    initBackToTop();
+    initParticles();
+});
+</script>
+{% endblock %}
