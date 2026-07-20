@@ -1,57 +1,28 @@
+<!-- solution_detail.html (generic example for Leadership Lab) -->
 {% extends "base.html" %}
-
+{% block title %}Leadership Lab™ — Konvexity{% endblock %}
+{% block extra_head %}
+<style>
+  .detail-hero { padding: 10rem 0 4rem; }
+  .detail-hero h1 { font-size: 4.2rem; }
+  .phases { display: grid; grid-template-columns: repeat(5,1fr); gap:1rem; margin:3rem 0; }
+  .phase { background: var(--glass-bg); padding:1.5rem; border-radius:1rem; text-align:center; }
+  @media (max-width:800px){ .phases{grid-template-columns:1fr;} }
+</style>
+{% endblock %}
 {% block content %}
-<div class="relative bg-deeper">
-
-<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-teal/[0.02] rounded-full blur-[150px] float-ambient"></div>
+<div class="container detail-hero">
+  <h1>Leadership Lab™</h1>
+  <p style="font-size:1.4rem;">The 5D Leadership Architecture transforms executives into institutional builders.</p>
 </div>
-
-<section class="relative pt-44 pb-24 md:pt-52 md:pb-32 bg-deep z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <a href="{{ url_for('public.solutions') }}" class="inline-flex items-center text-gray-500 hover:text-teal text-sm mb-8 transition-colors duration-300 lens-reveal">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-            All Solutions
-        </a>
-
-        <div class="max-w-4xl">
-            <div class="w-16 h-16 rounded-2xl bg-teal/[0.05] flex items-center justify-center text-teal mb-8 lens-reveal">
-                {% if solution.icon == 'brain' %}
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                {% elif solution.icon == 'rocket' %}
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                {% elif solution.icon == 'building' %}
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                {% elif solution.icon == 'compass' %}
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14a4 4 0 100-8 4 4 0 000 8z"/></svg>
-                {% endif %}
-            </div>
-
-            <h1 class="heading-display mb-6 lens-reveal" data-delay="100" data-glow>{{ solution.name }}</h1>
-            <p class="text-xl text-teal/40 mb-8 lens-reveal font-light" data-delay="200">{{ solution.tagline }}</p>
-            <p class="body-xl mb-6 lens-reveal" data-delay="300">{{ solution.description }}</p>
-            <p class="text-gray-500 text-lg leading-relaxed font-light lens-reveal" data-delay="400">{{ solution.full_description }}</p>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="relative py-36 md:py-48 lg:py-56 bg-deeper z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 class="heading-xl mb-16 lens-reveal">Programs Included</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {% for program in solution.programs %}
-            <div class="card-glass p-10 lens-reveal" data-delay="{{ loop.index * 80 }}">
-                <h3 class="text-lg font-semibold text-white mb-3">{{ program.title }}</h3>
-                <p class="body-sm">{{ program.description }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-{% include 'components/cta_section.html' %}
-
+<div class="container">
+  <div class="phases">
+    <div class="phase"><h3>Discovery</h3><p>Leadership baseline audit</p></div>
+    <div class="phase"><h3>Design</h3><p>Custom growth blueprint</p></div>
+    <div class="phase"><h3>Development</h3><p>Immersive labs</p></div>
+    <div class="phase"><h3>Deployment</h3><p>Real-world application</p></div>
+    <div class="phase"><h3>Durability</h3><p>Sustain & mentor</p></div>
+  </div>
+  <a href="/contact" class="btn-filled">Enquire about Leadership Lab</a>
 </div>
 {% endblock %}
