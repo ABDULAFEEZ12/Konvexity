@@ -1,65 +1,20 @@
+<!-- faculty.html -->
 {% extends "base.html" %}
-
+{% block title %}Faculty — Konvexity{% endblock %}
+{% block extra_head %}
+<style>
+  .faculty-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:2.5rem; margin:4rem 0; }
+  .faculty-card { text-align: center; }
+  .faculty-avatar { width:100px; height:100px; background:var(--glass-bg); border-radius:50%; margin:0 auto 1rem; border:2px solid var(--accent); }
+</style>
+{% endblock %}
 {% block content %}
-<div class="relative bg-deeper">
-
-<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/4 -right-32 w-[700px] h-[700px] bg-teal/[0.018] rounded-full blur-[160px] float-ambient"></div>
-</div>
-
-<section class="relative pt-44 pb-24 md:pt-52 md:pb-32 bg-deep z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-4xl">
-            <p class="section-eyebrow lens-reveal">Faculty</p>
-            <h1 class="heading-display mb-10 lens-reveal" data-delay="100" data-glow>Multidisciplinary excellence.</h1>
-            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl leading-relaxed font-light lens-reveal" data-delay="250">
-                Our faculty brings together deep expertise across leadership, governance, finance, technology, psychology, and organizational development.
-            </p>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="relative py-36 md:py-48 lg:py-56 bg-deeper z-10">
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {% set faculty = [
-                {'name': 'Dr. Tioluwalogo Olakunbi-Black', 'title': 'Performance Architect & Founder', 'credentials': 'PhD', 'expertise': ['Leadership Development', 'Organizational Systems Design', 'Behavioral Strategy']},
-                {'name': 'Nkechi Emanuel', 'title': 'Corporate Governance Expert', 'credentials': 'LLM, FCIS', 'expertise': ['Corporate Governance', 'Board Effectiveness', 'Regulatory Compliance']},
-                {'name': 'Dr. Kofi Ansah', 'title': 'AI & Digital Transformation Strategist', 'credentials': 'PhD', 'expertise': ['Artificial Intelligence', 'Digital Transformation', 'Data Strategy']},
-                {'name': 'Dr. Amara Okonkwo', 'title': 'Behavioral Psychologist', 'credentials': 'PhD, CPsychol', 'expertise': ['Behavioral Psychology', 'Organizational Behavior', 'Psychological Safety']},
-                {'name': 'Ibrahim Diallo', 'title': 'Growth Strategy & Venture Building', 'credentials': 'MBA', 'expertise': ['Growth Strategy', 'Venture Building', 'Innovation Management']},
-                {'name': 'Zahara Patel', 'title': 'Creative Director & Brand Strategist', 'credentials': 'MDes', 'expertise': ['Creative Direction', 'Brand Strategy', 'Design Thinking']},
-                {'name': 'Emeka Nwosu', 'title': 'Finance & Investment Advisor', 'credentials': 'CFA, ACCA', 'expertise': ['Corporate Finance', 'Investment Strategy', 'Capital Raising']},
-                {'name': 'Dr. Lesedi Molefe', 'title': 'Organizational Development Specialist', 'credentials': 'PhD', 'expertise': ['Organizational Development', 'Change Management', 'Talent Strategy']},
-                {'name': 'Yaw Boateng', 'title': 'Blockchain & Emerging Technology', 'credentials': 'MSc', 'expertise': ['Blockchain', 'Web3 Strategy', 'Decentralized Systems']}
-            ] %}
-
-            {% for member in faculty %}
-            <div class="card-glass p-8 lens-reveal" data-delay="{{ loop.index * 60 }}">
-                <div class="flex items-start gap-5 mb-6">
-                    <div class="w-14 h-14 rounded-xl bg-teal/[0.04] flex items-center justify-center text-teal/30 flex-shrink-0 overflow-hidden">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-white">{{ member.name }}</h3>
-                        <p class="text-teal/35 text-sm">{{ member.credentials }}</p>
-                    </div>
-                </div>
-                <p class="text-teal/30 text-sm font-medium mb-4">{{ member.title }}</p>
-                <div class="flex flex-wrap gap-2">
-                    {% for skill in member.expertise %}
-                    <span class="px-3 py-1 text-xs text-gray-500 bg-white/[0.015] border border-white/[0.025] rounded-full">{{ skill }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-{% include 'components/cta_section.html' %}
-
+<div class="container" style="padding-top:9rem;">
+  <h1>World-Class <span class="accent-text">Faculty</span></h1>
+  <div class="faculty-grid">
+    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Dr. Amara Diop</h3><p>Behavioral Architecture</p></div>
+    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Prof. Kofi Mensah</h3><p>Systems & Governance</p></div>
+    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Nia Wanjiku</h3><p>Executive Leadership</p></div>
+  </div>
 </div>
 {% endblock %}
