@@ -1,24 +1,92 @@
-<!-- solutions.html -->
+<!-- templates/public/solutions.html -->
 {% extends "base.html" %}
 {% block title %}Solutions — Konvexity Performance Architectures{% endblock %}
-{% block extra_head %}
-<style>
-  .solutions-header { padding: 9rem 0 3rem; }
-  .solutions-header h1 { font-size: 4rem; }
-  .solution-list { display: flex; flex-direction: column; gap: 2.5rem; margin: 3rem 0; }
-  .solution-item { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 2rem; padding: 2.5rem; }
-  @media (max-width: 700px) { .solution-item { grid-template-columns: 1fr; } }
-</style>
-{% endblock %}
 {% block content %}
-<div class="container solutions-header">
-  <h1>Flagship <span class="accent-text">Architectures</span></h1>
-  <p style="max-width:600px;">Four precision systems to install clarity, alignment, and enduring performance.</p>
+
+<div class="page-header">
+  <div class="container">
+    <span class="section-label reveal">What We Offer</span>
+    <h1 class="reveal">Flagship <span class="accent-text">Architectures</span></h1>
+    <p class="reveal">Four precision systems to install clarity, alignment, and enduring performance.</p>
+  </div>
 </div>
-<div class="container solution-list">
-  <div class="solution-item"><div><h2>Leadership Lab™</h2></div><div><p>5D Leadership Architecture: Discovery, Design, Development, Deployment, Durability.</p><a href="/solutions/leadership-lab">View details →</a></div></div>
-  <div class="solution-item"><div><h2>Professional Accelerator™</h2></div><div><p>Communication, emotional intelligence, execution excellence.</p><a href="/solutions/professional-accelerator">View details →</a></div></div>
-  <div class="solution-item"><div><h2>ADI Performance Model™</h2></div><div><p>Enterprise, team, individual tiers. Diagnostics to culture transformation.</p><a href="/solutions/adi-model">View details →</a></div></div>
-  <div class="solution-item"><div><h2>Clarity Room™</h2></div><div><p>Founders & CEOs: high-stakes decisions, legacy building.</p><a href="/solutions/clarity-room">View details →</a></div></div>
-</div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div class="solution-card reveal">
+        <div class="solution-icon">🎯</div>
+        <h3>Leadership Lab™</h3>
+        <p class="solution-tagline">5D Leadership Architecture</p>
+        <p class="solution-desc">A flagship executive leadership transformation program built on Discovery, Design, Development, Deployment, and Durability. Transform executives into institutional builders who create lasting legacies.</p>
+        <ul class="solution-features">
+          <li>Executive discovery and baseline audit</li>
+          <li>Custom growth blueprint design</li>
+          <li>Immersive development labs</li>
+          <li>Real-world deployment with coaching</li>
+          <li>Sustainability and mentorship systems</li>
+        </ul>
+        <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Enquire Now</a>
+      </div>
+
+      <div class="solution-card reveal">
+        <div class="solution-icon">🚀</div>
+        <h3>Professional Accelerator™</h3>
+        <p class="solution-tagline">Corporate Capability Building</p>
+        <p class="solution-desc">A corporate capability-building platform focused on business communication, interpersonal intelligence, emotional intelligence, and execution excellence for high-performance teams.</p>
+        <ul class="solution-features">
+          <li>Business communication mastery</li>
+          <li>Interpersonal intelligence development</li>
+          <li>Emotional intelligence frameworks</li>
+          <li>Execution excellence methodologies</li>
+          <li>High-performance team development</li>
+        </ul>
+        <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Enquire Now</a>
+      </div>
+
+      <div class="solution-card reveal">
+        <div class="solution-icon">📊</div>
+        <h3>ADI Performance Model™</h3>
+        <p class="solution-tagline">Organizational Transformation System</p>
+        <p class="solution-desc">Konvexity's signature organizational transformation system covering diagnostics, accountability, workflow optimization, and culture transformation across Enterprise, Team, and Individual tiers.</p>
+        <ul class="solution-features">
+          <li>Comprehensive organizational diagnostics</li>
+          <li>Accountability systems installation</li>
+          <li>Workflow optimization</li>
+          <li>Culture transformation programs</li>
+          <li>Measurable performance improvement</li>
+        </ul>
+        <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Enquire Now</a>
+      </div>
+
+      <div class="solution-card reveal">
+        <div class="solution-icon">💎</div>
+        <h3>Clarity Room™</h3>
+        <p class="solution-tagline">Elite Strategic Advisory</p>
+        <p class="solution-desc">An elite strategic advisory experience for founders, CEOs, executives, and institutional leaders facing high-stakes decisions, growth planning, crisis navigation, and legacy building.</p>
+        <ul class="solution-features">
+          <li>High-stakes decision-making support</li>
+          <li>Growth and expansion planning</li>
+          <li>Crisis navigation and turnaround</li>
+          <li>Organizational restructuring</li>
+          <li>Legacy and succession architecture</li>
+        </ul>
+        <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Enquire Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <h2 class="reveal">Which architecture does your institution need?</h2>
+    <p class="reveal">Let's diagnose your clarity gap and design the solution.</p>
+    <div class="cta-buttons reveal">
+      <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg">
+        Schedule a Consultation <span class="btn-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
