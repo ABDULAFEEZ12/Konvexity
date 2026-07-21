@@ -24,6 +24,22 @@
   <div class="hero__aurora" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
+  <!-- Signature motif: the convexity curve, drawn on load -->
+  <svg class="hero-curve" viewBox="0 0 560 560" width="560" height="560"
+       style="position:absolute; right:-6%; top:8%; opacity:0.9; pointer-events:none; z-index:0;"
+       aria-hidden="true">
+    <path d="M 60 500 C 60 500, 120 120, 500 60"
+          fill="none" stroke="url(#curveGrad)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="500" cy="60" r="5" fill="#22d3ee"/>
+    <circle cx="60" cy="500" r="4" fill="#14b8a6" opacity="0.6"/>
+    <defs>
+      <linearGradient id="curveGrad" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.85"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
   <div class="container hero__content">
     <div class="hero__badge">
       <span class="dot"></span>
@@ -35,13 +51,14 @@
     </h1>
 
     <p class="hero__subtitle">
-      Great companies don&rsquo;t just happen &mdash; they&rsquo;re built by people who see clearly.
-      Konvexity helps ambitious leaders and organizations diagnose what&rsquo;s really holding
-      them back, and build the brand, systems, and leadership that let growth compound.
+      Great institutions don&rsquo;t just happen &mdash; they&rsquo;re built by leaders who see clearly.
+      Konvexity is named for the curve that bends upward at an increasing rate: the shape of
+      compounding growth. We help ambitious leaders and organizations diagnose what&rsquo;s really
+      holding them back, then install the leadership, systems, and culture that let growth compound.
     </p>
 
     <div class="hero__actions">
-      <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg">
+      <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg magnetic">
         Start Your Transformation
       </a>
       <a href="{{ url_for('public.solutions') }}" class="btn btn-secondary btn-lg">
@@ -60,24 +77,23 @@
 <!-- ============================= WHO WE ARE ============================= -->
 <section class="section">
   <div class="container">
-    <div class="about-grid" data-reveal="fade">
-      <div class="glass about-card" data-reveal="left">
+    <div class="grid-2" data-reveal="fade">
+      <div class="glass-card" data-reveal="left">
         <span class="eyebrow">From a Question to a Movement</span>
         <h2 class="section-title">Who We Are</h2>
-        <div class="divider-accent"></div>
-        <p class="about-card__body">
+        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
           Konvexity was born from a simple observation: the fastest-growing organizations
           weren&rsquo;t just the smartest &mdash; they had clarity of purpose, confidence in
           positioning, and systems that scaled. Many organizations possess solid products but
           struggle in the fog, growing linearly when they could be growing exponentially.
         </p>
-        <blockquote class="pull-quote" style="margin-top: var(--space-6);">
+        <blockquote class="pull-quote" style="margin-top:1.6rem; padding-top:1.6rem; border-top:1px solid var(--card-border); font-family:var(--font-display); font-size:1.15rem; color:var(--ink); font-weight:500;">
           Growth doesn&rsquo;t begin with better tactics. It begins with
-          <span class="accent">seeing clearly.</span>
+          <span class="accent-text">seeing clearly.</span>
         </blockquote>
       </div>
 
-      <div class="grid grid-2" data-reveal="right" data-reveal-delay="2">
+      <div class="grid grid-2" data-reveal="right" data-reveal-delay="2" style="gap:1.2rem;">
         <div class="card">
           <div class="card__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20c4-1 7-5 7-9a7 7 0 10-14 0c0 4 3 8 7 9z"/></svg>
@@ -115,9 +131,9 @@
 <section class="section section--alt">
   <div class="container">
     <div class="section-header section-header--center" data-reveal="fade">
-      <span class="eyebrow" style="justify-content: center;">What We Deliver</span>
+      <span class="eyebrow">What We Deliver</span>
       <h2 class="section-title">The Konvexity Lens&trade;</h2>
-      <p class="section-subtitle" style="margin-inline: auto;">
+      <p class="section-subtitle">
         We help leaders and organizations see clearly, make better decisions, and execute with
         confidence &mdash; through four powerful lenses.
       </p>
@@ -168,7 +184,7 @@
       </p>
     </div>
 
-    <div class="solution-grid" data-reveal="scale">
+    <div class="grid grid-2" data-reveal="scale">
       <div class="card solution-card">
         <h3 class="card__title">Leadership Lab&trade;</h3>
         <p class="card__text">Building leaders who drive execution, culture, and growth &mdash; for executive teams, middle managers, and growing organisations.</p>
@@ -218,36 +234,21 @@
 <section class="section section--alt">
   <div class="container">
     <div class="section-header section-header--center" data-reveal="fade">
-      <span class="eyebrow" style="justify-content:center;">Trusted By</span>
+      <span class="eyebrow">Trusted By</span>
       <h2 class="section-title">Organisations We&rsquo;ve Worked With</h2>
     </div>
-    <div class="glass logo-wall" data-reveal="scale">
+    <div class="logo-wall" data-reveal="scale">
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe.svg') }}" alt="TechTrybe Africa"></div>
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen.svg') }}" alt="Bowen University"></div>
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.svg') }}" alt="Emblue Africa"></div>
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.svg') }}" alt="StartWeb"></div>
     </div>
-    <div class="row row--center" style="margin-top: var(--space-8);">
+    <div class="row row--center" style="margin-top:2.5rem;">
       <a href="{{ url_for('public.clients') }}" class="btn btn-outline">View All Clients</a>
     </div>
   </div>
 </section>
 
-<!-- ============================= CTA ============================= -->
-<section class="section">
-  <div class="container">
-    <div class="cta-section" data-reveal="scale">
-      <div class="cta-section__content">
-        <h2 class="cta-section__title">Ready to Transform?</h2>
-        <p class="cta-section__subtitle">
-          Let&rsquo;s build the clarity, confidence, and growth your organization deserves.
-        </p>
-        <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg">
-          Connect With Us
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+{% include 'components/cta_section.html' %}
 
 {% endblock %}
