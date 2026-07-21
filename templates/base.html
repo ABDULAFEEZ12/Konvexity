@@ -1,120 +1,35 @@
-<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="{% block meta_desc %}Konvexity is a premium African-rooted performance architecture firm. We install clarity as the operating system for ambitious organizations.{% endblock %}">
-  <meta name="theme-color" content="#06060e">
-  <meta name="color-scheme" content="dark">
-  
-  <title>{% block title %}Konvexity — Performance Architecture{% endblock %}</title>
-  
-  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Konvexity — Where Clarity Meets Growth{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}Konvexity is a premium leadership and organizational growth firm helping institutions, founders, and executives achieve clarity, drive growth, and sustain excellence.{% endblock %}">
+  <meta name="theme-color" content="#030711">
+
+  <!-- Performance: preconnect before requesting font files -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 20 C 4 20, 6 6, 20 4' fill='none' stroke='%2314b8a6' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-  
+
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  <canvas id="particle-canvas"></canvas>
-  
+
   {% include 'components/navigation.html' %}
 
-  <main id="main-content">
+  <main>
     {% block content %}{% endblock %}
   </main>
 
   {% include 'components/footer.html' %}
 
-  <script>
-    (function() {
-      var canvas = document.getElementById('particle-canvas');
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      var particles = [];
-      var particleCount = 50;
-      var resizeTimeout;
-      
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      
-      function createParticles() {
-        particles = [];
-        for (var i = 0; i < particleCount; i++) {
-          particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 1.5 + 0.5,
-            speedX: (Math.random() - 0.5) * 0.3,
-            speedY: (Math.random() - 0.5) * 0.3,
-            opacity: Math.random() * 0.5 + 0.1
-          });
-        }
-      }
-      
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (var i = 0; i < particles.length; i++) {
-          var p = particles[i];
-          p.x += p.speedX;
-          p.y += p.speedY;
-          
-          if (p.x < 0) p.x = canvas.width;
-          if (p.x > canvas.width) p.x = 0;
-          if (p.y < 0) p.y = canvas.height;
-          if (p.y > canvas.height) p.y = 0;
-          
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(201, 160, 60, ' + p.opacity + ')';
-          ctx.fill();
-        }
-        
-        for (var i = 0; i < particles.length; i++) {
-          for (var j = i + 1; j < particles.length; j++) {
-            var dx = particles[i].x - particles[j].x;
-            var dy = particles[i].y - particles[j].y;
-            var distance = Math.sqrt(dx * dx + dy * dy);
-            
-            if (distance < 120) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = 'rgba(201, 160, 60, ' + (0.08 * (1 - distance / 120)) + ')';
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-        
-        requestAnimationFrame(animate);
-      }
-      
-      resizeCanvas();
-      createParticles();
-      animate();
-      
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-          resizeCanvas();
-          createParticles();
-        }, 250);
-      });
-    })();
-  </script>
-  
-  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
-  
-  {% block scripts %}{% endblock %}
+  <script src="{{ url_for('static', filename='js/animations.js') }}" defer></script>
+  {% block extra_scripts %}{% endblock %}
 </body>
 </html>
