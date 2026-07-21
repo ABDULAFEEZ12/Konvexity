@@ -1,20 +1,156 @@
-<!-- faculty.html -->
+<!-- templates/public/faculty.html -->
 {% extends "base.html" %}
-{% block title %}Faculty — Konvexity{% endblock %}
-{% block extra_head %}
-<style>
-  .faculty-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:2.5rem; margin:4rem 0; }
-  .faculty-card { text-align: center; }
-  .faculty-avatar { width:100px; height:100px; background:var(--glass-bg); border-radius:50%; margin:0 auto 1rem; border:2px solid var(--accent); }
-</style>
-{% endblock %}
+{% block title %}Faculty &amp; Coaching Bench — Konvexity{% endblock %}
 {% block content %}
-<div class="container" style="padding-top:9rem;">
-  <h1>World-Class <span class="accent-text">Faculty</span></h1>
-  <div class="faculty-grid">
-    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Dr. Amara Diop</h3><p>Behavioral Architecture</p></div>
-    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Prof. Kofi Mensah</h3><p>Systems & Governance</p></div>
-    <div class="faculty-card"><div class="faculty-avatar"></div><h3>Nia Wanjiku</h3><p>Executive Leadership</p></div>
+
+<div class="page-header text-center">
+  <div class="container reveal">
+    <span class="section-label reveal" style="justify-content:center;">Coaching Bench</span>
+    <h1>The Konvexity <span class="accent-text">Faculty</span> &amp; Coaching Bench</h1>
+    <p style="max-width:600px; margin:0 auto;">Led by <a href="{{ url_for('public.founder') }}" style="color:var(--teal); text-decoration:underline;">Dr. Tioluwalogo Olakunbi-Black</a>, Principal Growth Architect &mdash; twelve practitioners drawn from Siemens Energy, MTN, VISA, Bridge Capital, and beyond.</p>
   </div>
 </div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-3 reveal">
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Funmilayo Akande</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Corporate Governance &amp; Finance</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Strategic Financial Control &amp; Board Advisory.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Finance Director at Siemens Energy; Non-Executive Director at Nigerian Breweries.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">30+ years of institutional governance expertise; ensures commercial rigor.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Dr. Halleluyah Aworinde</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Digital Transformation &amp; AI</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Human-Computer Interaction &amp; AI for Social Good.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Director of Digital Services at Bowen University; Assistant Professor.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">A global researcher leveraging emerging technologies for societal challenges.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Omotola Ade-Onojobi</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Behavioral Intelligence &amp; Wellness</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Emotional Intelligence (EQ) &amp; Workplace Wellness.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Founder of The Complete 360 Woman; Clinical Psychotherapist.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Specializes in building psychologically safe environments in corporate ecosystems.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Afzaal Mauthoor</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Venture Partner &amp; Sustainability</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Blockchain Systems, Fintech &amp; RWA Tokenization.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Venture Partner, Bridge Capital; Investment Committee, AFFORD (UK).</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Architected carbon-negative infrastructure; Top 17 Fintech Innovator.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Adepoju &ldquo;Peejay&rdquo; Bakare</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Venture Architecture &amp; Growth</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Scalable Business Design &amp; Growth Architecture.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Chief Transformation Officer at Beyond the Visual; Coach.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">20+ years scaling global giants like MTN and BMW.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Dr. Mary Mensah-Anochie</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Strategy &amp; Cognitive Empowerment</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Strategy Consulting &amp; Data-Driven Decision Systems.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Head of Special Projects at CCI Global; PhD in Chemistry.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Cognitive Coach driving global BPO transformation.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Rotimi Ade-Onojobi</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Brand &amp; Experience Strategy</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Visual Storytelling &amp; Creative Leadership.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Creative Director at Spice 360 (Tolaram Group Agency).</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Visual identity architect for Indomie and Heineken.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Mayowa Balogun</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Pan-African Venture Architecture &amp; Logistics</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Sustainable Business, Real Estate &amp; Economics.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">CEO of BEAM Group; COO of Loritem Recycle Limited.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Multi-sector venture builder across Nigeria &amp; NA.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Tunji Babajide</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Peak Performance &amp; Workplace Psychology</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Behavioural Psychology, Executive Coaching &amp; EQ.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Lead Therapist; Corporate Retreat Facilitator.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">UK-Certified NLP Practitioner transforming friction to peak performance.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Kelvin Orifa</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Venture Architecture &amp; GTM Strategy</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Consumer Segmentation, GTM Strategy &amp; MarTech.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">CEO, Emblue Africa; Former Consumer Lead, MTN Nigeria.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">15+ years global brand-building; commercialised AI in Nigeria.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Ajoke Omoware</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Ecosystem Leadership &amp; Growth</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">SME Development &amp; Gender-Lens Investing.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Program Lead at 54 Collective; Mandela Washington Fellow.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Certified PMP professional scaling capital access across Africa.</p>
+      </div>
+
+      <div class="about-card">
+        <h3 style="font-size:1.05rem;">Sherif Akinpelu</h3>
+        <p class="body-sm" style="color:var(--teal); margin-bottom:0.9rem;">Brand &amp; Behavioural Strategy</p>
+        <p class="body-sm" style="color:var(--ink); margin-bottom:0.2rem;">Expertise</p>
+        <p class="body-sm">Behavioural Science, Brand Strategy &amp; Communications.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">Role</p>
+        <p class="body-sm">Marketing Manager at VISA; Dean of FCLA.</p>
+        <p class="body-sm" style="color:var(--ink); margin:0.6rem 0 0.2rem;">The Wow Factor</p>
+        <p class="body-sm">Top 35 Under 35 strategist driving award-winning campaigns.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
 {% endblock %}
