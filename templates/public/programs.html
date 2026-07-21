@@ -1,19 +1,100 @@
-<!-- programs.html -->
+<!-- templates/public/programs.html -->
 {% extends "base.html" %}
-{% block title %}Programs — Konvexity{% endblock %}
-{% block extra_head %}
-<style>
-  .programs-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:2rem; margin:4rem 0; }
-</style>
-{% endblock %}
+{% block title %}Programs | Konvexity{% endblock %}
 {% block content %}
-<div class="container" style="padding-top:9rem;">
-  <h1 style="font-size:3.5rem;">Executive <span class="accent-text">Programs</span></h1>
-  <div class="programs-grid">
-    <div class="glass-panel"><h3>Emerging Leaders</h3><p>5D foundation for high-potential managers.</p></div>
-    <div class="glass-panel"><h3>Mid-Career Accelerator</h3><p>Execution and influence at scale.</p></div>
-    <div class="glass-panel"><h3>C-Suite Institute</h3><p>Institutional legacy and governance.</p></div>
-    <div class="glass-panel"><h3>Board Performance</h3><p>Strategic oversight mastery.</p></div>
+
+<div class="page-header">
+  <div class="container">
+    <span class="section-label reveal">Programs</span>
+    <h1 class="reveal">Structured programs for lasting transformation</h1>
+    <p class="reveal">From intensive workshops to multi-month development journeys, our programs are designed for real impact.</p>
   </div>
 </div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Leadership</span>
+          <h3 class="heading-md">Executive Leadership Intensive</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">A 12-week immersive program for senior leaders ready to move from operational management to strategic leadership. Built on the 5D Leadership Architecture.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">12 Weeks &middot; Cohort-Based</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Communication</span>
+          <h3 class="heading-md">Professional Presence Mastery</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">An 8-week program focused on executive communication, presentation skills, and interpersonal intelligence for high-potential professionals.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">8 Weeks &middot; Hybrid Delivery</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Strategy</span>
+          <h3 class="heading-md">Clarity Room Intensive</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">A 6-session strategic advisory engagement for founders and CEOs navigating critical decisions, pivots, or growth inflection points.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">6 Sessions &middot; 1-on-1</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Organizational</span>
+          <h3 class="heading-md">Performance Architecture Sprint</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">A 4-week intensive diagnostic and redesign engagement for organizations needing rapid performance improvement and system optimization.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">4 Weeks &middot; On-Site</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Team Development</span>
+          <h3 class="heading-md">High-Performance Team Lab</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">A team-based program designed to transform group dynamics, improve collaboration, and build collective accountability for results.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">3 Months &middot; Team-Based</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <div class="program-card-header">
+          <span class="badge mb-8">Custom</span>
+          <h3 class="heading-md">Bespoke Transformation</h3>
+        </div>
+        <div class="program-card-body">
+          <p class="text-secondary">A fully customized engagement designed around your organization's unique challenges, goals, and context. Built from the ground up for maximum impact.</p>
+        </div>
+        <div class="program-card-footer">
+          <span class="program-duration">Tailored to Your Needs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
 {% endblock %}
