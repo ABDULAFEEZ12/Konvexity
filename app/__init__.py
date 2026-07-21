@@ -12,15 +12,20 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 logger = logging.getLogger("konvexity")
 
+# app/__init__.py lives inside the `app` package; PROJECT_ROOT is one level up,
+# where run.py, templates/, static/, migrations/, and logs/ actually live.
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
+
 
 def create_app(config_name=None):
     if config_name is None:
         config_name = os.environ.get("FLASK_CONFIG", "production")
 
     app = Flask(
-        "konvexity",
-        template_folder="templates",
-        static_folder="static",
+        __name__,
+        template_folder=os.path.join(PROJECT_ROOT, "templates"),
+        static_folder=os.path.join(PROJECT_ROOT, "static"),
         static_url_path="/static",
     )
 
