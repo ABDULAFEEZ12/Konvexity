@@ -1,106 +1,253 @@
-<!-- home.html -->
+{# templates/public/home.html #}
 {% extends "base.html" %}
-{% block title %}Konvexity — Clarity as Operating System{% endblock %}
+
+{% block title %}{{ seo.title }}{% endblock %}
+{% block meta_desc %}{{ seo.description }}{% endblock %}
+
 {% block extra_head %}
-<style>
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background: radial-gradient(circle at 30% 30%, rgba(201,160,74,0.08) 0%, transparent 50%);
-  }
-  .hero h1 {
-    font-size: clamp(3.5rem, 8vw, 6.5rem);
-    font-weight: 650;
-    line-height: 1.05;
-    margin-bottom: 1.8rem;
-    max-width: 1000px;
-  }
-  .hero-sub {
-    font-size: 1.3rem;
-    color: var(--smoke-muted);
-    max-width: 620px;
-    margin-bottom: 2.8rem;
-    font-weight: 350;
-  }
-  .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(14px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--border-radius-card);
-    padding: 2.2rem;
-    transition: transform 0.3s ease;
-  }
-  .solution-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin: 5rem 0;
-  }
-  .stat-line {
-    display: flex;
-    gap: 4rem;
-    margin: 4rem 0;
-    font-family: var(--font-display);
-  }
-  .stat-number {
-    font-size: 3rem;
-    color: var(--accent);
-    font-weight: 700;
-  }
-  @media (max-width: 768px) {
-    .solution-grid { grid-template-columns: 1fr; }
-  }
-</style>
+  <link rel="canonical" href="{{ seo.canonical_url }}">
+  <meta property="og:type" content="{{ seo.og_type }}">
+  <meta property="og:title" content="{{ seo.title }}">
+  <meta property="og:description" content="{{ seo.description }}">
+  <meta property="og:image" content="{{ seo.og_image }}">
+  <meta property="og:url" content="{{ seo.canonical_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo.title }}">
+  <meta name="twitter:description" content="{{ seo.description }}">
+  <meta name="twitter:image" content="{{ seo.og_image }}">
 {% endblock %}
+
 {% block content %}
-<section class="hero container">
-  <div>
-    <h1>
-      We install <span class="accent-text">clarity</span> as the operating system for African institutions.
+
+<!-- ============================= HERO ============================= -->
+<section class="hero">
+  <div class="hero__aurora" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <div class="hero__badge">
+      <span class="dot"></span>
+      Performance Architecture &middot; Africa &amp; Beyond
+    </div>
+
+    <h1 class="hero__title">
+      Where <span class="gradient-text">Clarity</span> Meets Growth
     </h1>
-    <p class="hero-sub">
-      Konvexity transforms informal hustle into structured, scalable, enduring institutions through performance architecture, behavioral science, and leadership formation.
+
+    <p class="hero__subtitle">
+      Great companies don&rsquo;t just happen &mdash; they&rsquo;re built by people who see clearly.
+      Konvexity helps ambitious leaders and organizations diagnose what&rsquo;s really holding
+      them back, and build the brand, systems, and leadership that let growth compound.
     </p>
-    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-      <a href="/solutions" class="btn-filled">Explore Solutions</a>
-      <a href="/contact" class="btn-outline">Begin Conversation</a>
+
+    <div class="hero__actions">
+      <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg">
+        Start Your Transformation
+      </a>
+      <a href="{{ url_for('public.solutions') }}" class="btn btn-secondary btn-lg">
+        Explore Our Solutions
+      </a>
+    </div>
+
+    <div class="hero__meta">
+      <span>Founder-Led Organizations</span>
+      <span>Executive Teams</span>
+      <span>Institutions in Transition</span>
     </div>
   </div>
 </section>
 
-<section class="container">
-  <div class="stat-line">
-    <div><span class="stat-number">120+</span><br>Institutions Transformed</div>
-    <div><span class="stat-number">18</span><br>African Markets</div>
-    <div><span class="stat-number">4</span><br>Flagship Architectures</div>
+<!-- ============================= WHO WE ARE ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="about-grid" data-reveal="fade">
+      <div class="glass about-card" data-reveal="left">
+        <span class="eyebrow">From a Question to a Movement</span>
+        <h2 class="section-title">Who We Are</h2>
+        <div class="divider-accent"></div>
+        <p class="about-card__body">
+          Konvexity was born from a simple observation: the fastest-growing organizations
+          weren&rsquo;t just the smartest &mdash; they had clarity of purpose, confidence in
+          positioning, and systems that scaled. Many organizations possess solid products but
+          struggle in the fog, growing linearly when they could be growing exponentially.
+        </p>
+        <blockquote class="pull-quote" style="margin-top: var(--space-6);">
+          Growth doesn&rsquo;t begin with better tactics. It begins with
+          <span class="accent">seeing clearly.</span>
+        </blockquote>
+      </div>
+
+      <div class="grid grid-2" data-reveal="right" data-reveal-delay="2">
+        <div class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20c4-1 7-5 7-9a7 7 0 10-14 0c0 4 3 8 7 9z"/></svg>
+          </div>
+          <h3 class="card__title">Brand</h3>
+          <p class="card__text">Clarity, positioning, and communication that differentiate.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-3.26a4 4 0 100-8 4 4 0 000 8zm7 0a4 4 0 100-8 4 4 0 000 8z"/></svg>
+          </div>
+          <h3 class="card__title">Leadership</h3>
+          <p class="card__text">Disciplined leaders and aligned, high-trust teams.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <h3 class="card__title">Systems</h3>
+          <p class="card__text">Execution architecture that turns strategy into results.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+          </div>
+          <h3 class="card__title">Revenue</h3>
+          <p class="card__text">Commercially strong offers, pricing, and sales motion.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="container">
-  <h2 style="font-size: 2.8rem; margin-bottom: 3rem;">Our Performance Architectures</h2>
-  <div class="solution-grid">
-    <div class="glass-panel">
-      <h3 style="color:var(--accent); letter-spacing:1px;">Leadership Lab™</h3>
-      <p style="font-size:1.2rem; margin:1rem 0;">5D Leadership Architecture to transform executives into institutional builders.</p>
-      <a href="/solutions/leadership-lab" style="color:var(--smoke);">Discover →</a>
+<!-- ============================= THE KONVEXITY LENS ============================= -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header section-header--center" data-reveal="fade">
+      <span class="eyebrow" style="justify-content: center;">What We Deliver</span>
+      <h2 class="section-title">The Konvexity Lens&trade;</h2>
+      <p class="section-subtitle" style="margin-inline: auto;">
+        We help leaders and organizations see clearly, make better decisions, and execute with
+        confidence &mdash; through four powerful lenses.
+      </p>
     </div>
-    <div class="glass-panel">
-      <h3 style="color:var(--accent);">Professional Accelerator™</h3>
-      <p style="font-size:1.2rem; margin:1rem 0;">Corporate capability-building for execution excellence.</p>
-      <a href="/solutions/professional-accelerator" style="color:var(--smoke);">Explore →</a>
-    </div>
-    <div class="glass-panel">
-      <h3 style="color:var(--accent);">ADI Performance Model™</h3>
-      <p style="font-size:1.2rem; margin:1rem 0;">Organizational diagnostics, accountability, culture transformation.</p>
-      <a href="/solutions/adi-model" style="color:var(--smoke);">View →</a>
-    </div>
-    <div class="glass-panel">
-      <h3 style="color:var(--accent);">Clarity Room™</h3>
-      <p style="font-size:1.2rem; margin:1rem 0;">Elite strategic advisory for founders and CEOs.</p>
-      <a href="/solutions/clarity-room" style="color:var(--smoke);">Enter →</a>
+
+    <div class="grid grid-4" data-reveal="scale">
+      <div class="card text-center">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h4 class="card__title">Microscope</h4>
+        <p class="card__text">Deep diagnostic audits of brand, leadership, and performance gaps.</p>
+      </div>
+      <div class="card text-center">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h4 class="card__title">Magnifying Glass</h4>
+        <p class="card__text">Brand clarity, positioning, and communication that differentiate.</p>
+      </div>
+      <div class="card text-center solution-card is-featured">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h4 class="card__title">Binoculars</h4>
+        <p class="card__text">Team alignment, leadership capability, and execution systems.</p>
+      </div>
+      <div class="card text-center">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l18-5-5 18-4-8-9-5z"/></svg>
+        </div>
+        <h4 class="card__title">Telescope</h4>
+        <p class="card__text">Long-term growth strategy and future-proof scaling.</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ============================= SOLUTIONS PREVIEW ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-reveal="fade">
+      <span class="eyebrow">Our Solution Packages</span>
+      <h2 class="section-title">Built for Every Stage of Growth</h2>
+      <p class="section-subtitle">
+        From leadership development to full institutional transformation &mdash; four pillars,
+        one connected system.
+      </p>
+    </div>
+
+    <div class="solution-grid" data-reveal="scale">
+      <div class="card solution-card">
+        <h3 class="card__title">Leadership Lab&trade;</h3>
+        <p class="card__text">Building leaders who drive execution, culture, and growth &mdash; for executive teams, middle managers, and growing organisations.</p>
+        <div class="card__footer">
+          <a href="{{ url_for('public.solutions') }}" class="btn btn-ghost btn-sm">Learn more &rarr;</a>
+        </div>
+      </div>
+      <div class="card solution-card">
+        <h3 class="card__title">ADI Performance Model&trade;</h3>
+        <p class="card__text">A disciplined three-phase intervention &mdash; Audit, Design, Implementation &mdash; that restores execution clarity and accountability.</p>
+        <div class="card__footer">
+          <a href="{{ url_for('public.solutions') }}" class="btn btn-ghost btn-sm">Learn more &rarr;</a>
+        </div>
+      </div>
+      <div class="card solution-card">
+        <h3 class="card__title">Professional Accelerator&trade;</h3>
+        <p class="card__text">Short-cycle, outcome-driven sessions that strengthen business communication and interpersonal intelligence.</p>
+        <div class="card__footer">
+          <a href="{{ url_for('public.solutions') }}" class="btn btn-ghost btn-sm">Learn more &rarr;</a>
+        </div>
+      </div>
+      <div class="card solution-card">
+        <h3 class="card__title">Konvexity Clarity Room&trade;</h3>
+        <p class="card__text">A structured strategic thinking session &mdash; not coaching, not counselling &mdash; to diagnose the real issue and move forward with confidence.</p>
+        <div class="card__footer">
+          <a href="{{ url_for('public.solutions') }}" class="btn btn-ghost btn-sm">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= QUOTE ============================= -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="quote-block" data-reveal="fade">
+      <p class="quote-block__text">
+        Every organisation already has potential. Our role is to unlock it through
+        <span class="text-gradient">clarity, strategy, and execution.</span>
+      </p>
+      <div class="quote-block__attribution">Dr. Tioluwalogo Olakunbi-Black &middot; Principal Growth Architect</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CLIENTS TEASER ============================= -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header section-header--center" data-reveal="fade">
+      <span class="eyebrow" style="justify-content:center;">Trusted By</span>
+      <h2 class="section-title">Organisations We&rsquo;ve Worked With</h2>
+    </div>
+    <div class="glass logo-wall" data-reveal="scale">
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe.svg') }}" alt="TechTrybe Africa"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen.svg') }}" alt="Bowen University"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.svg') }}" alt="Emblue Africa"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.svg') }}" alt="StartWeb"></div>
+    </div>
+    <div class="row row--center" style="margin-top: var(--space-8);">
+      <a href="{{ url_for('public.clients') }}" class="btn btn-outline">View All Clients</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CTA ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="cta-section" data-reveal="scale">
+      <div class="cta-section__content">
+        <h2 class="cta-section__title">Ready to Transform?</h2>
+        <p class="cta-section__subtitle">
+          Let&rsquo;s build the clarity, confidence, and growth your organization deserves.
+        </p>
+        <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-lg">
+          Connect With Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
