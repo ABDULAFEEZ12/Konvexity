@@ -1,44 +1,76 @@
-<!-- about.html -->
+<!-- templates/public/about.html -->
 {% extends "base.html" %}
-{% block title %}About Konvexity — Performance Architecture Firm{% endblock %}
-{% block extra_head %}
-<style>
-  .about-hero {
-    padding: 10rem 0 5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .about-hero h1 {
-    font-size: 3.8rem;
-    line-height: 1.1;
-  }
-  .vision-text {
-    font-size: 1.4rem;
-    color: var(--smoke-muted);
-    font-style: italic;
-  }
-  @media (max-width: 768px) {
-    .about-hero { grid-template-columns: 1fr; }
-  }
-</style>
-{% endblock %}
+{% block title %}About Konvexity — The Clarity Movement{% endblock %}
 {% block content %}
-<div class="container about-hero">
-  <div>
-    <h1>We are a <span class="accent-text">clarity movement</span> disguised as a consulting firm.</h1>
-  </div>
-  <div>
-    <p class="vision-text">Konvexity was founded to solve the institutional deficit in Africa. We move organizations from chaotic growth to structured, scalable endurance.</p>
-    <p style="margin-top:2rem;">Combining behavioral science, systems thinking, and leadership formation, we architect performance systems that outlive founders. Our work spans Lagos to Nairobi, building globally respected institutions.</p>
+
+<div class="page-header">
+  <div class="container">
+    <span class="section-label reveal">Our Story</span>
+    <h1 class="reveal">We are a <span class="accent-text">clarity movement</span> disguised as a consulting firm.</h1>
+    <p class="reveal">Konvexity was founded to solve the institutional deficit in Africa.</p>
   </div>
 </div>
-<section class="container" style="margin:4rem 0;">
-  <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:2rem;">
-    <div class="glass-panel"><h3>Behavioral Science</h3><p>Human decision architecture at the core.</p></div>
-    <div class="glass-panel"><h3>Systems Thinking</h3><p>Interconnected organizational design.</p></div>
-    <div class="glass-panel"><h3>Leadership Formation</h3><p>5D Architecture for enduring leaders.</p></div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 reveal" style="align-items: center;">
+      <div>
+        <p style="font-family:var(--font-display); font-size:1.4rem; font-weight:500; color:var(--ink); line-height:1.4;">We move organizations from chaotic growth to structured, scalable endurance.</p>
+      </div>
+      <div>
+        <p>Combining behavioral science, systems thinking, and leadership formation, we architect performance systems that outlive founders. Our work spans Lagos to Nairobi, building globally respected institutions.</p>
+        <p>Konvexity is not a regular consulting company. It is a performance architecture firm that transforms informal hustle into institutional excellence.</p>
+      </div>
+    </div>
+
+    <div class="grid-3 mt-4 reveal">
+      <div class="about-card">
+        <div class="about-icon">🧠</div>
+        <h3>Behavioral Science</h3>
+        <p>Human decision architecture at the core of every intervention.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🔗</div>
+        <h3>Systems Thinking</h3>
+        <p>Interconnected organizational design for sustainable scale.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🏛️</div>
+        <h3>Leadership Formation</h3>
+        <p>5D Architecture crafting leaders who build institutions.</p>
+      </div>
+    </div>
   </div>
 </section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header section-header--center reveal">
+      <span class="eyebrow">Why The Name</span>
+      <h2 class="section-title">A curve, not a slogan</h2>
+      <p class="section-subtitle">Konvexity is inspired by the mathematical concept of convexity &mdash; a curve that bends upward at an increasing rate. For us, it represents institutions that don&rsquo;t just grow, but grow with clarity, intention, and momentum.</p>
+    </div>
+    <div class="grid-4 reveal">
+      <div class="about-card text-center">
+        <h3 style="font-size:1.05rem;">Attract</h3>
+        <p class="body-sm">Better clients</p>
+      </div>
+      <div class="about-card text-center">
+        <h3 style="font-size:1.05rem;">Win</h3>
+        <p class="body-sm">More business</p>
+      </div>
+      <div class="about-card text-center">
+        <h3 style="font-size:1.05rem;">Develop</h3>
+        <p class="body-sm">Durable leaders</p>
+      </div>
+      <div class="about-card text-center">
+        <h3 style="font-size:1.05rem;">Scale</h3>
+        <p class="body-sm">Sustainably</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'components/cta_section.html' %}
+
 {% endblock %}
