@@ -1,25 +1,28 @@
 <!-- templates/components/navigation.html -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
+        
         <a href="{{ url_for('public.home') }}" class="nav-brand" aria-label="Konvexity home">
             <span class="brand-icon">◈</span>
-            <span class="brand-text">KONVEXITY</span>
-            <span class="brand-tagline">where clarity meets growth</span>
+            <div class="brand-content">
+                <span class="brand-text">KONVEXITY</span>
+                <span class="brand-tagline">where clarity meets growth</span>
+            </div>
         </a>
 
-        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
         </button>
 
-        <ul class="nav-links">
-            <li><a href="{{ url_for('public.home') }}" class="nav-link active">Home</a></li>
-            <li><a href="{{ url_for('public.about') }}" class="nav-link">About</a></li>
-            <li><a href="{{ url_for('public.solutions') }}" class="nav-link">Solutions</a></li>
-            <li><a href="{{ url_for('public.programs') }}" class="nav-link">Programs</a></li>
-            <li><a href="{{ url_for('public.faculty') }}" class="nav-link">Faculty</a></li>
-            <li><a href="{{ url_for('public.clients') }}" class="nav-link">Clients</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{{ url_for('public.home') }}" class="nav-link {% if request.endpoint == 'public.home' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ url_for('public.about') }}" class="nav-link {% if request.endpoint == 'public.about' %}active{% endif %}">About</a></li>
+            <li><a href="{{ url_for('public.solutions') }}" class="nav-link {% if request.endpoint == 'public.solutions' %}active{% endif %}">Solutions</a></li>
+            <li><a href="{{ url_for('public.programs') }}" class="nav-link {% if request.endpoint == 'public.programs' %}active{% endif %}">Programs</a></li>
+            <li><a href="{{ url_for('public.faculty') }}" class="nav-link {% if request.endpoint == 'public.faculty' %}active{% endif %}">Faculty</a></li>
+            <li><a href="{{ url_for('public.clients') }}" class="nav-link {% if request.endpoint == 'public.clients' %}active{% endif %}">Clients</a></li>
             <li><a href="{{ url_for('public.contact') }}" class="nav-link nav-cta">Connect</a></li>
         </ul>
     </div>
