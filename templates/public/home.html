@@ -9,7 +9,6 @@
   <meta property="og:type" content="{{ seo.og_type }}">
   <meta property="og:title" content="{{ seo.title }}">
   <meta property="og:description" content="{{ seo.description }}">
-  <meta property="og:image" content="{{ seo.og_image }}">
   <meta property="og:url" content="{{ seo.canonical_url }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ seo.title }}">
@@ -17,10 +16,17 @@
   <meta name="twitter:image" content="{{ seo.og_image }}">
 {% endblock %}
 
+{% block og_image %}
+  <meta property="og:image" content="{{ seo.og_image }}">
+{% endblock %}
+
 {% block content %}
 
 <!-- ============================= HERO ============================= -->
 <section class="hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img src="{{ url_for('static', filename='images/hero/hero-main.jpg') }}" alt="" loading="eager">
+  </div>
   <div class="hero__aurora" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
@@ -83,16 +89,16 @@
   <div class="container">
     <div class="grid-2" data-reveal="fade">
       <div class="glass-card" data-reveal="left">
+        <div class="media-frame" style="aspect-ratio:16/9; margin-bottom:1.4rem;">
+          <img src="{{ url_for('static', filename='images/hero/leadership.jpg') }}" alt="Konvexity leadership team in a strategy session" loading="lazy">
+        </div>
         <span class="eyebrow">From a Question to a Movement</span>
         <h2 class="section-title">Who We Are</h2>
         <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          Konvexity is a Human Capital Development and Leadership Advisory firm dedicated to helping organisations build exceptional leaders, high performing teams and resilient institutions.
-        </p>
-        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          We partner with businesses, educational institutions, governments and purpose driven organisations to strengthen leadership capacity, improve organisational performance and accelerate sustainable growth through leadership development, executive advisory, organisational transformation, performance consulting and capability building.
-        </p>
-        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          Guided by the belief that clarity drives execution and people drive performance, Konvexity equips individuals and organisations with the mindset, systems and capabilities required to lead confidently, execute effectively and create lasting impact.
+          Konvexity was born from a simple observation: the fastest-growing organizations
+          weren&rsquo;t just the smartest &mdash; they had clarity of purpose, confidence in
+          positioning, and systems that scaled. Many organizations possess solid products but
+          struggle in the fog, growing linearly when they could be growing exponentially.
         </p>
         <blockquote class="pull-quote" style="margin-top:1.6rem; padding-top:1.6rem; border-top:1px solid var(--card-border); font-family:var(--font-display); font-size:1.15rem; color:var(--ink); font-weight:500;">
           Growth doesn&rsquo;t begin with better tactics. It begins with
@@ -193,6 +199,9 @@
 
     <div class="grid grid-2" data-reveal="scale">
       <div class="card solution-card">
+        <div class="card-media">
+          <img src="{{ url_for('static', filename='images/solutions/leadership-lab.jpg') }}" alt="Konvexity Leadership Lab session" loading="lazy">
+        </div>
         <h3 class="card__title">Leadership Lab&trade;</h3>
         <p class="card__text">Building leaders who drive execution, culture, and growth &mdash; for executive teams, middle managers, and growing organisations.</p>
         <div class="card__footer">
@@ -200,6 +209,9 @@
         </div>
       </div>
       <div class="card solution-card">
+        <div class="card-media">
+          <img src="{{ url_for('static', filename='images/solutions/adi-performance-model.jpg') }}" alt="ADI Performance Model diagnostic session" loading="lazy">
+        </div>
         <h3 class="card__title">ADI Performance Model&trade;</h3>
         <p class="card__text">A disciplined three-phase intervention &mdash; Audit, Design, Implementation &mdash; that restores execution clarity and accountability.</p>
         <div class="card__footer">
@@ -207,6 +219,9 @@
         </div>
       </div>
       <div class="card solution-card">
+        <div class="card-media">
+          <img src="{{ url_for('static', filename='images/solutions/professional-accelerator.jpg') }}" alt="Konvexity Professional Accelerator workshop" loading="lazy">
+        </div>
         <h3 class="card__title">Professional Accelerator&trade;</h3>
         <p class="card__text">Short-cycle, outcome-driven sessions that strengthen business communication and interpersonal intelligence.</p>
         <div class="card__footer">
@@ -214,6 +229,9 @@
         </div>
       </div>
       <div class="card solution-card">
+        <div class="card-media">
+          <img src="{{ url_for('static', filename='images/solutions/clarity-room.jpg') }}" alt="Konvexity Clarity Room strategic session" loading="lazy">
+        </div>
         <h3 class="card__title">Konvexity Clarity Room&trade;</h3>
         <p class="card__text">A structured strategic thinking session &mdash; not coaching, not counselling &mdash; to diagnose the real issue and move forward with confidence.</p>
         <div class="card__footer">
@@ -234,18 +252,22 @@
     </div>
     <div class="grid grid-4" data-reveal="scale">
       <div class="about-card text-center">
+        <img src="{{ url_for('static', filename='images/faculty/funmilayo-akande.jpg') }}" alt="Funmilayo Akande" class="faculty-avatar" style="margin-inline:auto;" loading="lazy">
         <h3 style="font-size:0.98rem;">Funmilayo Akande</h3>
         <p class="body-sm" style="color:var(--teal);">Governance &amp; Finance</p>
       </div>
       <div class="about-card text-center">
+        <img src="{{ url_for('static', filename='images/faculty/dr-halleluyah-aworinde.jpg') }}" alt="Dr. Halleluyah Aworinde" class="faculty-avatar" style="margin-inline:auto;" loading="lazy">
         <h3 style="font-size:0.98rem;">Dr. Halleluyah Aworinde</h3>
         <p class="body-sm" style="color:var(--teal);">Digital Transformation &amp; AI</p>
       </div>
       <div class="about-card text-center">
+        <img src="{{ url_for('static', filename='images/faculty/kelvin-orifa.jpg') }}" alt="Kelvin Orifa" class="faculty-avatar" style="margin-inline:auto;" loading="lazy">
         <h3 style="font-size:0.98rem;">Kelvin Orifa</h3>
         <p class="body-sm" style="color:var(--teal);">Venture Architecture &amp; GTM</p>
       </div>
       <div class="about-card text-center">
+        <img src="{{ url_for('static', filename='images/faculty/sherif-akinpelu.jpg') }}" alt="Sherif Akinpelu" class="faculty-avatar" style="margin-inline:auto;" loading="lazy">
         <h3 style="font-size:0.98rem;">Sherif Akinpelu</h3>
         <p class="body-sm" style="color:var(--teal);">Brand &amp; Behavioural Strategy</p>
       </div>
@@ -278,8 +300,8 @@
       <h2 class="section-title">Organisations We&rsquo;ve Worked With</h2>
     </div>
     <div class="logo-wall" data-reveal="scale">
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe.svg') }}" alt="TechTrybe Africa"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen.svg') }}" alt="Bowen University"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe-africa.svg') }}" alt="TechTrybe Africa"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen-university.svg') }}" alt="Bowen University"></div>
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.svg') }}" alt="Emblue Africa"></div>
       <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.svg') }}" alt="StartWeb"></div>
     </div>
