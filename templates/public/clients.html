@@ -3,22 +3,72 @@
 {% block title %}Clients — Konvexity{% endblock %}
 {% block content %}
 
+<div class="page-banner">
+  <img src="{{ url_for('static', filename='images/pages/clients-banner.jpg') }}" alt="Konvexity client partnership" loading="eager">
+</div>
+
 <div class="page-header text-center">
   <div class="container reveal">
     <span class="section-label reveal" style="justify-content:center;">Trusted Partnerships</span>
     <h1>Institutions We Have <span class="accent-text">Architected</span></h1>
+    <p style="max-width:560px; margin:0 auto;">Selected partners across technology, education, hospitality, and the creative economy.</p>
   </div>
 </div>
 
 <section class="section">
   <div class="container">
-    <div class="logo-wall reveal" style="margin-bottom: 3rem;">
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe.svg') }}" alt="TechTrybe Africa"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen.svg') }}" alt="Bowen University"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.svg') }}" alt="Emblue Africa"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.svg') }}" alt="StartWeb"></div>
+    <div class="grid-4 reveal">
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/beyond-the-visual.svg') }}" alt="Beyond the Visual" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Beyond the Visual</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/tiana-cuisine.svg') }}" alt="Tiana Cuisine" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Tiana Cuisine</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/cli-college.svg') }}" alt="CLI College" loading="lazy"></div>
+        <h3 style="font-size:1rem;">CLI College</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/loglash-cuisine.svg') }}" alt="Loglash Cuisine" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Loglash Cuisine</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/techtrybe-africa.svg') }}" alt="TechTrybe.Africa" loading="lazy"></div>
+        <h3 style="font-size:1rem;">TechTrybe.Africa</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/ife-scents.svg') }}" alt="Ife Scents" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Ife Scents</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/emblue.svg') }}" alt="Emblue" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Emblue</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/sword-kids.svg') }}" alt="Sword Kids" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Sword Kids</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/startweb.svg') }}" alt="StartWeb" loading="lazy"></div>
+        <h3 style="font-size:1rem;">StartWeb</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/bowen-university.svg') }}" alt="Bowen University" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Bowen University</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/glitz-grace-events.svg') }}" alt="Glitz & Grace Events" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Glitz &amp; Grace Events</h3>
+      </div>
+      <div class="about-card text-center">
+        <div class="client-logo-frame"><img src="{{ url_for('static', filename='images/clients/imagilens.svg') }}" alt="Imagilens" loading="lazy"></div>
+        <h3 style="font-size:1rem;">Imagilens</h3>
+      </div>
     </div>
-    <p class="text-center reveal" style="max-width:560px; margin:0 auto; color:var(--ink-faint);">Confidentiality is architecture. Selected partners include leading banks, fintechs, and government agencies.</p>
+
+    <p class="text-center reveal" style="max-width:560px; margin:2.5rem auto 0; color:var(--ink-faint);">Confidentiality is architecture. Beyond our named partners above, our client list includes leading banks, fintechs, and government agencies under NDA.</p>
   </div>
 </section>
 
