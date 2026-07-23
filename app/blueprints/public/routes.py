@@ -53,6 +53,18 @@ def solution_detail(slug):
     return render_template("public/solution_detail.html", seo=seo, solution_slug=slug)
 
 
+@public_bp.route("/pricing")
+def pricing():
+    seo = {
+        "title": "The Investment Menu \u2014 Konvexity",
+        "description": "Transparent, tiered pricing across every Konvexity solution \u2014 Leadership Lab, ADI Performance Model, Professional Accelerator, and Konvexity Clarity Room.",
+        "canonical_url": url_for("public.pricing", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/pricing.html", seo=seo)
+
+
 @public_bp.route("/programs")
 def programs():
     seo = {
@@ -111,6 +123,30 @@ def founder():
         "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
     }
     return render_template("public/founder.html", seo=seo)
+
+
+@public_bp.route("/arakunrin")
+def arakunrin():
+    seo = {
+        "title": "AR\u00c1K\u00d9NRIN \u2014 The Institute for Male Formation | Konvexity",
+        "description": "AR\u00c1K\u00d9NRIN is Konvexity's male formation platform, intentionally developing males across every stage of life through Boys Today. Men Tomorrow. and AR\u00c1K\u00d9NRIN tracks.",
+        "canonical_url": url_for("public.arakunrin", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/arakunrin.html", seo=seo)
+
+
+@public_bp.route("/ken")
+def ken():
+    seo = {
+        "title": "Konvexity Entrepreneurs Network (KEN) \u2014 Konvexity",
+        "description": "KEN is Konvexity's entrepreneurial community, equipping founders, entrepreneurs, and SME leaders with practical knowledge, strategic connections, and growth experiences.",
+        "canonical_url": url_for("public.ken", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/ken.html", seo=seo)
 
 
 @public_bp.route("/clients")
@@ -188,9 +224,12 @@ def sitemap():
         {"loc": url_for("public.home", _external=True), "priority": "1.0"},
         {"loc": url_for("public.about", _external=True), "priority": "0.8"},
         {"loc": url_for("public.solutions", _external=True), "priority": "0.9"},
+        {"loc": url_for("public.pricing", _external=True), "priority": "0.8"},
         {"loc": url_for("public.programs", _external=True), "priority": "0.8"},
         {"loc": url_for("public.faculty", _external=True), "priority": "0.7"},
         {"loc": url_for("public.founder", _external=True), "priority": "0.8"},
+        {"loc": url_for("public.arakunrin", _external=True), "priority": "0.6"},
+        {"loc": url_for("public.ken", _external=True), "priority": "0.6"},
         {"loc": url_for("public.clients", _external=True), "priority": "0.6"},
         {"loc": url_for("public.contact", _external=True), "priority": "0.7"},
         {"loc": url_for("public.resources", _external=True), "priority": "0.6"},
