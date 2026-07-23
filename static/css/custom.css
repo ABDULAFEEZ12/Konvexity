@@ -776,3 +776,98 @@ section { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* =========================================
+   IMAGE HANDLING — KONVEXITY PROFESSIONAL
+   All images fit perfectly inside containers.
+   No stretching, cropping issues, blur, or overflow.
+========================================= */
+
+/* ----- Hero Image ----- */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* ----- Profile / Faculty Avatars ----- */
+.faculty-avatar {
+  width: 120px;
+  height: 120px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 50%;
+  display: block;
+  margin-inline: auto;
+}
+
+/* ----- Founder Portrait ----- */
+.founder-portrait img,
+.portrait-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--r-xl);
+  display: block;
+}
+
+/* ----- Card Media Frames (Solutions, Blog, etc.) ----- */
+.media-frame,
+.card-media {
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+
+.media-frame img,
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--smooth);
+}
+
+.card:hover .media-frame img,
+.card:hover .card-media img {
+  transform: scale(1.03);
+}
+
+/* ----- Client Logos ----- */
+.logo-wall__item img {
+  max-width: 140px;
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ----- Universal fallback for any unhandled img ----- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- Responsive image adjustments ----- */
+@media (max-width: 680px) {
+  .faculty-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .logo-wall__item img {
+    max-width: 110px;
+    max-height: 32px;
+  }
+}
