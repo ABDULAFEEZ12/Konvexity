@@ -14,11 +14,7 @@
   <div class="container">
     <div class="grid-2 reveal" style="align-items:center;">
       <div class="portrait-placeholder">
-        <div class="avatar-circle">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7z"/>
-          </svg>
-        </div>
+        <img src="{{ url_for('static', filename='images/founder/founder.jpg') }}" alt="Dr. Tioluwalogo Olakunbi-Black, Principal Growth Architect" class="media-photo" loading="eager">
         <p>Tioluwalogo Olakunbi-Black, Ph.D.</p>
       </div>
       <div>
@@ -42,6 +38,35 @@
         </ul>
 
         <a href="{{ url_for('public.faculty') }}" class="btn btn-secondary btn-sm" style="margin-top:1.6rem;">Meet the Full Faculty &amp; Coaching Bench</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FOUNDER GALLERY ============================= -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header section-header--center reveal">
+      <span class="eyebrow">In the Room</span>
+      <h2 class="section-title">On Stage &amp; In Practice</h2>
+    </div>
+    <div class="grid-2 reveal" style="margin-bottom:1.5rem;">
+      <div class="media-frame">
+        <img src="{{ url_for('static', filename='images/founder/speaking.jpg') }}" alt="Dr. Tioluwalogo Olakunbi-Black speaking at a leadership event" loading="lazy">
+      </div>
+      <div class="media-frame">
+        <img src="{{ url_for('static', filename='images/founder/coaching.jpg') }}" alt="Dr. Tioluwalogo Olakunbi-Black coaching an executive team" loading="lazy">
+      </div>
+    </div>
+    <div class="founder-gallery reveal">
+      <div class="media-frame">
+        <img src="{{ url_for('static', filename='images/founder/gallery-1.jpg') }}" alt="Konvexity Leadership Lab session in progress" loading="lazy">
+      </div>
+      <div class="media-frame">
+        <img src="{{ url_for('static', filename='images/founder/gallery-2.jpg') }}" alt="Konvexity workshop with executive participants" loading="lazy">
+      </div>
+      <div class="media-frame">
+        <img src="{{ url_for('static', filename='images/founder/gallery-3.jpg') }}" alt="Dr. Tioluwalogo Olakunbi-Black facilitating a Clarity Room session" loading="lazy">
       </div>
     </div>
   </div>
