@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class="page-banner">
+  <img src="{{ url_for('static', filename='images/pages/contact-banner.jpg') }}" alt="Konvexity office and consulting environment" loading="eager">
+</div>
+
 <section class="page-hero">
   <div class="container">
     <div class="hero-badge reveal">
@@ -28,19 +33,15 @@
 
         <p>At Konvexity, we do not offer generic consulting. We build tailored transformation systems that create clarity for leaders, alignment for teams, and growth for institutions.</p>
 
-        <a href="https://wa.me/2349023147984" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
+        <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-large">
           Work With Konvexity
           <span class="btn-arrow">&rarr;</span>
         </a>
       </div>
 
       <div class="founder-portrait">
-        <div class="portrait-placeholder" style="height:100%; position:static; background:none; border:none;">
-          <div class="avatar-circle">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7z"/>
-            </svg>
-          </div>
+        <div class="portrait-placeholder" style="height:100%;">
+          <img src="{{ url_for('static', filename='images/pages/contact-consultation.jpg') }}" alt="Executive consultation session at Konvexity" class="media-photo" loading="lazy">
           <p>Konvexity Leadership</p>
         </div>
       </div>
@@ -128,7 +129,7 @@
     <h2 class="reveal">Ready to transform your organization?</h2>
     <p class="reveal">Let&rsquo;s build a leadership and performance system that creates lasting growth for your institution.</p>
     <div class="cta-buttons reveal">
-      <a href="https://wa.me/2349023147984" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
+      <a href="{{ url_for('public.contact') }}" class="btn btn-primary btn-large">
         Schedule a Consultation
         <span class="btn-arrow">&rarr;</span>
       </a>
