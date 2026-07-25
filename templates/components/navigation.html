@@ -3,7 +3,7 @@
     <div class="nav-container">
         
         <a href="{{ url_for('public.home') }}" class="nav-brand" aria-label="Konvexity home">
-            <span class="brand-icon">◈</span>
+            <img src="{{ url_for('static', filename='images/brand/logo-white.jpg') }}" alt="" class="brand-logo">
             <div class="brand-content">
                 <span class="brand-text">KONVEXITY</span>
                 <span class="brand-tagline">where clarity meets growth</span>
@@ -22,8 +22,23 @@
             <li><a href="{{ url_for('public.solutions') }}" class="nav-link {% if request.endpoint == 'public.solutions' %}active{% endif %}">Solutions</a></li>
             <li><a href="{{ url_for('public.programs') }}" class="nav-link {% if request.endpoint == 'public.programs' %}active{% endif %}">Programs</a></li>
             <li><a href="{{ url_for('public.faculty') }}" class="nav-link {% if request.endpoint == 'public.faculty' %}active{% endif %}">Faculty</a></li>
+            <li><a href="{{ url_for('public.founder') }}" class="nav-link {% if request.endpoint == 'public.founder' %}active{% endif %}">Founder</a></li>
             <li><a href="{{ url_for('public.clients') }}" class="nav-link {% if request.endpoint == 'public.clients' %}active{% endif %}">Clients</a></li>
             <li><a href="{{ url_for('public.contact') }}" class="nav-link nav-cta">Connect</a></li>
         </ul>
     </div>
 </nav>
+
+<style>
+    .nav-brand {
+        display: flex;
+        align-items: center;
+    }
+    .brand-logo {
+        height: 45px;
+        width: auto;
+        object-fit: contain;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+</style>
