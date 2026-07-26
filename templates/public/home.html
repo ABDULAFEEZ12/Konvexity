@@ -28,7 +28,7 @@
   <div class="bg-grid" aria-hidden="true"></div>
 
   <!-- Signature motif: the convexity curve, drawn on load -->
-  <jpg class="hero-curve" viewBox="0 0 560 560" width="560" height="560"
+  <svg class="hero-curve" viewBox="0 0 560 560" width="560" height="560"
        style="position:absolute; right:-6%; top:8%; opacity:0.9; pointer-events:none; z-index:0;"
        aria-hidden="true">
     <path d="M 60 500 C 60 500, 120 120, 500 60"
@@ -41,7 +41,7 @@
         <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.85"/>
       </linearGradient>
     </defs>
-  </jpg>
+  </svg>
 
   <div class="container hero__content">
     <div class="hero__badge">
@@ -83,6 +83,41 @@
 
 <!-- ============================= WHO WE ARE ============================= -->
 <section class="section">
+  <style>
+    /* --- Capability cards: image-topped variant --- */
+    .capability-cards{
+      margin-top: 0.4rem; /* tighter gap under the "Who We Are" copy on stacked/mobile layouts */
+    }
+    .capability-cards .card{
+      overflow: hidden; /* lets the card's existing border-radius clip the image's top corners */
+    }
+    .capability-cards .card__media{
+      width: 100%;
+      height: 170px; /* within the 160-200px range, keeps card footprint compact */
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .capability-cards .card__media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .capability-cards .card__body{
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    @media (max-width: 640px){
+      .capability-cards .card__media{
+        height: 150px;
+      }
+    }
+  </style>
+
   <div class="container">
     <div class="grid-2" data-reveal="fade">
       <div class="glass-card" data-reveal="left">
@@ -103,34 +138,54 @@
       </div>
 
       <div data-reveal="right" data-reveal-delay="2" style="display:flex; flex-direction:column; gap:0.9rem;">
-        <div class="grid grid-2" style="gap:0.6rem; align-items:start;">
-          <div class="card" style="padding:0.9rem 1.2rem; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-              <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c4-1 7-5 7-9a7 7 0 10-14 0c0 4 3 8 7 9z"/></jpg>
+        <div class="grid grid-2 capability-cards" style="gap:0.6rem; align-items:start;">
+          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="card__media">
+              <img src="{{ url_for('static', filename='images/about/brand.jpg') }}" alt="Brand strategy and positioning" loading="lazy">
             </div>
-            <h3 class="card__title" style="margin:0 0 0.25rem;">Brand</h3>
-            <p class="card__text" style="margin:0; line-height:1.4;">Clarity, positioning, and communication that differentiate.</p>
+            <div class="card__body">
+              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c4-1 7-5 7-9a7 7 0 10-14 0c0 4 3 8 7 9z"/></svg>
+              </div>
+              <h3 class="card__title" style="margin:0 0 0.25rem;">Brand</h3>
+              <p class="card__text" style="margin:0; line-height:1.4;">Clarity, positioning, and communication that differentiate.</p>
+            </div>
           </div>
-          <div class="card" style="padding:0.9rem 1.2rem; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-              <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-3.26a4 4 0 100-8 4 4 0 000 8zm7 0a4 4 0 100-8 4 4 0 000 8z"/></jpg>
+          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="card__media">
+              <img src="{{ url_for('static', filename='images/about/leadership.jpg') }}" alt="Leadership development session" loading="lazy">
             </div>
-            <h3 class="card__title" style="margin:0 0 0.25rem;">Leadership</h3>
-            <p class="card__text" style="margin:0; line-height:1.4;">Disciplined leaders and aligned, high-trust teams.</p>
+            <div class="card__body">
+              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-3.26a4 4 0 100-8 4 4 0 000 8zm7 0a4 4 0 100-8 4 4 0 000 8z"/></svg>
+              </div>
+              <h3 class="card__title" style="margin:0 0 0.25rem;">Leadership</h3>
+              <p class="card__text" style="margin:0; line-height:1.4;">Disciplined leaders and aligned, high-trust teams.</p>
+            </div>
           </div>
-          <div class="card" style="padding:0.9rem 1.2rem; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-              <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></jpg>
+          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="card__media">
+              <img src="{{ url_for('static', filename='images/about/systems.jpg') }}" alt="Operational systems and execution architecture" loading="lazy">
             </div>
-            <h3 class="card__title" style="margin:0 0 0.25rem;">Systems</h3>
-            <p class="card__text" style="margin:0; line-height:1.4;">Execution architecture that turns strategy into results.</p>
+            <div class="card__body">
+              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              </div>
+              <h3 class="card__title" style="margin:0 0 0.25rem;">Systems</h3>
+              <p class="card__text" style="margin:0; line-height:1.4;">Execution architecture that turns strategy into results.</p>
+            </div>
           </div>
-          <div class="card" style="padding:0.9rem 1.2rem; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-              <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></jpg>
+          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="card__media">
+              <img src="{{ url_for('static', filename='images/about/revenue.jpg') }}" alt="Revenue growth and commercial strategy" loading="lazy">
             </div>
-            <h3 class="card__title" style="margin:0 0 0.25rem;">Revenue</h3>
-            <p class="card__text" style="margin:0; line-height:1.4;">Commercially strong offers, pricing, and sales motion.</p>
+            <div class="card__body">
+              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+              </div>
+              <h3 class="card__title" style="margin:0 0 0.25rem;">Revenue</h3>
+              <p class="card__text" style="margin:0; line-height:1.4;">Commercially strong offers, pricing, and sales motion.</p>
+            </div>
           </div>
         </div>
 
@@ -162,7 +217,7 @@
     <div class="grid grid-4" data-reveal="scale">
       <div class="card text-center">
         <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 21h9"/>
             <path d="M10 21v-3.5"/>
             <path d="M7 17.5h6"/>
@@ -170,40 +225,40 @@
             <path d="M8 14h4l1-3-3-2-3 2z"/>
             <path d="M13 9l3.5-1.8"/>
             <path d="M15.5 6.2l1.2 2.3"/>
-          </jpg>
+          </svg>
         </div>
         <h4 class="card__title">Microscope</h4>
         <p class="card__text">Deep diagnostic audits of brand, leadership, and performance gaps.</p>
       </div>
       <div class="card text-center">
         <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></jpg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </div>
         <h4 class="card__title">Magnifying Glass</h4>
         <p class="card__text">Brand clarity, positioning, and communication that differentiate.</p>
       </div>
       <div class="card text-center solution-card is-featured">
         <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="10" width="6" height="7" rx="2"/>
             <rect x="15" y="10" width="6" height="7" rx="2"/>
             <path d="M9 12h6"/>
             <path d="M7 10V8a2 2 0 012-2h1"/>
             <path d="M17 10V8a2 2 0 00-2-2h-1"/>
-          </jpg>
+          </svg>
         </div>
         <h4 class="card__title">Binoculars</h4>
         <p class="card__text">Team alignment, leadership capability, and execution systems.</p>
       </div>
       <div class="card text-center">
         <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <jpg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 17l14-7"/>
             <path d="M17 10l3-1.5-2-4-3 1.5"/>
             <path d="M13 15l2 4"/>
             <path d="M9 17l-2 4"/>
             <path d="M4 21h4"/>
-          </jpg>
+          </svg>
         </div>
         <h4 class="card__title">Telescope</h4>
         <p class="card__text">Long-term growth strategy and future-proof scaling.</p>
