@@ -125,6 +125,18 @@ def founder():
     return render_template("public/founder.html", seo=seo)
 
 
+@public_bp.route("/signature-platforms")
+def signature_platforms():
+    seo = {
+        "title": "Signature Platforms | Konvexity",
+        "description": "Konvexity's flagship initiatives: Konvexity Entrepreneurship, a community for founders and business builders, and AR\u00c1K\u00d9NRIN, Konvexity's male formation platform.",
+        "canonical_url": url_for("public.signature_platforms", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/signature_platforms.html", seo=seo)
+
+
 @public_bp.route("/arakunrin")
 def arakunrin():
     seo = {
@@ -228,6 +240,7 @@ def sitemap():
         {"loc": url_for("public.programs", _external=True), "priority": "0.8"},
         {"loc": url_for("public.faculty", _external=True), "priority": "0.7"},
         {"loc": url_for("public.founder", _external=True), "priority": "0.8"},
+        {"loc": url_for("public.signature_platforms", _external=True), "priority": "0.8"},
         {"loc": url_for("public.arakunrin", _external=True), "priority": "0.6"},
         {"loc": url_for("public.ken", _external=True), "priority": "0.6"},
         {"loc": url_for("public.clients", _external=True), "priority": "0.6"},
