@@ -1,0 +1,85 @@
+{# templates/public/signature_platforms.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ seo.title }}{% endblock %}
+{% block meta_desc %}{{ seo.description }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="canonical" href="{{ seo.canonical_url }}">
+  <meta property="og:type" content="{{ seo.og_type }}">
+  <meta property="og:title" content="{{ seo.title }}">
+  <meta property="og:description" content="{{ seo.description }}">
+  <meta property="og:url" content="{{ seo.canonical_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo.title }}">
+  <meta name="twitter:description" content="{{ seo.description }}">
+  <meta name="twitter:image" content="{{ seo.og_image }}">
+{% endblock %}
+
+{% block og_image %}
+  <meta property="og:image" content="{{ seo.og_image }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================= PAGE HEADER / HERO ============================= -->
+<section class="page-header">
+  <div class="container" data-reveal="fade">
+    <span class="eyebrow">Signature Platforms</span>
+    <h1>Konvexity&rsquo;s Signature Platforms</h1>
+    <p>
+      These are Konvexity&rsquo;s flagship initiatives, built to serve two distinct communities:
+      the entrepreneurs building the next generation of businesses, and the men being shaped for
+      the next generation of leadership.
+    </p>
+  </div>
+</section>
+
+<!-- ============================= SIGNATURE PLATFORM CARDS ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="max-width: 980px; margin: 0 auto;" data-reveal="scale">
+
+      <div class="card solution-card text-center">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 6l-9.5 9.5-5-5L1 18"/>
+            <path d="M17 6h6v6"/>
+          </svg>
+        </div>
+        <h3 class="card__title">Konvexity Entrepreneurship</h3>
+        <p class="card__text">
+          A growing community for entrepreneurs, founders, innovators and business builders,
+          created to share practical knowledge, strategic connections and the support needed to
+          build with confidence.
+        </p>
+        <div class="card__footer">
+          <a href="https://chat.whatsapp.com/LDPf1WQZCzjIp8CrH5nCst?s=sw&amp;p=a&amp;mlu=0" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            Join the Community
+          </a>
+        </div>
+      </div>
+
+      <div class="card solution-card text-center">
+        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l2.6 6.2L21 9l-5 4.4L17.4 20 12 16.6 6.6 20 8 13.4 3 9l6.4-.8z"/>
+          </svg>
+        </div>
+        <h3 class="card__title">AR&Aacute;K&Ugrave;NRIN</h3>
+        <p class="card__text">
+          Konvexity&rsquo;s flagship male formation initiative, intentionally developing males
+          across every stage of life to carry authority, character and presence with authenticity.
+        </p>
+        <div class="card__footer">
+          <a href="https://arakunrin.onrender.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            Visit AR&Aacute;K&Ugrave;NRIN
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
