@@ -22,7 +22,7 @@
 
 {% block content %}
 
-<!-- ============================= HERO ============================= -->
+<!-- ============================= 1. HERO ============================= -->
 <section class="hero">
   <div class="hero__aurora" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
@@ -81,193 +81,95 @@
   </div>
 </section>
 
-<!-- ============================= WHO WE ARE ============================= -->
+<!-- ============================= 2. ABOUT PREVIEW ============================= -->
 <section class="section">
-  <style>
-    /* --- Capability cards: image-topped variant --- */
-    .capability-cards{
-      margin-top: 0.4rem; /* tighter gap under the "Who We Are" copy on stacked/mobile layouts */
-    }
-    .capability-cards .card{
-      overflow: hidden; /* lets the card's existing border-radius clip the image's top corners */
-    }
-    .capability-cards .card__media{
-      width: 100%;
-      height: 170px; /* within the 160-200px range, keeps card footprint compact */
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .capability-cards .card__media img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .capability-cards .card__body{
-      width: 100%;
-      padding: 0.9rem 1.2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    @media (max-width: 640px){
-      .capability-cards .card__media{
-        height: 150px;
-      }
-    }
-  </style>
-
   <div class="container">
-    <div class="grid-2" data-reveal="fade">
-      <div class="glass-card" data-reveal="left">
-        <div class="media-frame" style="aspect-ratio:16/9; margin-bottom:1.4rem;">
+    <div class="grid-2" data-reveal="fade" style="align-items:center;">
+      <div data-reveal="left">
+        <div class="media-frame" style="aspect-ratio:4/3;">
           <img src="{{ url_for('static', filename='images/hero/leadership.jpg') }}" alt="Konvexity leadership team in a strategy session" loading="lazy">
         </div>
+      </div>
+      <div data-reveal="right" data-reveal-delay="2">
         <span class="eyebrow">From a Question to a Movement</span>
         <h2 class="section-title">Who We Are</h2>
-        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          Konvexity is a Human Capital Development and Leadership Advisory firm dedicated to helping organisations build exceptional leaders, high performing teams and resilient institutions.
+        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim);">
+          Konvexity is a Human Capital Development and Leadership Advisory firm dedicated to
+          helping organisations build exceptional leaders, high performing teams and resilient
+          institutions.
         </p>
         <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          We partner with businesses, educational institutions, governments and purpose driven organisations to strengthen leadership capacity, improve organisational performance and accelerate sustainable growth through leadership development, executive advisory, organisational transformation, performance consulting and capability building.
+          We partner with businesses, educational institutions, governments and purpose driven
+          organisations to strengthen leadership capacity, improve organisational performance and
+          accelerate sustainable growth through leadership development, executive advisory and
+          organisational transformation.
         </p>
-        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim); margin-top:1.2rem;">
-          Guided by the belief that clarity drives execution and people drive performance, Konvexity equips individuals and organisations with the mindset, systems and capabilities required to lead confidently, execute effectively and create lasting impact.
-        </p>
-      </div>
-
-      <div data-reveal="right" data-reveal-delay="2" style="display:flex; flex-direction:column; gap:0.9rem;">
-        <div class="grid grid-2 capability-cards" style="gap:0.6rem; align-items:start;">
-          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__media">
-              <img src="{{ url_for('static', filename='images/about/brand.jpg') }}" alt="Brand strategy and positioning" loading="lazy">
-            </div>
-            <div class="card__body">
-              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c4-1 7-5 7-9a7 7 0 10-14 0c0 4 3 8 7 9z"/></svg>
-              </div>
-              <h3 class="card__title" style="margin:0 0 0.25rem;">Brand</h3>
-              <p class="card__text" style="margin:0; line-height:1.4;">Clarity, positioning, and communication that differentiate.</p>
-            </div>
-          </div>
-          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__media">
-              <img src="{{ url_for('static', filename='images/about/leadership.jpg') }}" alt="Leadership development session" loading="lazy">
-            </div>
-            <div class="card__body">
-              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-3.26a4 4 0 100-8 4 4 0 000 8zm7 0a4 4 0 100-8 4 4 0 000 8z"/></svg>
-              </div>
-              <h3 class="card__title" style="margin:0 0 0.25rem;">Leadership</h3>
-              <p class="card__text" style="margin:0; line-height:1.4;">Disciplined leaders and aligned, high-trust teams.</p>
-            </div>
-          </div>
-          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__media">
-              <img src="{{ url_for('static', filename='images/about/systems.jpg') }}" alt="Operational systems and execution architecture" loading="lazy">
-            </div>
-            <div class="card__body">
-              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-              </div>
-              <h3 class="card__title" style="margin:0 0 0.25rem;">Systems</h3>
-              <p class="card__text" style="margin:0; line-height:1.4;">Execution architecture that turns strategy into results.</p>
-            </div>
-          </div>
-          <div class="card" style="padding:0; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <div class="card__media">
-              <img src="{{ url_for('static', filename='images/about/revenue.jpg') }}" alt="Revenue growth and commercial strategy" loading="lazy">
-            </div>
-            <div class="card__body">
-              <div class="card__icon" style="margin-bottom:0.35rem;" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
-              </div>
-              <h3 class="card__title" style="margin:0 0 0.25rem;">Revenue</h3>
-              <p class="card__text" style="margin:0; line-height:1.4;">Commercially strong offers, pricing, and sales motion.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-2" style="gap:0.6rem; align-items:stretch;">
-          <div class="media-frame" style="aspect-ratio:4/3; height:100%;">
-            <img src="{{ url_for('static', filename='images/about/leadership-workshop.jpg') }}" alt="Konvexity leadership workshop in session" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="media-frame" style="aspect-ratio:4/3; height:100%;">
-            <img src="{{ url_for('static', filename='images/about/executive-discussion.jpg') }}" alt="Executive discussion during a Konvexity engagement" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
-          </div>
-        </div>
+        <a href="{{ url_for('public.about') }}" class="btn btn-secondary" style="margin-top:1.6rem;">Learn More</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================= THE KONVEXITY LENS ============================= -->
+<!-- ============================= 3. SIGNATURE PLATFORMS PREVIEW ============================= -->
 <section class="section section--alt">
   <div class="container">
     <div class="section-header section-header--center" data-reveal="fade">
-      <span class="eyebrow">What We Deliver</span>
-      <h2 class="section-title">The Konvexity Lens&trade;</h2>
+      <span class="eyebrow">Flagship Initiatives</span>
+      <h2 class="section-title">Signature Platforms</h2>
       <p class="section-subtitle">
-        We help leaders and organizations see clearly, make better decisions, and execute with
-        confidence through four powerful lenses.
+        Two flagship initiatives, built to serve two distinct communities: the entrepreneurs
+        building the next generation of businesses, and the men being shaped for the next
+        generation of leadership.
       </p>
     </div>
 
-    <div class="grid grid-4" data-reveal="scale">
-      <div class="card text-center">
-        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 21h9"/>
-            <path d="M10 21v-3.5"/>
-            <path d="M7 17.5h6"/>
-            <path d="M9.5 17.5V14"/>
-            <path d="M8 14h4l1-3-3-2-3 2z"/>
-            <path d="M13 9l3.5-1.8"/>
-            <path d="M15.5 6.2l1.2 2.3"/>
-          </svg>
+    <div class="grid grid-2" style="max-width: 980px; margin: 0 auto;" data-reveal="scale">
+
+      <div class="card solution-card text-center">
+        <div class="card__image">
+          <img src="{{ url_for('static', filename='images/platforms/konvexity-entrepreneurship.jpg') }}"
+               alt="Konvexity Entrepreneurship"
+               loading="lazy">
         </div>
-        <h4 class="card__title">Microscope</h4>
-        <p class="card__text">Deep diagnostic audits of brand, leadership, and performance gaps.</p>
-      </div>
-      <div class="card text-center">
-        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <h3 class="card__title">Konvexity Entrepreneurship</h3>
+        <p class="card__text">
+          A growing community for entrepreneurs, founders, innovators and business builders,
+          created to share practical knowledge, strategic connections and support.
+        </p>
+        <div class="card__footer">
+          <a href="https://chat.whatsapp.com/LDPf1WQZCzjIp8CrH5nCst?s=sw&amp;p=a&amp;mlu=0" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+            Join the Community
+          </a>
         </div>
-        <h4 class="card__title">Magnifying Glass</h4>
-        <p class="card__text">Brand clarity, positioning, and communication that differentiate.</p>
       </div>
-      <div class="card text-center solution-card is-featured">
-        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="10" width="6" height="7" rx="2"/>
-            <rect x="15" y="10" width="6" height="7" rx="2"/>
-            <path d="M9 12h6"/>
-            <path d="M7 10V8a2 2 0 012-2h1"/>
-            <path d="M17 10V8a2 2 0 00-2-2h-1"/>
-          </svg>
+
+      <div class="card solution-card text-center">
+        <div class="card__image">
+          <img src="{{ url_for('static', filename='images/platforms/arakunrin.jpg') }}"
+               alt="AR&Aacute;K&Ugrave;NRIN"
+               loading="lazy">
         </div>
-        <h4 class="card__title">Binoculars</h4>
-        <p class="card__text">Team alignment, leadership capability, and execution systems.</p>
-      </div>
-      <div class="card text-center">
-        <div class="card__icon" style="margin-inline:auto;" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 17l14-7"/>
-            <path d="M17 10l3-1.5-2-4-3 1.5"/>
-            <path d="M13 15l2 4"/>
-            <path d="M9 17l-2 4"/>
-            <path d="M4 21h4"/>
-          </svg>
+        <h3 class="card__title">AR&Aacute;K&Ugrave;NRIN</h3>
+        <p class="card__text">
+          Konvexity&rsquo;s flagship male formation initiative, intentionally developing males
+          across every stage of life to carry authority and character with authenticity.
+        </p>
+        <div class="card__footer">
+          <a href="https://arakunrin.onrender.com" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+            Visit AR&Aacute;K&Ugrave;NRIN
+          </a>
         </div>
-        <h4 class="card__title">Telescope</h4>
-        <p class="card__text">Long-term growth strategy and future-proof scaling.</p>
       </div>
+
+    </div>
+
+    <div class="row row--center" style="margin-top:2.5rem;">
+      <a href="{{ url_for('public.signature_platforms') }}" class="btn btn-outline">View Signature Platforms</a>
     </div>
   </div>
 </section>
 
-<!-- ============================= SOLUTIONS PREVIEW ============================= -->
+<!-- ============================= 4. SOLUTIONS PREVIEW ============================= -->
 <section class="section">
   <div class="container">
     <div class="section-header" data-reveal="fade">
@@ -321,10 +223,55 @@
         </div>
       </div>
     </div>
+
+    <div class="row row--center" style="margin-top:2.5rem;">
+      <a href="{{ url_for('public.solutions') }}" class="btn btn-outline">View All Solutions</a>
+    </div>
   </div>
 </section>
 
-<!-- ============================= FACULTY TEASER ============================= -->
+<!-- ============================= 5. TRUSTED CLIENTS PREVIEW ============================= -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header section-header--center" data-reveal="fade">
+      <span class="eyebrow">Trusted By</span>
+      <h2 class="section-title">Organisations We&rsquo;ve Worked With</h2>
+    </div>
+    <div class="logo-wall" data-reveal="scale">
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe-africa.jpg') }}" alt="TechTrybe Africa"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen-university.jpg') }}" alt="Bowen University"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.jpg') }}" alt="Emblue Africa"></div>
+      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.jpg') }}" alt="StartWeb"></div>
+    </div>
+    <div class="row row--center" style="margin-top:2.5rem;">
+      <a href="{{ url_for('public.clients') }}" class="btn btn-outline">View All Clients</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 6. FOUNDER PREVIEW ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="founder-section" data-reveal="fade">
+      <div class="founder-portrait">
+        <img src="{{ url_for('static', filename='images/founder/tioluwalogo-portrait.jpg') }}" alt="Dr. Tioluwalogo Olakunbi-Black, Founder of Konvexity" loading="lazy">
+      </div>
+      <div>
+        <span class="founder-title">Meet the Founder</span>
+        <h2 class="section-title">Dr. Tioluwalogo Olakunbi-Black</h2>
+        <p class="card__text" style="font-size:1.02rem; color:var(--ink-dim);">
+          A Performance Architect and founder of TechTrybe Africa, Dr. Tioluwalogo Olakunbi-Black
+          is one of Africa&rsquo;s leading experts on leadership and organisational transformation,
+          and the driving force behind Konvexity&rsquo;s work with founders, executives and
+          institutions across the continent.
+        </p>
+        <a href="{{ url_for('public.founder') }}" class="btn btn-secondary" style="margin-top:1.6rem;">Meet the Founder</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= 7. FACULTY PREVIEW ============================= -->
 <section class="section section--tight">
   <div class="container">
     <div class="section-header section-header--center" data-reveal="fade">
@@ -360,39 +307,7 @@
   </div>
 </section>
 
-<!-- ============================= QUOTE ============================= -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="quote-block" data-reveal="fade">
-      <span class="eyebrow" style="justify-content:center;">Our Belief</span>
-      <p class="quote-block__text">
-        Every organisation already has potential. Our role is to unlock it through
-        <span class="text-gradient">clarity, strategy, and execution.</span>
-      </p>
-      <div class="quote-block__attribution">Clarity changes everything.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================= CLIENTS TEASER ============================= -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="section-header section-header--center" data-reveal="fade">
-      <span class="eyebrow">Trusted By</span>
-      <h2 class="section-title">Organisations We&rsquo;ve Worked With</h2>
-    </div>
-    <div class="logo-wall" data-reveal="scale">
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/techtrybe-africa.jpg') }}" alt="TechTrybe Africa"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/bowen-university.jpg') }}" alt="Bowen University"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/emblue.jpg') }}" alt="Emblue Africa"></div>
-      <div class="logo-wall__item"><img src="{{ url_for('static', filename='images/clients/startweb.jpg') }}" alt="StartWeb"></div>
-    </div>
-    <div class="row row--center" style="margin-top:2.5rem;">
-      <a href="{{ url_for('public.clients') }}" class="btn btn-outline">View All Clients</a>
-    </div>
-  </div>
-</section>
-
+<!-- ============================= 8. FINAL CTA ============================= -->
 {% include 'components/cta_section.html' %}
 
 {% endblock %}
