@@ -33,6 +33,7 @@ def create_app(config_name=None):
     app.config.from_object(config_by_name[config_name])
 
     configure_extensions(app)
+    configure_login_manager(app)
     configure_blueprints(app)
     configure_error_handlers(app)
     configure_request_hooks(app)
@@ -70,9 +71,27 @@ def configure_extensions(app):
     cors.init_app(app)
 
 
+def configure_login_manager(app):
+    from app.extensions import login_manager
+
+    login_manager.init_app(app)
+    login_manager.login_view = "admin.login"
+    login_manager.login_message = "Please sign in to access the admin dashboard."
+    login_manager.login_message_category = "error"
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        from app.extensions import db
+        from app.models import User
+        return db.session.get(User, user_id)
+
+
 def configure_blueprints(app):
     from app.blueprints.public.routes import public_bp
+    from app.blueprints.admin.routes import admin_bp
+
     app.register_blueprint(public_bp)
+    app.register_blueprint(admin_bp)
 
 
 def configure_error_handlers(app):
@@ -84,6 +103,10 @@ def configure_error_handlers(app):
     def internal_server_error(error):
         logger.exception("Internal server error: %s", str(error))
         return render_template("errors/500.html"), 500
+
+    @app.errorhandler(403)
+    def forbidden(error):
+        return render_template("errors/403.html"), 403
 
 
 def configure_request_hooks(app):
@@ -177,6 +200,34 @@ def configure_cli_commands(app):
         from app.extensions import db
         db.create_all()
         click.echo("Database tables created.")
+
+    @app.cli.command("create-admin")
+    @click.option("--email", prompt="Email")
+    @click.option("--first-name", prompt="First name")
+    @click.option("--last-name", prompt="Last name")
+    @click.option("--password", prompt=True, hide_input=True, confirmation_prompt=True)
+    @click.option("--role", type=click.Choice(["admin", "consultant"]), default="admin", prompt="Role")
+    def create_admin(email, first_name, last_name, password, role):
+        from app.extensions import db
+        from app.models import User
+
+        email = email.strip().lower()
+        if db.session.query(User).filter_by(email=email).first():
+            click.echo(f"A user with email {email} already exists.")
+            return
+
+        user = User(
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            role=role,
+            is_active=True,
+            email_verified=True,
+        )
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        click.echo(f"Admin user {email} created.")
 
 
 def configure_production_logging(app):
