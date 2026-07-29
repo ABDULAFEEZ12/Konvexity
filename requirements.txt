@@ -11,6 +11,7 @@ Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.1.0
 Flask-WTF==1.2.2
 Flask-Mail==0.10.0
+Flask-Login==0.6.3
 
 # --- Database ---
 SQLAlchemy==2.0.36
@@ -58,10 +59,6 @@ pre-commit==4.0.1
 # --- Future: API ---
 # Flask-RESTful==0.3.10
 # marshmallow==3.23.2
-
-# --- Future: Authentication ---
-# Flask-Login==0.6.3
-# Flask-Principal==0.4.0
 
 # --- Future: Async Tasks ---
 # Celery==5.4.0
