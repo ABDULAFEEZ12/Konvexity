@@ -1,0 +1,79 @@
+{# templates/admin/base.html #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin Dashboard, Konvexity{% endblock %}</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap">
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/brand/favicon.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-text">KONVEXITY</span>
+        <span class="admin-sidebar__brand-tag">Admin Dashboard</span>
+      </div>
+
+      <ul class="admin-nav">
+        <li>
+          <a href="{{ url_for('admin.dashboard') }}" class="admin-nav__link {% if request.endpoint == 'admin.dashboard' %}is-active{% endif %}">
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin.leads_list') }}" class="admin-nav__link {% if request.endpoint in ['admin.leads_list', 'admin.lead_detail'] %}is-active{% endif %}">
+            Leads
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('admin.bookings_list') }}" class="admin-nav__link {% if request.endpoint in ['admin.bookings_list', 'admin.booking_detail'] %}is-active{% endif %}">
+            Consultation Bookings
+          </a>
+        </li>
+      </ul>
+
+      <div class="admin-sidebar__footer">
+        <div class="admin-sidebar__user">
+          <span class="admin-sidebar__user-name">{{ current_user.first_name }} {{ current_user.last_name }}</span>
+          <span class="admin-sidebar__user-role">{{ current_user.role }}</span>
+        </div>
+        <a href="{{ url_for('admin.logout') }}" class="admin-nav__link">Sign Out</a>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div>
+          <div class="admin-topbar__title">{% block page_title %}Dashboard{% endblock %}</div>
+          <div class="admin-topbar__subtitle">{% block page_subtitle %}{% endblock %}</div>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="admin-flash admin-flash--{{ category if category in ['success','error','warning'] else 'warning' }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

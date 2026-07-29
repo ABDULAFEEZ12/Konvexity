@@ -1,0 +1,62 @@
+{# templates/admin/booking_detail.html #}
+{% extends "admin/base.html" %}
+
+{% block title %}{{ booking.booking_id }}, Konvexity Admin{% endblock %}
+{% block page_title %}{{ booking.booking_id }}{% endblock %}
+{% block page_subtitle %}{{ booking.full_name }}, submitted {{ booking.created_at.strftime("%b %d, %Y %H:%M") }}{% endblock %}
+
+{% block content %}
+
+<div class="admin-detail-grid">
+  <div>
+    <div class="admin-panel" style="margin-bottom:1.5rem;">
+      <div class="admin-panel__title">Booking Details</div>
+      <dl class="admin-detail-list">
+        <dt>Full Name</dt><dd>{{ booking.full_name }}</dd>
+        <dt>Email</dt><dd>{{ booking.email }}</dd>
+        <dt>WhatsApp</dt><dd>{{ booking.whatsapp_number }}</dd>
+        <dt>Company</dt><dd>{{ booking.company or "—" }}</dd>
+        <dt>Preferred Date</dt><dd>{{ booking.preferred_date }}</dd>
+        <dt>Preferred Time</dt><dd>{{ booking.preferred_time }}</dd>
+        <dt>Platform</dt><dd>{{ booking.platform_label }}</dd>
+        <dt>Meeting Goal</dt><dd>{{ booking.meeting_goal or "—" }}</dd>
+      </dl>
+    </div>
+
+    <div class="admin-panel">
+      <div class="admin-panel__title">Activity Timeline</div>
+      {% if history %}
+        <table class="admin-table">
+          <thead><tr><th>When</th><th>Action</th><th>Description</th></tr></thead>
+          <tbody>
+            {% for entry in history %}
+              <tr>
+                <td>{{ entry.created_at.strftime("%b %d, %Y %H:%M") }}</td>
+                <td>{{ entry.action }}</td>
+                <td>{{ entry.description or "" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="admin-empty">No activity yet.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div>
+    <div class="admin-panel">
+      <div class="admin-panel__title">Status</div>
+      <form method="POST" action="{{ url_for('admin.booking_update_status', booking_id=booking.id) }}" class="admin-field">
+        <select name="status">
+          {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if booking.status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm" style="width:100%; justify-content:center; margin-top:0.75rem;">Update Status</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

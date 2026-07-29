@@ -1,0 +1,57 @@
+{# templates/admin/login.html #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sign In, Konvexity</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/brand/favicon.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="admin-auth">
+    <div class="admin-auth__card">
+      <div class="admin-auth__brand">
+        <div class="admin-auth__brand-text">KONVEXITY</div>
+        <div class="admin-auth__brand-tag">Admin Dashboard</div>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="admin-flash admin-flash--{{ category if category in ['success','error','warning'] else 'warning' }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('admin.login', next=request.args.get('next')) }}" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="admin-field">
+          {{ form.email.label }}
+          {{ form.email(placeholder="you@konvexity.com", autocomplete="username") }}
+          {% for error in form.email.errors %}<div class="admin-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        <div class="admin-field">
+          {{ form.password.label }}
+          {{ form.password(placeholder="••••••••", autocomplete="current-password") }}
+          {% for error in form.password.errors %}<div class="admin-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        <div class="admin-field admin-field--checkbox">
+          {{ form.remember() }}
+          {{ form.remember.label }}
+        </div>
+
+        {{ form.submit(class="btn btn-primary", style="width:100%; justify-content:center; margin-top:0.5rem;") }}
+      </form>
+    </div>
+  </div>
+</body>
+</html>

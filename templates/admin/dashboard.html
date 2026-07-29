@@ -1,0 +1,72 @@
+{# templates/admin/dashboard.html #}
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard, Konvexity Admin{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block page_subtitle %}An overview of activity across Konvexity.{% endblock %}
+
+{% block content %}
+
+<div class="admin-stats">
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Total Leads</div>
+    <div class="admin-stat-card__value">{{ stats.total_leads }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">New Leads</div>
+    <div class="admin-stat-card__value">{{ stats.new_leads }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Consultation Bookings</div>
+    <div class="admin-stat-card__value">{{ stats.total_bookings }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Pending Bookings</div>
+    <div class="admin-stat-card__value">{{ stats.pending_bookings }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Contact Inquiries</div>
+    <div class="admin-stat-card__value">{{ stats.total_inquiries }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Unread Inquiries</div>
+    <div class="admin-stat-card__value">{{ stats.unread_inquiries }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Applications</div>
+    <div class="admin-stat-card__value">{{ stats.total_applications }}</div>
+  </div>
+  <div class="admin-stat-card">
+    <div class="admin-stat-card__label">Pending Applications</div>
+    <div class="admin-stat-card__value">{{ stats.pending_applications }}</div>
+  </div>
+</div>
+
+<div class="admin-panel">
+  <div class="admin-panel__title">Recent Activity</div>
+
+  {% if recent_activity %}
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Action</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in recent_activity %}
+          <tr>
+            <td>{{ entry.created_at.strftime("%b %d, %Y %H:%M") }}</td>
+            <td>{{ entry.action }}</td>
+            <td>{{ entry.description or "" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="admin-empty">No activity recorded yet.</div>
+  {% endif %}
+</div>
+
+{% endblock %}

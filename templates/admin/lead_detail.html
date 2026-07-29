@@ -1,0 +1,92 @@
+{# templates/admin/lead_detail.html #}
+{% extends "admin/base.html" %}
+
+{% block title %}{{ lead.request_id }}, Konvexity Admin{% endblock %}
+{% block page_title %}{{ lead.request_id }}{% endblock %}
+{% block page_subtitle %}{{ lead.full_name }}, submitted {{ lead.created_at.strftime("%b %d, %Y %H:%M") }}{% endblock %}
+
+{% block content %}
+
+<div class="admin-detail-grid">
+  <div>
+    <div class="admin-panel" style="margin-bottom:1.5rem;">
+      <div class="admin-panel__title">Submission Details</div>
+      <dl class="admin-detail-list">
+        <dt>Full Name</dt><dd>{{ lead.full_name }}</dd>
+        <dt>Email</dt><dd>{{ lead.email }}</dd>
+        <dt>WhatsApp</dt><dd>{{ lead.whatsapp_number }}</dd>
+        <dt>Company</dt><dd>{{ lead.company or "—" }}</dd>
+        <dt>Job Title</dt><dd>{{ lead.job_title or "—" }}</dd>
+        <dt>Country</dt><dd>{{ lead.country or "—" }}</dd>
+        <dt>Service</dt><dd>{{ lead.service_label }}</dd>
+        <dt>Message</dt><dd>{{ lead.message or "—" }}</dd>
+      </dl>
+    </div>
+
+    <div class="admin-panel">
+      <div class="admin-panel__title">Activity Timeline</div>
+      {% if history %}
+        <table class="admin-table">
+          <thead><tr><th>When</th><th>Action</th><th>Description</th></tr></thead>
+          <tbody>
+            {% for entry in history %}
+              <tr>
+                <td>{{ entry.created_at.strftime("%b %d, %Y %H:%M") }}</td>
+                <td>{{ entry.action }}</td>
+                <td>{{ entry.description or "" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="admin-empty">No activity yet.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div>
+    <div class="admin-panel" style="margin-bottom:1.5rem;">
+      <div class="admin-panel__title">Status</div>
+      <form method="POST" action="{{ url_for('admin.lead_update_status', lead_id=lead.id) }}" class="admin-field">
+        <select name="status">
+          {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if lead.status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm" style="width:100%; justify-content:center; margin-top:0.75rem;">Update Status</button>
+      </form>
+    </div>
+
+    <div class="admin-panel" style="margin-bottom:1.5rem;">
+      <div class="admin-panel__title">Assign Consultant</div>
+      <form method="POST" action="{{ url_for('admin.lead_assign', lead_id=lead.id) }}" class="admin-field">
+        <select name="consultant_id">
+          <option value="">Unassigned</option>
+          {% for consultant in consultants %}
+            <option value="{{ consultant.id }}" {% if lead.assigned_consultant_id == consultant.id %}selected{% endif %}>
+              {{ consultant.first_name }} {{ consultant.last_name }}
+            </option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center; margin-top:0.75rem;">Assign</button>
+      </form>
+    </div>
+
+    <div class="admin-panel" style="margin-bottom:1.5rem;">
+      <div class="admin-panel__title">Add Note</div>
+      <form method="POST" action="{{ url_for('admin.lead_add_note', lead_id=lead.id) }}" class="admin-field">
+        <textarea name="note" rows="3" placeholder="Internal note..." style="width:100%; padding:0.7rem; border:1px solid var(--card-border); border-radius:var(--r-sm); font-family:var(--font-sans); resize:vertical;"></textarea>
+        <button type="submit" class="btn btn-secondary btn-sm" style="width:100%; justify-content:center; margin-top:0.75rem;">Add Note</button>
+      </form>
+    </div>
+
+    <div class="admin-panel">
+      <div class="admin-panel__title">Archive</div>
+      <form method="POST" action="{{ url_for('admin.lead_archive', lead_id=lead.id) }}" onsubmit="return confirm('Archive this lead?');">
+        <button type="submit" class="btn btn-outline btn-sm" style="width:100%; justify-content:center;">Archive Lead</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
