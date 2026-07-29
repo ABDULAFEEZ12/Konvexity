@@ -13,9 +13,14 @@ class BaseConfig:
     TESTING = False
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # pool_size/pool_recycle are QueuePool (Postgres) options that SQLite's
+    # pool implementation rejects outright. Previously set unconditionally
+    # here, which meant DevelopmentConfig/TestingConfig (both default to
+    # SQLite) crashed on db.init_app() the moment DEV_DATABASE_URL/
+    # TEST_DATABASE_URL weren't overridden to Postgres. Kept minimal and
+    # SQLite-safe here; the Postgres-specific pool tuning now lives on
+    # ProductionConfig, where SQLALCHEMY_DATABASE_URI is actually Postgres.
     SQLALCHEMY_ENGINE_OPTIONS = {
-        "pool_size": 10,
-        "pool_recycle": 3600,
         "pool_pre_ping": True,
         "echo": False,
     }
@@ -46,8 +51,15 @@ class BaseConfig:
 
     BEHIND_PROXY = config("BEHIND_PROXY", default=False, cast=bool)
 
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, "app", "static", "uploads")
+    # NOTE: previously "BASE_DIR/app/static/uploads", which does not exist.
+    # app/__init__.py serves static files from PROJECT_ROOT/static (BASE_DIR
+    # here IS PROJECT_ROOT), so uploads must live under BASE_DIR/static to be
+    # reachable at the URLs Flask actually serves. Fixed as part of the CRM
+    # file-upload foundation, since the old path silently produced
+    # unreachable files.
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+    ALLOWED_UPLOAD_EXTENSIONS = {"pdf", "doc", "docx", "png", "jpg", "jpeg", "webp"}
 
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
@@ -86,6 +98,17 @@ class ProductionConfig(BaseConfig):
         "DATABASE_URL",
         default="sqlite:///" + os.path.join(BaseConfig.BASE_DIR, "konvexity_prod.db")
     )
+    # Postgres (psycopg2) supports QueuePool tuning; SQLite's pool
+    # implementation raises TypeError on pool_size/pool_recycle rather than
+    # ignoring them, which is exactly the bug this split fixes. If
+    # DATABASE_URL is ever pointed at SQLite in production, remove these
+    # two keys or the app will fail to start, same as it did before this
+    # fix for Development/Testing.
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        **BaseConfig.SQLALCHEMY_ENGINE_OPTIONS,
+        "pool_size": 10,
+        "pool_recycle": 3600,
+    }
     SECRET_KEY = config("SECRET_KEY")
     MAIL_DEBUG = False
     RATELIMIT_ENABLED = True
