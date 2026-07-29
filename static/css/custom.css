@@ -695,40 +695,33 @@ section { position: relative; z-index: 1; }
    cap height — still elegant, no longer squinting.
 ========================================= */
 .logo-wall {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem 5rem;
+  padding: 1rem 0;
 }
 .logo-wall__item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.25rem 1.75rem;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-sm);
-  opacity: 0.94;
-  filter: grayscale(0.15) contrast(1.05);
-  transition: opacity var(--smooth), filter var(--smooth), border-color var(--smooth),
-              box-shadow var(--smooth), transform var(--smooth);
+  opacity: 0.8;
+  filter: grayscale(0.35) contrast(1.05);
+  transition: opacity var(--smooth), filter var(--smooth), transform var(--smooth);
 }
 .logo-wall__item:hover {
   opacity: 1;
   filter: grayscale(0);
-  border-color: var(--teal);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  transform: scale(1.06);
 }
-.logo-wall__item img { height: 64px; width: auto; }
+.logo-wall__item img { height: 76px; width: auto; }
 
 @media (max-width: 680px) {
   .logo-wall {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
+    gap: 2.25rem 2.5rem;
   }
-  .logo-wall__item { padding: 1.6rem 1.25rem; }
-  .logo-wall__item img { height: 48px; }
+  .logo-wall__item img { height: 52px; }
 }
 
 /* =========================================
@@ -920,9 +913,9 @@ section { position: relative; z-index: 1; }
 
 /* ----- Client Logos ----- */
 .logo-wall__item img {
-  max-width: 220px;
+  max-width: 200px;
   height: auto;
-  max-height: 68px;
+  max-height: 76px;
   object-fit: contain;
   display: block;
 }
@@ -942,7 +935,7 @@ img {
   }
 
   .logo-wall__item img {
-    max-width: 160px;
-    max-height: 48px;
+    max-width: 150px;
+    max-height: 52px;
   }
 }
