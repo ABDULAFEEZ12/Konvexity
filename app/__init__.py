@@ -42,6 +42,7 @@ def create_app(config_name=None):
     configure_proxy_support(app)
     configure_shutdown_handler(app)
     configure_cli_commands(app)
+    configure_admin_bootstrap(app)
 
     if not app.config.get("TESTING"):
         configure_production_logging(app)
@@ -72,16 +73,21 @@ def configure_extensions(app):
 
 
 def configure_login_manager(app):
-    from app.extensions import login_manager
+    """
+    Flask-Login setup for the admin/CRM side of the app. Reuses the
+    existing User model (role="admin"/"consultant") rather than a
+    separate auth table; see app/models/__init__.py and app/models/crm.py.
+    """
+    from app.extensions import db, login_manager
 
     login_manager.init_app(app)
     login_manager.login_view = "admin.login"
-    login_manager.login_message = "Please sign in to access the admin dashboard."
-    login_manager.login_message_category = "error"
+    login_manager.login_message = "Please sign in to continue."
+    login_manager.login_message_category = "warning"
+    login_manager.session_protection = "strong"
 
     @login_manager.user_loader
     def load_user(user_id):
-        from app.extensions import db
         from app.models import User
         return db.session.get(User, user_id)
 
@@ -99,14 +105,14 @@ def configure_error_handlers(app):
     def not_found(error):
         return render_template("errors/404.html"), 404
 
+    @app.errorhandler(403)
+    def forbidden(error):
+        return render_template("errors/403.html"), 403
+
     @app.errorhandler(500)
     def internal_server_error(error):
         logger.exception("Internal server error: %s", str(error))
         return render_template("errors/500.html"), 500
-
-    @app.errorhandler(403)
-    def forbidden(error):
-        return render_template("errors/403.html"), 403
 
 
 def configure_request_hooks(app):
@@ -202,14 +208,17 @@ def configure_cli_commands(app):
         click.echo("Database tables created.")
 
     @app.cli.command("create-admin")
-    @click.option("--email", prompt="Email")
-    @click.option("--first-name", prompt="First name")
-    @click.option("--last-name", prompt="Last name")
+    @click.option("--email", prompt=True)
+    @click.option("--first-name", prompt=True)
+    @click.option("--last-name", prompt=True)
     @click.option("--password", prompt=True, hide_input=True, confirmation_prompt=True)
-    @click.option("--role", type=click.Choice(["admin", "consultant"]), default="admin", prompt="Role")
-    def create_admin(email, first_name, last_name, password, role):
+    def create_admin(email, first_name, last_name, password):
+        """Create the first admin user. Run once after migrating:
+        flask create-admin
+        """
         from app.extensions import db
         from app.models import User
+        from app.models.crm import ROLE_ADMIN
 
         email = email.strip().lower()
         if db.session.query(User).filter_by(email=email).first():
@@ -220,14 +229,68 @@ def configure_cli_commands(app):
             email=email,
             first_name=first_name,
             last_name=last_name,
-            role=role,
+            role=ROLE_ADMIN,
             is_active=True,
             email_verified=True,
         )
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        click.echo(f"Admin user {email} created.")
+        click.echo(f"Admin user created: {email}")
+
+
+def configure_admin_bootstrap(app):
+    """
+    Creates the first admin user from environment variables, for hosts
+    without shell/exec access (e.g. Render's free tier) where the
+    interactive `flask create-admin` command can't be run.
+
+    No-ops unless ADMIN_BOOTSTRAP_EMAIL and ADMIN_BOOTSTRAP_PASSWORD are
+    both set, and is idempotent: it only ever creates a user if no
+    admin/consultant account exists yet, so it's safe to leave these
+    variables set across every future deploy without creating duplicates
+    or overwriting a password that's since been changed.
+
+    Runs inside its own app context at import time (both the `flask db
+    upgrade` process and the actual web process call create_app()
+    separately; if this runs before migrations have been applied in a
+    given process, the query below fails and is caught silently rather
+    than crashing app startup).
+    """
+    email = os.environ.get("ADMIN_BOOTSTRAP_EMAIL")
+    password = os.environ.get("ADMIN_BOOTSTRAP_PASSWORD")
+
+    if not email or not password:
+        return
+
+    with app.app_context():
+        from app.extensions import db
+        from app.models import User
+        from app.models.crm import ROLE_ADMIN, STAFF_ROLES
+
+        try:
+            existing_staff = db.session.query(User).filter(User.role.in_(STAFF_ROLES)).first()
+        except Exception:
+            logger.warning(
+                "Admin bootstrap skipped: could not query users (migrations may not be applied in this process yet)."
+            )
+            return
+
+        if existing_staff:
+            return
+
+        user = User(
+            email=email.strip().lower(),
+            first_name=os.environ.get("ADMIN_BOOTSTRAP_FIRST_NAME", "Admin"),
+            last_name=os.environ.get("ADMIN_BOOTSTRAP_LAST_NAME", "User"),
+            role=ROLE_ADMIN,
+            is_active=True,
+            email_verified=True,
+        )
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        logger.info("Bootstrap admin user created: %s", user.email)
 
 
 def configure_production_logging(app):
