@@ -1,0 +1,15 @@
+{# templates/errors/403.html #}
+{% extends "base.html" %}
+{% block title %}Access Denied — Konvexity{% endblock %}
+{% block content %}
+<div class="page-header text-center">
+  <div class="container reveal">
+    <span class="section-label reveal" style="justify-content:center;">Error 403</span>
+    <h1>You don&rsquo;t have access to <span class="accent-text">this page</span></h1>
+    <p style="max-width:520px; margin:0 auto;">If you believe this is a mistake, contact your Konvexity administrator.</p>
+    <div class="row row--center" style="margin-top:2rem;">
+      <a href="{{ url_for('public.home') }}" class="btn btn-outline">Return Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
