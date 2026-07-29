@@ -3,6 +3,11 @@
 from flask import flash, redirect, render_template, request, url_for
 
 from app.blueprints.public import public_bp
+from app.blueprints.public.forms import ScheduleConsultationForm, WorkWithKonvexityForm
+from app.extensions import db
+from app.models import ConsultationBooking, Lead
+from app.models.crm import ActivityLog
+from app.utils.identifiers import next_identifier
 
 
 @public_bp.route("/")
@@ -230,6 +235,92 @@ def events():
     return render_template("public/events.html", seo=seo)
 
 
+# --- Lead capture: replaces the old wa.me deep links -----------------------
+
+@public_bp.route("/work-with-konvexity", methods=["GET", "POST"])
+def work_with_konvexity():
+    seo = {
+        "title": "Work With Konvexity",
+        "description": "Tell us about your project and a Konvexity consultant will be in touch within 24 hours.",
+        "canonical_url": url_for("public.work_with_konvexity", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    form = WorkWithKonvexityForm()
+    request_id = None
+
+    if form.validate_on_submit():
+        request_id = next_identifier(scope="lead", prefix="KVX")
+
+        lead = Lead(
+            request_id=request_id,
+            full_name=form.full_name.data.strip(),
+            email=form.email.data.strip().lower(),
+            whatsapp_number=form.whatsapp_number.data.strip(),
+            company=(form.company.data or "").strip() or None,
+            job_title=(form.job_title.data or "").strip() or None,
+            country=(form.country.data or "").strip() or None,
+            service_interest=form.service_interest.data,
+            message=(form.message.data or "").strip() or None,
+        )
+        db.session.add(lead)
+        db.session.flush()
+
+        ActivityLog.record(
+            entity_type="lead",
+            entity_id=lead.id,
+            action="submitted",
+            description=f"New lead {lead.request_id} submitted via Work With Konvexity.",
+        )
+        db.session.commit()
+
+        return render_template("public/work_with_konvexity.html", seo=seo, form=WorkWithKonvexityForm(formdata=None), request_id=request_id, submitted=True)
+
+    return render_template("public/work_with_konvexity.html", seo=seo, form=form, request_id=request_id, submitted=False)
+
+
+@public_bp.route("/schedule-consultation", methods=["GET", "POST"])
+def schedule_consultation():
+    seo = {
+        "title": "Schedule a Consultation",
+        "description": "Book time with a Konvexity consultant to talk through your organization's goals.",
+        "canonical_url": url_for("public.schedule_consultation", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    form = ScheduleConsultationForm()
+    booking_id = None
+
+    if form.validate_on_submit():
+        booking_id = next_identifier(scope="consultation", prefix="KVX-MTG")
+
+        booking = ConsultationBooking(
+            booking_id=booking_id,
+            full_name=form.full_name.data.strip(),
+            email=form.email.data.strip().lower(),
+            whatsapp_number=form.whatsapp_number.data.strip(),
+            company=(form.company.data or "").strip() or None,
+            meeting_goal=(form.meeting_goal.data or "").strip() or None,
+            preferred_platform=form.preferred_platform.data,
+            preferred_date=form.preferred_date.data.strip(),
+            preferred_time=form.preferred_time.data.strip(),
+        )
+        db.session.add(booking)
+        db.session.flush()
+
+        ActivityLog.record(
+            entity_type="consultation_booking",
+            entity_id=booking.id,
+            action="submitted",
+            description=f"New consultation request {booking.booking_id} submitted.",
+        )
+        db.session.commit()
+
+        return render_template("public/schedule_consultation.html", seo=seo, form=ScheduleConsultationForm(formdata=None), booking_id=booking_id, submitted=True)
+
+    return render_template("public/schedule_consultation.html", seo=seo, form=form, booking_id=booking_id, submitted=False)
+
+
 @public_bp.route("/sitemap.xml")
 def sitemap():
     pages = [
@@ -245,6 +336,8 @@ def sitemap():
         {"loc": url_for("public.ken", _external=True), "priority": "0.6"},
         {"loc": url_for("public.clients", _external=True), "priority": "0.6"},
         {"loc": url_for("public.contact", _external=True), "priority": "0.7"},
+        {"loc": url_for("public.work_with_konvexity", _external=True), "priority": "0.9"},
+        {"loc": url_for("public.schedule_consultation", _external=True), "priority": "0.9"},
         {"loc": url_for("public.resources", _external=True), "priority": "0.6"},
     ]
     sitemap_xml = render_template("public/sitemap.xml", pages=pages)
