@@ -1,0 +1,130 @@
+{# templates/public/work_with_konvexity.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ seo.title }}{% endblock %}
+{% block meta_desc %}{{ seo.description }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="canonical" href="{{ seo.canonical_url }}">
+  <meta name="robots" content="noindex, follow">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container" data-reveal="fade">
+    <span class="eyebrow">Work With Konvexity</span>
+    <h1>Tell Us About Your Project</h1>
+    <p>
+      Share a few details and a Konvexity consultant will reach out within 24 hours to talk
+      through the right path forward.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 720px; margin: 0 auto;">
+
+    <style>
+      .lead-form { display: flex; flex-direction: column; gap: 1.4rem; }
+      .lead-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+      @media (max-width: 640px) { .lead-form__row { grid-template-columns: 1fr; } }
+      .lead-field label {
+        display: block; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+        color: var(--ink-dim); margin-bottom: 0.45rem;
+      }
+      .lead-field input, .lead-field select, .lead-field textarea {
+        width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--card-border);
+        border-radius: var(--r-sm); font-family: var(--font-sans); font-size: 0.95rem;
+        color: var(--ink); background: var(--void); transition: border-color var(--smooth);
+      }
+      .lead-field input:focus, .lead-field select:focus, .lead-field textarea:focus {
+        outline: none; border-color: var(--teal);
+      }
+      .lead-field textarea { min-height: 130px; resize: vertical; }
+      .lead-field__error { color: #d64545; font-size: 0.82rem; margin-top: 0.4rem; }
+      .lead-success {
+        text-align: center; padding: 3rem 1.5rem; background: var(--card);
+        border: 1px solid var(--card-border); border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+      }
+      .lead-success__id {
+        display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem;
+        background: var(--accent-soft); border-radius: var(--r-pill);
+        font-family: var(--font-display); font-weight: 700; color: var(--teal); letter-spacing: 0.03em;
+      }
+    </style>
+
+    {% if submitted %}
+      <div class="lead-success" data-reveal="fade">
+        <h2 class="section-title">Thank You</h2>
+        <p class="card__text">
+          Your request has been received successfully. A Konvexity consultant will contact you
+          within 24 hours.
+        </p>
+        <div class="lead-success__id">{{ request_id }}</div>
+        <div class="row row--center" style="margin-top:2rem;">
+          <a href="{{ url_for('public.home') }}" class="btn btn-outline">Return Home</a>
+        </div>
+      </div>
+    {% else %}
+      <form method="POST" class="lead-form" novalidate data-reveal="fade">
+        {{ form.hidden_tag() }}
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.full_name.label }}
+            {{ form.full_name(placeholder="Your full name") }}
+            {% for error in form.full_name.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.email.label }}
+            {{ form.email(placeholder="you@company.com") }}
+            {% for error in form.email.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.whatsapp_number.label }}
+            {{ form.whatsapp_number(placeholder="+234...") }}
+            {% for error in form.whatsapp_number.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.country.label }}
+            {{ form.country(placeholder="Nigeria") }}
+            {% for error in form.country.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.company.label }}
+            {{ form.company(placeholder="Company or organization") }}
+            {% for error in form.company.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.job_title.label }}
+            {{ form.job_title(placeholder="Your role") }}
+            {% for error in form.job_title.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-field">
+          {{ form.service_interest.label }}
+          {{ form.service_interest() }}
+          {% for error in form.service_interest.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        <div class="lead-field">
+          {{ form.message.label }}
+          {{ form.message(placeholder="A short description of what you're looking to build or solve") }}
+          {% for error in form.message.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary btn-lg", style="width:100%; justify-content:center;") }}
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

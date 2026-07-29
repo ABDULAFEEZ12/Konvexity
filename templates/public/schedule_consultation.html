@@ -1,0 +1,130 @@
+{# templates/public/schedule_consultation.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ seo.title }}{% endblock %}
+{% block meta_desc %}{{ seo.description }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="canonical" href="{{ seo.canonical_url }}">
+  <meta name="robots" content="noindex, follow">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container" data-reveal="fade">
+    <span class="eyebrow">Schedule a Consultation</span>
+    <h1>Book Time With Our Team</h1>
+    <p>
+      Share your preferred date, time, and platform, and a Konvexity consultant will confirm
+      your consultation.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 720px; margin: 0 auto;">
+
+    <style>
+      .lead-form { display: flex; flex-direction: column; gap: 1.4rem; }
+      .lead-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+      @media (max-width: 640px) { .lead-form__row { grid-template-columns: 1fr; } }
+      .lead-field label {
+        display: block; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+        color: var(--ink-dim); margin-bottom: 0.45rem;
+      }
+      .lead-field input, .lead-field select, .lead-field textarea {
+        width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--card-border);
+        border-radius: var(--r-sm); font-family: var(--font-sans); font-size: 0.95rem;
+        color: var(--ink); background: var(--void); transition: border-color var(--smooth);
+      }
+      .lead-field input:focus, .lead-field select:focus, .lead-field textarea:focus {
+        outline: none; border-color: var(--teal);
+      }
+      .lead-field textarea { min-height: 110px; resize: vertical; }
+      .lead-field__error { color: #d64545; font-size: 0.82rem; margin-top: 0.4rem; }
+      .lead-success {
+        text-align: center; padding: 3rem 1.5rem; background: var(--card);
+        border: 1px solid var(--card-border); border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+      }
+      .lead-success__id {
+        display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem;
+        background: var(--accent-soft); border-radius: var(--r-pill);
+        font-family: var(--font-display); font-weight: 700; color: var(--teal); letter-spacing: 0.03em;
+      }
+    </style>
+
+    {% if submitted %}
+      <div class="lead-success" data-reveal="fade">
+        <h2 class="section-title">Request Received</h2>
+        <p class="card__text">
+          Thank you. Your consultation request has been received. A Konvexity consultant will
+          confirm your booking shortly.
+        </p>
+        <div class="lead-success__id">{{ booking_id }}</div>
+        <div class="row row--center" style="margin-top:2rem;">
+          <a href="{{ url_for('public.home') }}" class="btn btn-outline">Return Home</a>
+        </div>
+      </div>
+    {% else %}
+      <form method="POST" class="lead-form" novalidate data-reveal="fade">
+        {{ form.hidden_tag() }}
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.full_name.label }}
+            {{ form.full_name(placeholder="Your full name") }}
+            {% for error in form.full_name.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.email.label }}
+            {{ form.email(placeholder="you@company.com") }}
+            {% for error in form.email.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.whatsapp_number.label }}
+            {{ form.whatsapp_number(placeholder="+234...") }}
+            {% for error in form.whatsapp_number.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.company.label }}
+            {{ form.company(placeholder="Company or organization") }}
+            {% for error in form.company.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-form__row">
+          <div class="lead-field">
+            {{ form.preferred_date.label }}
+            {{ form.preferred_date(placeholder="e.g. August 5, 2026") }}
+            {% for error in form.preferred_date.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="lead-field">
+            {{ form.preferred_time.label }}
+            {{ form.preferred_time(placeholder="e.g. 2:00 PM WAT") }}
+            {% for error in form.preferred_time.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+
+        <div class="lead-field">
+          {{ form.preferred_platform.label }}
+          {{ form.preferred_platform() }}
+          {% for error in form.preferred_platform.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        <div class="lead-field">
+          {{ form.meeting_goal.label }}
+          {{ form.meeting_goal(placeholder="What would you like to cover in this consultation?") }}
+          {% for error in form.meeting_goal.errors %}<div class="lead-field__error">{{ error }}</div>{% endfor %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary btn-lg", style="width:100%; justify-content:center;") }}
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
