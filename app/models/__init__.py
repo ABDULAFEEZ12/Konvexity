@@ -1,22 +1,8 @@
-import uuid
-from datetime import datetime, timezone
+import bcrypt
+from flask_login import UserMixin
 
 from app.extensions import db
-
-
-def generate_uuid():
-    return str(uuid.uuid4())
-
-
-class TimestampMixin:
-    created_at = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
-    updated_at = db.Column(
-        db.DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc),
-        nullable=False,
-    )
-
+from app.models.base import TimestampMixin, generate_uuid  # noqa: F401
 
 faculty_programs = db.Table(
     "faculty_programs",
@@ -228,7 +214,7 @@ class Application(TimestampMixin, db.Model):
         return f"<Application {self.first_name} {self.last_name}>"
 
 
-class User(TimestampMixin, db.Model):
+class User(TimestampMixin, UserMixin, db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.String(36), primary_key=True, default=generate_uuid)
@@ -243,6 +229,29 @@ class User(TimestampMixin, db.Model):
 
     def __repr__(self):
         return f"<User {self.email}>"
+
+    # --- Password handling -------------------------------------------------
+    # password_hash existed as a column with nothing reading or writing it.
+    # bcrypt was already a pinned dependency (requirements.txt), unused until
+    # now. Added here rather than as a separate mixin/service, since this is
+    # exactly the kind of behavior that belongs on the model that owns the
+    # column, and every other model in this file follows that same pattern
+    # (properties like Faculty.full_name living on the model itself).
+    def set_password(self, raw_password):
+        self.password_hash = bcrypt.hashpw(
+            raw_password.encode("utf-8"), bcrypt.gensalt()
+        ).decode("utf-8")
+
+    def check_password(self, raw_password):
+        if not self.password_hash:
+            return False
+        return bcrypt.checkpw(
+            raw_password.encode("utf-8"), self.password_hash.encode("utf-8")
+        )
+
+    # UserMixin supplies is_authenticated/is_anonymous/get_id(); is_active
+    # above is a real column already defined on this class, so it takes
+    # precedence over UserMixin's default property automatically.
 
 
 class Media(TimestampMixin, db.Model):
@@ -279,3 +288,24 @@ class Page(TimestampMixin, db.Model):
 
     def __repr__(self):
         return f"<Page {self.title}>"
+
+
+# --- CRM foundation models ---------------------------------------------
+# Kept in their own module (app/models/crm.py) and re-exported here so
+# `from app.models import ActivityLog` works like every model above,
+# without growing this file with unrelated CRM concerns.
+from app.models.crm import (  # noqa: E402,F401
+    BOOKING_STATUS_CHOICES,
+    LEAD_STATUS_CHOICES,
+    MEETING_PLATFORM_CHOICES,
+    ROLE_ADMIN,
+    ROLE_CONSULTANT,
+    ROLE_LEARNER,
+    SERVICE_CHOICES,
+    STAFF_ROLES,
+    ActivityLog,
+    ConsultationBooking,
+    IdentifierSequence,
+    Lead,
+    SoftDeleteMixin,
+)
