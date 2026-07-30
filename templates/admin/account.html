@@ -1,0 +1,38 @@
+{# templates/admin/account.html #}
+{% extends "admin/base.html" %}
+
+{% block title %}Account, Konvexity Admin{% endblock %}
+{% block page_title %}Account{% endblock %}
+{% block page_subtitle %}Manage your admin sign-in details.{% endblock %}
+
+{% block content %}
+
+<div class="admin-panel" style="max-width: 460px;">
+  <div class="admin-panel__title">Change Password</div>
+
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="admin-field">
+      {{ form.current_password.label }}
+      {{ form.current_password(autocomplete="current-password") }}
+      {% for error in form.current_password.errors %}<div class="admin-field__error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="admin-field">
+      {{ form.new_password.label }}
+      {{ form.new_password(autocomplete="new-password") }}
+      {% for error in form.new_password.errors %}<div class="admin-field__error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="admin-field">
+      {{ form.confirm_password.label }}
+      {{ form.confirm_password(autocomplete="new-password") }}
+      {% for error in form.confirm_password.errors %}<div class="admin-field__error">{{ error }}</div>{% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary", style="width:100%; justify-content:center; margin-top:0.5rem;") }}
+  </form>
+</div>
+
+{% endblock %}
