@@ -5,7 +5,7 @@ from flask import abort, current_app, flash, redirect, render_template, request,
 from flask_login import current_user, login_user, logout_user
 
 from app.blueprints.admin import admin_bp
-from app.blueprints.admin.forms import AdminLoginForm
+from app.blueprints.admin.forms import AdminLoginForm, ChangePasswordForm
 from app.extensions import db, limiter
 from app.models import (
     Application,
@@ -90,6 +90,29 @@ def require_staff():
         return current_app.login_manager.unauthorized()
     if current_user.role not in STAFF_ROLES:
         abort(403)
+
+
+@admin_bp.route("/account", methods=["GET", "POST"])
+def account():
+    form = ChangePasswordForm()
+
+    if form.validate_on_submit():
+        if not current_user.check_password(form.current_password.data):
+            flash("Your current password is incorrect.", "error")
+        else:
+            current_user.set_password(form.new_password.data)
+            ActivityLog.record(
+                entity_type="user",
+                entity_id=current_user.id,
+                action="password_changed",
+                actor_id=current_user.id,
+                description=f"{current_user.email} changed their password.",
+            )
+            db.session.commit()
+            flash("Your password has been updated.", "success")
+            return redirect(url_for("admin.account"))
+
+    return render_template("admin/account.html", form=form)
 
 
 @admin_bp.route("/")
