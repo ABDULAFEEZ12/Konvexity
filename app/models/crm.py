@@ -110,17 +110,21 @@ class IdentifierSequence(db.Model):
 
 # --- "Work With Konvexity" service options ------------------------------
 SERVICE_CHOICES = [
-    ("ai_strategy", "AI Strategy"),
-    ("digital_transformation", "Digital Transformation"),
-    ("software_development", "Software Development"),
-    ("web_development", "Web Development"),
-    ("mobile_development", "Mobile Development"),
-    ("cloud_infrastructure", "Cloud Infrastructure"),
-    ("product_design", "Product Design"),
-    ("branding", "Branding"),
-    ("business_consulting", "Business Consulting"),
-    ("startup_advisory", "Startup Advisory"),
-    ("custom_solution", "Custom Solution"),
+    ("developing_stronger_leaders", "Developing stronger leaders"),
+    ("building_high_performing_teams", "Building high-performing teams"),
+    ("improving_organisational_performance", "Improving organisational performance"),
+    ("strengthening_organisational_culture", "Strengthening organisational culture"),
+    ("preparing_for_growth_and_expansion", "Preparing for growth and expansion"),
+    ("leading_organisational_change", "Leading organisational change"),
+    ("developing_future_leaders_succession", "Developing future leaders and succession pipelines"),
+    ("improving_communication_collaboration", "Improving communication and cross-functional collaboration"),
+    ("increasing_employee_engagement_retention", "Increasing employee engagement and retention"),
+    ("aligning_leadership_strategy_execution", "Aligning leadership around strategy and execution"),
+    ("coaching_executives_senior_leaders", "Coaching executives and senior leaders"),
+    ("facilitating_strategic_planning_retreats", "Facilitating strategic planning and leadership retreats"),
+    ("solving_other_challenge", "Solving another leadership or organisational challenge"),
+    ("not_sure_consultation", "Not sure yet, I'd like a consultation"),
+    ("other", "Other"),
 ]
 
 LEAD_STATUS_CHOICES = [
