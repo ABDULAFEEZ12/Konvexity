@@ -4,7 +4,7 @@ from flask import flash, redirect, render_template, request, url_for
 
 from app.blueprints.public import public_bp
 from app.blueprints.public.forms import ScheduleConsultationForm, WorkWithKonvexityForm
-from app.extensions import db
+from app.extensions import db, limiter
 from app.models import ConsultationBooking, Lead
 from app.models.crm import ActivityLog
 from app.utils.identifiers import next_identifier
@@ -238,6 +238,7 @@ def events():
 # --- Lead capture: replaces the old wa.me deep links -----------------------
 
 @public_bp.route("/work-with-konvexity", methods=["GET", "POST"])
+@limiter.limit("10 per hour", methods=["POST"])
 def work_with_konvexity():
     seo = {
         "title": "Work With Konvexity",
@@ -280,6 +281,7 @@ def work_with_konvexity():
 
 
 @public_bp.route("/schedule-consultation", methods=["GET", "POST"])
+@limiter.limit("10 per hour", methods=["POST"])
 def schedule_consultation():
     seo = {
         "title": "Schedule a Consultation",
