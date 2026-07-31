@@ -40,7 +40,13 @@ class BaseConfig:
     RATELIMIT_ENABLED = True
     RATELIMIT_STORAGE_URL = config("RATELIMIT_STORAGE_URL", default="memory://")
     RATELIMIT_STRATEGY = "fixed-window"
-    RATELIMIT_DEFAULT = "200 per day;50 per hour"
+    # No site-wide RATELIMIT_DEFAULT: rate limiting is applied per-route,
+    # only on sensitive actions (admin login, public form submissions),
+    # via explicit @limiter.limit(...) decorators. A blanket default here
+    # previously rate-limited ordinary page browsing itself, since every
+    # page load pulls in several requests (HTML, CSS, JS, images), a
+    # handful of real page views could exhaust a low daily limit for a
+    # legitimate visitor within minutes.
 
     CACHE_TYPE = config("CACHE_TYPE", default="SimpleCache")
     CACHE_DEFAULT_TIMEOUT = 300
