@@ -12,7 +12,7 @@ from flask_talisman import Talisman
 db = SQLAlchemy()
 migrate = Migrate()
 mail = Mail()
-limiter = Limiter(key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
+limiter = Limiter(key_func=get_remote_address)
 compress = Compress()
 cache = Cache()
 cors = CORS()
