@@ -226,8 +226,8 @@ def blog():
 @public_bp.route("/events")
 def events():
     seo = {
-        "title": "Events \u2014 Konvexity",
-        "description": "Upcoming workshops, masterclasses, speaking engagements, and programs from Konvexity.",
+        "title": "Boys Today, Men Tomorrow \u2014 Events | Konvexity",
+        "description": "Boys Today, Men Tomorrow: a one-day male formation workshop by AR\u00c1K\u00d9NRIN | Konvexity and the Societal Impact Scheme (SIS), 4 November 2026 at Asolo International School, Mowe.",
         "canonical_url": url_for("public.events", _external=True),
         "og_type": "website",
         "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
@@ -331,6 +331,7 @@ def sitemap():
         {"loc": url_for("public.solutions", _external=True), "priority": "0.9"},
         {"loc": url_for("public.pricing", _external=True), "priority": "0.8"},
         {"loc": url_for("public.programs", _external=True), "priority": "0.8"},
+        {"loc": url_for("public.events", _external=True), "priority": "0.8"},
         {"loc": url_for("public.faculty", _external=True), "priority": "0.7"},
         {"loc": url_for("public.founder", _external=True), "priority": "0.8"},
         {"loc": url_for("public.signature_platforms", _external=True), "priority": "0.8"},
