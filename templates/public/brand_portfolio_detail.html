@@ -1,0 +1,51 @@
+{# templates/public/brand_portfolio_detail.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ seo.title }}{% endblock %}
+{% block meta_desc %}{{ seo.description }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="canonical" href="{{ seo.canonical_url }}">
+  <meta property="og:type" content="{{ seo.og_type }}">
+  <meta property="og:title" content="{{ seo.title }}">
+  <meta property="og:description" content="{{ seo.description }}">
+  <meta property="og:url" content="{{ seo.canonical_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo.title }}">
+  <meta name="twitter:description" content="{{ seo.description }}">
+  <meta name="twitter:image" content="{{ seo.og_image }}">
+{% endblock %}
+
+{% block og_image %}
+  <meta property="og:image" content="{{ seo.og_image }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container" data-reveal="fade">
+    <a href="{{ url_for('public.brand_portfolio') }}" class="btn-ghost" style="padding:0; margin-bottom:1.4rem; display:inline-flex;">
+      &larr; Brand Portfolio
+    </a>
+    <span class="eyebrow">By Konvexity</span>
+    <h1>{{ brand.name }}</h1>
+    <p style="font-style:italic; color:var(--ink);">{{ brand.tagline }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card solution-card" style="max-width:720px; margin:0 auto;" data-reveal="fade">
+      <h3 class="card__title">{{ brand.full_name }}</h3>
+      <p class="card__text">{{ brand.overview }}</p>
+      <p class="body-sm" style="color:var(--ink-faint); margin-top:1.4rem;">
+        More details on {{ brand.name }} will be published here as the initiative develops.
+      </p>
+      <div class="card__footer">
+        <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

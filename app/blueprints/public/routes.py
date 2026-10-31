@@ -1,6 +1,6 @@
 # app/blueprints/public/routes.py
 
-from flask import flash, redirect, render_template, request, url_for
+from flask import abort, flash, redirect, render_template, request, url_for
 
 from app.blueprints.public import public_bp
 from app.blueprints.public.forms import ScheduleConsultationForm, WorkWithKonvexityForm
@@ -142,6 +142,55 @@ def signature_platforms():
     return render_template("public/signature_platforms.html", seo=seo)
 
 
+BRAND_PORTFOLIO_ITEMS = {
+    "gesai": {
+        "name": "GESAI",
+        "full_name": "Green Economy & Sustainability African Institute",
+        "tagline": "Building Africa’s Green Economy.",
+        "overview": "A Konvexity initiative advancing sustainability, green enterprise, and practical solutions for Africa’s economic future.",
+    },
+    "tab": {
+        "name": "TAB",
+        "full_name": "TakeABreak",
+        "tagline": "Work hard. Live well.",
+        "overview": "Curated short getaways for professionals to reset, unwind, and connect.",
+    },
+    "lwb": {
+        "name": "LWB",
+        "full_name": "Leadership Without Borders",
+        "tagline": "Leadership. Exposure. Opportunity.",
+        "overview": "Connecting African leaders to global markets, networks, and growth opportunities.",
+    },
+}
+
+
+@public_bp.route("/brand-portfolio")
+def brand_portfolio():
+    seo = {
+        "title": "Brand Portfolio — Konvexity",
+        "description": "The platforms and brands Konvexity is building: ARÁKÙNRIN, GESAI, TAB, and LWB.",
+        "canonical_url": url_for("public.brand_portfolio", _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/brand_portfolio.html", seo=seo, brands=BRAND_PORTFOLIO_ITEMS)
+
+
+@public_bp.route("/brand-portfolio/<slug>")
+def brand_portfolio_detail(slug):
+    brand = BRAND_PORTFOLIO_ITEMS.get(slug)
+    if brand is None:
+        abort(404)
+    seo = {
+        "title": f"{brand['name']} — Konvexity Brand Portfolio",
+        "description": f"{brand['full_name']}: {brand['tagline']}",
+        "canonical_url": url_for("public.brand_portfolio_detail", slug=slug, _external=True),
+        "og_type": "website",
+        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
+    }
+    return render_template("public/brand_portfolio_detail.html", seo=seo, brand=brand, slug=slug)
+
+
 @public_bp.route("/arakunrin")
 def arakunrin():
     seo = {
@@ -221,18 +270,6 @@ def blog():
         "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
     }
     return render_template("public/blog.html", seo=seo)
-
-
-@public_bp.route("/events")
-def events():
-    seo = {
-        "title": "Boys Today, Men Tomorrow \u2014 Events | Konvexity",
-        "description": "Boys Today, Men Tomorrow: a one-day male formation workshop by AR\u00c1K\u00d9NRIN | Konvexity and the Societal Impact Scheme (SIS), 4 November 2026 at Asolo International School, Mowe.",
-        "canonical_url": url_for("public.events", _external=True),
-        "og_type": "website",
-        "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
-    }
-    return render_template("public/events.html", seo=seo)
 
 
 # --- Lead capture: replaces the old wa.me deep links -----------------------
@@ -331,10 +368,13 @@ def sitemap():
         {"loc": url_for("public.solutions", _external=True), "priority": "0.9"},
         {"loc": url_for("public.pricing", _external=True), "priority": "0.8"},
         {"loc": url_for("public.programs", _external=True), "priority": "0.8"},
-        {"loc": url_for("public.events", _external=True), "priority": "0.8"},
         {"loc": url_for("public.faculty", _external=True), "priority": "0.7"},
         {"loc": url_for("public.founder", _external=True), "priority": "0.8"},
         {"loc": url_for("public.signature_platforms", _external=True), "priority": "0.8"},
+        {"loc": url_for("public.brand_portfolio", _external=True), "priority": "0.8"},
+        {"loc": url_for("public.brand_portfolio_detail", slug="gesai", _external=True), "priority": "0.6"},
+        {"loc": url_for("public.brand_portfolio_detail", slug="tab", _external=True), "priority": "0.6"},
+        {"loc": url_for("public.brand_portfolio_detail", slug="lwb", _external=True), "priority": "0.6"},
         {"loc": url_for("public.arakunrin", _external=True), "priority": "0.6"},
         {"loc": url_for("public.ken", _external=True), "priority": "0.6"},
         {"loc": url_for("public.clients", _external=True), "priority": "0.6"},
