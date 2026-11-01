@@ -60,17 +60,67 @@
       <div>
         <span class="founder-title">{{ brand.full_name }}</span>
         <h2>{{ brand.tagline }}</h2>
-        <p>{{ brand.overview }}</p>
+        <p>{{ brand.intro or brand.overview }}</p>
+        {% for para in brand.intro_extra or [] %}
+        <p>{{ para }}</p>
+        {% endfor %}
+        {% if not brand.intro %}
         <p class="body-sm" style="color:var(--ink-faint); margin-top:1rem;">
           More details on {{ brand.name }} will be published here as the initiative develops.
         </p>
+        {% endif %}
         <div style="display:flex; gap:0.9rem; flex-wrap:wrap; margin-top:1.6rem;">
-          <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">Get in Touch</a>
+          <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">{{ brand.cta_label or 'Get in Touch' }}</a>
           <a href="{{ url_for('public.brand_portfolio') }}" class="btn btn-outline btn-sm">Back to Brand Portfolio</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+{% for section in brand.sections or [] %}
+<section class="section {{ 'section--alt' if loop.index0 is even else '' }}">
+  <div class="container" style="{{ '' if section.type == 'grid' else 'max-width:760px;' }}">
+    {% if section.title %}
+    <div class="section-header reveal">
+      <span class="eyebrow">{{ section.title }}</span>
+    </div>
+    {% endif %}
+
+    {% if section.type == 'grid' %}
+      {% if section.intro %}
+      <p class="reveal" style="max-width:720px; margin-bottom:2.2rem;">{{ section.intro }}</p>
+      {% endif %}
+      <div class="grid-{{ section.columns or 2 }} reveal">
+        {% for item in section.cards %}
+        <div class="card solution-card">
+          <h3 class="card__title">{{ item.title }}</h3>
+          <p class="card__text">{{ item.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% if section.outro %}
+      <div style="max-width:760px; margin-top:2.2rem;">
+        {% for para in section.outro %}
+        <p class="reveal">{{ para }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% else %}
+      {% for para in section.paragraphs %}
+      <p class="reveal">{{ para }}</p>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endfor %}
+
+{% if brand.sections %}
+<section class="section {{ 'section--alt' if brand.sections|length is even else '' }}">
+  <div class="container text-center">
+    <a href="{{ url_for('public.contact') }}" class="btn btn-primary">{{ brand.cta_label or 'Get in Touch' }}</a>
+  </div>
+</section>
+{% endif %}
 
 {% endblock %}

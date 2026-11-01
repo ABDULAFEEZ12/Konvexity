@@ -148,18 +148,330 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "Green Economy & Sustainability African Institute",
         "tagline": "Building Africa’s Green Economy.",
         "overview": "A Konvexity initiative advancing sustainability, green enterprise, and practical solutions for Africa’s economic future.",
+        "intro": (
+            "The Green Economy & Sustainability African Institute (GESAI) works to help African "
+            "people and organisations understand the changing green economy and find practical "
+            "ways to participate in it."
+        ),
+        "intro_extra": [
+            "Our work covers professional training, corporate sustainability, business advisory, "
+            "applied research and green enterprise development. We focus on the knowledge and "
+            "skills that businesses need to adapt, while helping entrepreneurs identify "
+            "opportunities in emerging green industries.",
+            "GESAI brings this work into Konvexity’s wider focus on strategy, capability "
+            "development and execution. We want sustainability to inform the way organisations "
+            "make decisions, build their businesses and prepare for the future.",
+        ],
+        "sections": [
+            {
+                "type": "text",
+                "title": "Why GESAI?",
+                "paragraphs": [
+                    "Africa’s green transition is creating new demands across industries. "
+                    "Businesses are under growing pressure to improve their environmental "
+                    "practices, while entrepreneurs are exploring opportunities in clean energy, "
+                    "electric mobility and resource recovery. Meeting these demands requires "
+                    "people who understand the issues and know how to respond. GESAI aims to help "
+                    "close that gap by connecting sustainability knowledge with business practice.",
+                ],
+            },
+            {
+                "type": "grid",
+                "title": "What We Do",
+                "cards": [
+                    {
+                        "title": "Professional and Corporate Sustainability",
+                        "text": (
+                            "We help professionals and businesses build the skills needed to "
+                            "integrate sustainability into their work. Our areas of focus include "
+                            "ESG, sustainability reporting readiness, climate risk, carbon "
+                            "accounting and sustainable procurement."
+                        ),
+                    },
+                    {
+                        "title": "Green Enterprise Development",
+                        "text": (
+                            "We support the development of businesses that respond to "
+                            "environmental challenges and emerging market needs. This includes "
+                            "green business models, circular economy solutions, waste-to-value "
+                            "opportunities and support for small and medium-sized enterprises."
+                        ),
+                    },
+                    {
+                        "title": "Mobility and Clean Energy Enterprise",
+                        "text": (
+                            "The shift towards cleaner energy and transport presents "
+                            "opportunities for new businesses. GESAI focuses on areas such as "
+                            "electric mobility, renewable energy, charging infrastructure, "
+                            "battery services and green logistics, with an emphasis on "
+                            "entrepreneurship and commercial viability."
+                        ),
+                    },
+                    {
+                        "title": "Research, Policy and Advisory",
+                        "text": (
+                            "Good decisions depend on reliable information and a clear "
+                            "understanding of the problem. We work towards supporting "
+                            "organisations and stakeholders through sustainability assessments, "
+                            "strategic roadmaps, sector research and impact evaluation."
+                        ),
+                    },
+                ],
+            },
+            {
+                "type": "text",
+                "title": "Our Approach",
+                "paragraphs": [
+                    "GESAI takes a practical approach to sustainability. We focus on helping "
+                    "people apply what they learn, understand the business implications of their "
+                    "decisions and identify opportunities they can act on.",
+                    "We also recognise the importance of collaboration. Working with industry "
+                    "practitioners, academic institutions, financial organisations and "
+                    "development partners can help ensure that our programmes respond to real "
+                    "needs. Where possible, we will assess progress through clear indicators, "
+                    "including skills gained, business development and the results of "
+                    "sustainability initiatives.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": "Who We Work With",
+                "paragraphs": [
+                    "Our work is intended for professionals looking to develop their "
+                    "sustainability expertise, companies seeking to improve their practices, and "
+                    "entrepreneurs interested in green business opportunities.",
+                    "We also seek to engage graduates, public institutions, researchers, "
+                    "investors and development organisations that share an interest in Africa’s "
+                    "green economy.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": "From Knowledge to Practice",
+                "paragraphs": [
+                    "GESAI is being developed around a clear idea: people and businesses need "
+                    "the right capabilities to respond to changes in the economy.",
+                    "Through training, advisory services and enterprise development, we aim to "
+                    "help bridge the gap between understanding sustainability and putting it "
+                    "into practice.",
+                    "As part of Konvexity’s commitment to unlocking potential through clarity, "
+                    "strategy, and execution, GESAI focuses on making sustainability practical, "
+                    "commercially relevant, and responsive to Africa’s development priorities.",
+                ],
+            },
+        ],
+        "cta_label": "Explore GESAI Opportunities",
     },
     "tab": {
         "name": "TAB",
         "full_name": "TakeABreak",
         "tagline": "Work hard. Live well.",
         "overview": "Curated short getaways for professionals to reset, unwind, and connect.",
+        "intro": (
+            "TakeABreak is Konvexity’s curated getaway and experience brand, created for "
+            "working professionals, entrepreneurs and anyone who wants to step away from the "
+            "daily routine. We bring people together for short escapes filled with good "
+            "company, comfortable stays, local experiences and time to relax."
+        ),
+        "intro_extra": [
+            "From the destination to the activities, we handle the planning so you can focus "
+            "on enjoying the experience.",
+        ],
+        "sections": [
+            {
+                "type": "text",
+                "title": "More Than a Getaway",
+                "paragraphs": [
+                    "A good trip is about more than where you go. It is also about the people "
+                    "you meet, the things you try and the memories you bring home.",
+                    "With TakeABreak, you can explore new places, share experiences with people "
+                    "you might never have met otherwise, and return to your routine feeling "
+                    "refreshed.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": "Who Is It For?",
+                "paragraphs": [
+                    "TakeABreak is for busy professionals, entrepreneurs, young executives and "
+                    "anyone who wants to travel, unwind and connect with new people.",
+                    "You can come with friends or come on your own. There is room to meet "
+                    "people, try something different and enjoy a change of pace.",
+                ],
+            },
+            {
+                "type": "grid",
+                "title": "What to Expect",
+                "cards": [
+                    {
+                        "title": "Curated Getaways",
+                        "text": (
+                            "Enjoy thoughtfully planned 2 to 3-day trips, usually scheduled for "
+                            "weekends or public holidays so you never have to worry about the "
+                            "work day."
+                        ),
+                    },
+                    {
+                        "title": "Comfort and Convenience",
+                        "text": (
+                            "We coordinate the key details, including accommodation, activities "
+                            "and the overall experience, so you spend less time planning and "
+                            "more time enjoying yourself."
+                        ),
+                    },
+                    {
+                        "title": "Local Experiences and Adventure",
+                        "text": (
+                            "Discover destinations through local food, cultural activities, "
+                            "sightseeing, social events and optional adventures."
+                        ),
+                    },
+                    {
+                        "title": "Good Company",
+                        "text": (
+                            "Meet new people, make connections and enjoy the freedom of "
+                            "travelling with a group without having to organise one yourself."
+                        ),
+                    },
+                    {
+                        "title": "Take Time for Yourself",
+                        "text": (
+                            "You do not have to wait for a long holiday to get away. Sometimes, "
+                            "a well-planned weekend is enough to give you a different "
+                            "perspective. TakeABreak by Konvexity makes it easier to step out of "
+                            "your routine and make time for experiences beyond work."
+                        ),
+                    },
+                ],
+            },
+            {
+                "type": "text",
+                "title": None,
+                "paragraphs": [
+                    "As part of Konvexity’s commitment to unlocking potential through clarity, "
+                    "strategy, and execution, TakeABreak creates intentional experiences that "
+                    "help individuals and teams recharge, reconnect, and return with renewed "
+                    "energy and perspective.",
+                ],
+            },
+        ],
+        "cta_label": "Plan Your Getaway",
     },
     "lwb": {
         "name": "LWB",
         "full_name": "Leadership Without Borders",
         "tagline": "Leadership. Exposure. Opportunity.",
         "overview": "Connecting African leaders to global markets, networks, and growth opportunities.",
+        "intro": (
+            "Leadership Without Borders (LWB) is a curated international leadership and "
+            "business-immersion experience connecting African leaders, entrepreneurs and "
+            "executives with global perspectives, new markets and meaningful professional "
+            "relationships."
+        ),
+        "intro_extra": [
+            "Moving beyond conventional conferences and business travel, LWB combines "
+            "executive learning, company visits, market exploration, peer exchange and "
+            "strategic networking to help participants discover new possibilities and "
+            "translate what they learn into practical action.",
+            "We believe leadership grows when perspectives expand. By stepping into different "
+            "business environments, engaging with industry practitioners and experiencing new "
+            "ways of thinking and working, participants gain insights that can shape their "
+            "leadership, strengthen their organisations and open doors to new opportunities.",
+            "Every LWB experience is intentionally curated around a purpose, bringing together "
+            "the right people, places and conversations to make international exposure "
+            "meaningful.",
+        ],
+        "sections": [
+            {
+                "type": "grid",
+                "title": None,
+                "columns": 3,
+                "cards": [
+                    {
+                        "title": "Leadership Immersions",
+                        "text": (
+                            "Explore leadership practices, organisational culture, strategy and "
+                            "performance through executive learning, peer exchange and "
+                            "real-world exposure."
+                        ),
+                    },
+                    {
+                        "title": "Business & Market Expeditions",
+                        "text": (
+                            "Discover emerging markets, explore business ecosystems, engage with "
+                            "industry leaders and identify opportunities for growth, "
+                            "collaboration and cross-border expansion."
+                        ),
+                    },
+                    {
+                        "title": "Private Corporate Experiences",
+                        "text": (
+                            "Purpose-built international experiences for companies, executive "
+                            "teams, boards and institutions seeking leadership development, "
+                            "strategic exchange or a fresh perspective on collaboration and "
+                            "growth."
+                        ),
+                    },
+                ],
+            },
+            {
+                "type": "grid",
+                "title": "Five Destinations. New Perspectives.",
+                "intro": (
+                    "Our initial destination portfolio spans five markets, each offering a "
+                    "distinct lens through which to explore leadership, enterprise and "
+                    "opportunity."
+                ),
+                "columns": 3,
+                "cards": [
+                    {"title": "Mauritius", "text": "Digital Business & International Enterprise"},
+                    {"title": "Ghana", "text": "West African Business & Regional Expansion"},
+                    {"title": "Rwanda", "text": "Innovation & Institutional Effectiveness"},
+                    {"title": "Dubai, UAE", "text": "Global Trade, Capital & Business Growth"},
+                    {"title": "London, UK", "text": "Global Leadership, Finance & Innovation"},
+                ],
+                "outro": [
+                    "Each programme will be shaped by its destination, participant objectives "
+                    "and the opportunities available through local business, institutional and "
+                    "learning networks.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": "Designed for Leaders Ready to Think Beyond.",
+                "paragraphs": [
+                    "LWB is for founders, business owners, corporate executives, senior "
+                    "managers, institutional leaders and professionals seeking fresh "
+                    "perspectives, valuable relationships and new possibilities for growth.",
+                    "Whether the goal is to strengthen an organisation, explore a new market, "
+                    "develop as a leader or build cross-border relationships, every experience "
+                    "is designed to connect exposure with purposeful action.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": "The Experience Doesn’t End at the Border.",
+                "paragraphs": [
+                    "From curated engagements and peer learning to facilitated reflection and "
+                    "practical action planning, LWB is designed to make insights count long "
+                    "after the journey ends.",
+                    "Participants are encouraged to translate their experience into clear "
+                    "30-, 60- and 90-day actions, helping turn new perspectives into meaningful "
+                    "progress.",
+                ],
+            },
+            {
+                "type": "text",
+                "title": None,
+                "paragraphs": [
+                    "As part of Konvexity’s commitment to unlocking potential through clarity, "
+                    "strategy, and execution, Leadership Without Borders connects African "
+                    "leaders to global perspectives, meaningful relationships, and practical "
+                    "opportunities for growth.",
+                ],
+            },
+        ],
+        "cta_label": "Explore LWB Experiences",
     },
 }
 
