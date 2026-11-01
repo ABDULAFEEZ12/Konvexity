@@ -148,6 +148,8 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "Green Economy & Sustainability African Institute",
         "tagline": "Building Africa’s Green Economy.",
         "overview": "A Konvexity initiative advancing sustainability, green enterprise, and practical solutions for Africa’s economic future.",
+        "image": "images/platforms/gesai.jpg",
+        "image_alt": "GESAI — supporting Africa's green economy and clean energy enterprise",
         "intro": (
             "The Green Economy & Sustainability African Institute (GESAI) works to help African "
             "people and organisations understand the changing green economy and find practical "
@@ -267,6 +269,8 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "TakeABreak",
         "tagline": "Work hard. Live well.",
         "overview": "Curated short getaways for professionals to reset, unwind, and connect.",
+        "image": "images/platforms/tab.jpg",
+        "image_alt": "TakeABreak — friends relaxing together on a curated getaway",
         "intro": (
             "TakeABreak is Konvexity’s curated getaway and experience brand, created for "
             "working professionals, entrepreneurs and anyone who wants to step away from the "
@@ -362,6 +366,8 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "Leadership Without Borders",
         "tagline": "Leadership. Exposure. Opportunity.",
         "overview": "Connecting African leaders to global markets, networks, and growth opportunities.",
+        "image": "images/platforms/lwb.jpg",
+        "image_alt": "Leadership Without Borders — an international leadership delegation on site",
         "intro": (
             "Leadership Without Borders (LWB) is a curated international leadership and "
             "business-immersion experience connecting African leaders, entrepreneurs and "
@@ -424,11 +430,36 @@ BRAND_PORTFOLIO_ITEMS = {
                 ),
                 "columns": 3,
                 "cards": [
-                    {"title": "Mauritius", "text": "Digital Business & International Enterprise"},
-                    {"title": "Ghana", "text": "West African Business & Regional Expansion"},
-                    {"title": "Rwanda", "text": "Innovation & Institutional Effectiveness"},
-                    {"title": "Dubai, UAE", "text": "Global Trade, Capital & Business Growth"},
-                    {"title": "London, UK", "text": "Global Leadership, Finance & Innovation"},
+                    {
+                        "title": "Mauritius",
+                        "text": "Digital Business & International Enterprise",
+                        "image": "images/platforms/lwb-mauritius.jpg",
+                        "image_alt": "Port Louis, Mauritius skyline",
+                    },
+                    {
+                        "title": "Ghana",
+                        "text": "West African Business & Regional Expansion",
+                        "image": "images/platforms/lwb-ghana.jpg",
+                        "image_alt": "Accra, Ghana skyline",
+                    },
+                    {
+                        "title": "Rwanda",
+                        "text": "Innovation & Institutional Effectiveness",
+                        "image": "images/platforms/lwb-rwanda.jpg",
+                        "image_alt": "Kigali, Rwanda skyline",
+                    },
+                    {
+                        "title": "Dubai, UAE",
+                        "text": "Global Trade, Capital & Business Growth",
+                        "image": "images/platforms/lwb-dubai.jpg",
+                        "image_alt": "Dubai, UAE skyline with the Burj Khalifa",
+                    },
+                    {
+                        "title": "London, UK",
+                        "text": "Global Leadership, Finance & Innovation",
+                        "image": "images/platforms/lwb-london.jpg",
+                        "image_alt": "London, UK financial district skyline",
+                    },
                 ],
                 "outro": [
                     "Each programme will be shaped by its destination, participant objectives "
