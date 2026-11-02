@@ -97,20 +97,28 @@ concerns found.
 
 | Optimized file | Pexels photo | Photographer | Used on |
 |---|---|---|---|
-| `teambonding-indoor-lagos.webp` | [pexels.com/photo/31366044](https://www.pexels.com/photo/joyful-group-gathering-indoors-in-lagos-nigeria-31366044/) | Megwara Favour | Team Bonding section hero (`/solutions#team-bonding`) |
-| `teambonding-indoor-cards.webp` | [pexels.com/photo/15543213](https://www.pexels.com/photo/women-plying-uno-cards-in-office-15543213/) | Walls.io | Option A card (Curated Indoor Team Experience) |
-| `teambonding-outdoor-sackrace.webp` | [pexels.com/photo/7551384](https://www.pexels.com/photo/men-playing-sack-race-7551384/) | RDNE Stock project | Option B card (Outdoor Team Experience) |
-| `teambonding-outdoor-basketball.webp` | [pexels.com/photo/36769426](https://www.pexels.com/photo/candid-basketball-game-in-outdoor-park-setting-36769426/) | ARISON KAGANJUZI | "The Outcome" section |
+| `teambonding-indoor-lagos.webp` | [pexels.com/photo/31366044](https://www.pexels.com/photo/joyful-group-gathering-indoors-in-lagos-nigeria-31366044/) | Megwara Favour | Team Bonding section hero (`/solutions#team-bonding`); Indoor gallery |
+| `teambonding-indoor-friends-lagos.webp` | [pexels.com/photo/30690401](https://www.pexels.com/photo/joyful-moment-between-two-friends-on-a-couch-30690401/) | Ninthgrid | Indoor/Outdoor toggle, Indoor gallery |
+| `teambonding-outdoor-basketball.webp` | [pexels.com/photo/36769426](https://www.pexels.com/photo/candid-basketball-game-in-outdoor-park-setting-36769426/) | ARISON KAGANJUZI | "The Outcome" section; Outdoor gallery |
+| `teambonding-outdoor-basketball-dribble.webp` | [pexels.com/photo/36769434](https://www.pexels.com/photo/dynamic-basketball-game-in-lush-outdoor-setting-36769434/) | ARISON KAGANJUZI | Indoor/Outdoor toggle, Outdoor gallery |
 
 **Why selected:** This was flagged as the priority. The hero is a genuine, unposed laugh mid-gathering in
-Lagos — chosen deliberately over staged "high-five" or "around a table" stock photography. The Uno-cards
-photo matches "communication exercises" / card-based activities for the indoor option. The sack race and
-basketball photos are real adult corporate-style outdoor activities (not children's games, not generic
-tug-of-war stock), matching "outdoor group challenges" and "celebrating after completing an activity."
+Lagos — chosen deliberately over staged "high-five" or "around a table" stock photography. The basketball
+photos are real adult corporate-style outdoor activities (not children's games, not generic tug-of-war
+stock), matching "outdoor group challenges" and "celebrating after completing an activity." The
+friends-on-a-couch photo gives the Indoor gallery a second genuine, unstaged candid moment.
 
 **Known crop issue, fixed:** the Lagos indoor hero is a portrait-orientation photo displayed in a wide
 landscape frame; the default center-crop cut off the subject's face. Fixed with `object-position:center
 18%` on that one `<img>` only — no other image or layout was touched.
+
+**Removed (2026-11-02):** `teambonding-indoor-cards.webp` (id 15543213, Walls.io — three women playing
+Uno) and `teambonding-outdoor-sackrace.webp` (id 7551384, RDNE Stock project — mixed cast sack race in a
+generic Western park) were both removed from the Indoor/Outdoor toggle after a direct request that every
+photo in this gallery show African/Nigerian-looking people. Neither image was African: the Uno-cards photo
+showed three European women (and had a visible "#LoveWallsio" branded screen in frame, a rule violation
+that should have been caught on first use); the sack race photo's cast read as racially mixed/ambiguous in
+a setting with no African context. Both files are left on disk, unreferenced, rather than deleted.
 
 ---
 
@@ -122,6 +130,8 @@ landscape frame; the default center-crop cut off the subject's face. Fixed with 
 | TAB-area search result "coconut drinking photo" | Carried a visible third-party travel-brand watermark/logo ("Naija Explorers") in-frame — real branded content belonging to another company, not usable |
 | LWB-area candidate (office meeting photo, originally pulled from the client's source PDF in an earlier pass) | Carried a visible **Unsplash+** watermark — confirms it was never actually licensed; excluded per the no-stock-watermark rule |
 | Generic "children/youth tug-of-war" results | Subjects read as school-age children, not adult corporate team bonding — mismatched audience |
+| "Team portrait of Nigerian football players outdoors" (id 38404137, Muhammad-Taha Ibrahim) — Outdoor replacement candidate | Prominent, legible Nike swoosh on the boots plus multiple club/sponsor logos printed across the jersey |
+| "Outdoor basketball game in Nigeria" (id 36660395, Darkside Photography) — Outdoor replacement candidate | A small but legible Adidas logo is visible on a player's sock in the full-resolution image |
 | "Electric bus charging station" photo (id 31670395, Andy Coffie) — GESAI Mobility card candidate | A "YUTONG" manufacturer logo is clearly printed on the charger unit — a visible third-party brand logo |
 | "Street vendor in Kaduna" photo (id 33559228, Vurzie Kim) — TAB Local Experiences candidate | A Toyota badge is legible on a parked car in the background |
 | "Team collaboration in a modern Lagos café" photo (id 30678875, Ninthgrid) — LWB Private Corporate Experiences candidate | A MacBook with a visible Apple logo is the central subject of the frame |
