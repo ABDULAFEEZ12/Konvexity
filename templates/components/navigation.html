@@ -16,6 +16,7 @@
             <li><a href="{{ url_for('public.home') }}" class="nav-link {% if request.endpoint == 'public.home' %}active{% endif %}">Home</a></li>
             <li><a href="{{ url_for('public.solutions') }}" class="nav-link {% if request.endpoint == 'public.solutions' %}active{% endif %}">Core Solutions</a></li>
             <li><a href="{{ url_for('public.brand_portfolio') }}" class="nav-link {% if request.endpoint in ['public.brand_portfolio', 'public.brand_portfolio_detail'] %}active{% endif %}">Brand Portfolio</a></li>
+            <li><a href="{{ url_for('public.about') }}" class="nav-link {% if request.endpoint == 'public.about' %}active{% endif %}">About Us</a></li>
             <li><a href="{{ url_for('public.contact') }}" class="nav-link nav-cta">Connect</a></li>
         </ul>
     </div>
@@ -23,14 +24,14 @@
 {# The brand mark is text-only (KONVEXITY + tagline). No icon, letter mark,
    or image is used in the nav brand.
 
-   Navigation is now three primary items (Home, Core Solutions, Brand
-   Portfolio) plus the Contact CTA, per the current information architecture.
-   Core Solutions (the /solutions route) now leads with Corporate Training,
-   Faculty, and Team Bonding Session before the existing flagship
-   architectures. Brand Portfolio is the new home for Konvexity's brands
-   (ARAKUNRIN, GESAI, TAB, LWB). Faculty and Founder were removed from this
-   top-level menu but their routes/templates are untouched and remain
+   Navigation is now four primary items (Home, Core Solutions, Brand
+   Portfolio, About Us) plus the Contact CTA, per the current information
+   architecture. Core Solutions (the /solutions route) now leads with
+   Corporate Training, Faculty, and Team Bonding Session before the existing
+   flagship architectures. Brand Portfolio is the new home for Konvexity's
+   brands (ARAKUNRIN, GESAI, TAB, LWB). Faculty and Founder were removed from
+   this top-level menu but their routes/templates are untouched and remain
    reachable (Faculty via the new Core Solutions card and the footer,
    Founder via the Home page "Meet the Founder" section and the footer).
-   About, Clients, Programs, and Signature Platforms were already removed
-   from this menu in an earlier pass; they remain reachable the same way. #}
+   Clients, Programs, and Signature Platforms remain removed from this menu
+   from an earlier pass; they are still reachable via the footer. #}
