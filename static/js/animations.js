@@ -29,7 +29,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
     revealElements.forEach((el, index) => {
       if (!el.dataset.delay) {
@@ -140,6 +140,39 @@
       const x = (e.clientX / window.innerWidth - 0.5) * 14;
       const y = (e.clientY / window.innerHeight - 0.5) * 14;
       heroAurora.style.transform = `translate3d(${x * 0.4}px, ${y * 0.4}px, 0)`;
+    });
+  }
+
+  /* =========================================
+     TEAM BONDING: INDOOR / OUTDOOR TOGGLE
+  ========================================= */
+  const teamToggleButtons = Array.from(document.querySelectorAll('[data-team-target]'));
+  if (teamToggleButtons.length) {
+    const selectTeamOption = (button) => {
+      const target = button.dataset.teamTarget;
+      teamToggleButtons.forEach((btn) => {
+        const isActive = btn === button;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+        btn.tabIndex = isActive ? 0 : -1;
+      });
+      document.querySelectorAll('.team-panel').forEach((panel) => {
+        panel.hidden = panel.id !== `team-panel-${target}`;
+      });
+    };
+
+    teamToggleButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => selectTeamOption(btn));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault();
+        const nextIndex = e.key === 'ArrowRight'
+          ? (index + 1) % teamToggleButtons.length
+          : (index - 1 + teamToggleButtons.length) % teamToggleButtons.length;
+        const nextButton = teamToggleButtons[nextIndex];
+        nextButton.focus();
+        selectTeamOption(nextButton);
+      });
     });
   }
 

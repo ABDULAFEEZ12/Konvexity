@@ -55,7 +55,7 @@
             <path d="M14.5 14.3c2.3.3 4 2 4 4.7"/>
           </svg>
         </div>
-        <h3 style="color:var(--ink); font-size:1.1rem;">Team Bonding Session</h3>
+        <h3 style="color:var(--ink); font-size:1.1rem;">Team Bonding</h3>
         <p class="body-sm" style="margin:0.6rem 0 1rem;">Facilitated experiences designed to strengthen workplace relationships, encourage teamwork and create a renewed sense of shared purpose.</p>
         <a href="{{ url_for('public.solutions') }}#team-bonding" class="btn btn-secondary btn-sm">Learn More</a>
       </div>
@@ -68,7 +68,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="eyebrow">Core Solutions</span>
-      <h2 class="section-title">Team Bonding by Konvexity</h2>
+      <h2 class="section-title">Team Bonding</h2>
       <div class="media-frame" style="margin-top:1.6rem; max-width:640px; height:320px;">
         <img src="{{ url_for('static', filename='images/platforms/teambonding-indoor-lagos.webp') }}" alt="A joyful team bonding gathering indoors in Lagos, Nigeria" loading="lazy" style="object-position:center 18%;">
       </div>
@@ -87,47 +87,55 @@
       <h3 class="section-title" style="font-size:1.6rem;">Choose Your Team Experience</h3>
     </div>
 
-    <div class="grid-2 reveal">
-      <div class="card solution-card">
-        <div class="card__image" style="margin-bottom:1rem;">
-          <img src="{{ url_for('static', filename='images/platforms/teambonding-indoor-cards.webp') }}" alt="Colleagues playing a card game together indoors" loading="lazy">
-        </div>
-        <span class="badge" style="margin-bottom:1rem;">Option A</span>
-        <h3 style="color:var(--ink); font-size:1.1rem;">Curated Indoor Team Experience</h3>
-        <p class="solution-desc">A structured and comfortable indoor experience designed around interaction, collaboration and friendly competition.</p>
-        <p class="body-sm" style="color:var(--ink); margin-bottom:0.6rem; font-weight:600;">Activities include:</p>
-        <ul class="solution-features">
-          <li>Arrival and energiser</li>
-          <li>Team games</li>
-          <li>Refreshment break</li>
-          <li>Collaborative challenges</li>
-          <li>Lunch and social connection</li>
-          <li>Competition</li>
-          <li>Recognition and celebration</li>
-          <li>Group photograph</li>
-        </ul>
-        <p class="body-sm" style="color:var(--teal); margin-bottom:0;">Best for: Teams looking for a comfortable, structured bonding experience.</p>
-      </div>
+    <div class="team-toggle reveal" role="tablist" aria-label="Team bonding experience type">
+      <button type="button" class="team-toggle__btn is-active" role="tab" id="team-tab-indoor" aria-selected="true" aria-controls="team-panel-indoor" data-team-target="indoor">
+        Option A &mdash; Indoor
+      </button>
+      <button type="button" class="team-toggle__btn" role="tab" id="team-tab-outdoor" aria-selected="false" aria-controls="team-panel-outdoor" data-team-target="outdoor" tabindex="-1">
+        Option B &mdash; Outdoor
+      </button>
+    </div>
 
-      <div class="card solution-card">
-        <div class="card__image" style="margin-bottom:1rem;">
-          <img src="{{ url_for('static', filename='images/platforms/teambonding-outdoor-sackrace.webp') }}" alt="A team playing a sack race together outdoors" loading="lazy">
-        </div>
-        <span class="badge" style="margin-bottom:1rem;">Option B</span>
-        <h3 style="color:var(--ink); font-size:1.1rem;">Outdoor Team Experience</h3>
-        <p class="solution-desc">An energetic, open-air experience that brings teams together through outdoor challenges, recreation and shared activities.</p>
-        <p class="body-sm" style="color:var(--ink); margin-bottom:0.6rem; font-weight:600;">Activities include:</p>
-        <ul class="solution-features">
-          <li>Arrival and team formation</li>
-          <li>Outdoor challenges</li>
-          <li>Lunch and relaxation</li>
-          <li>Recreation and strategy</li>
-          <li>Reset and refreshment</li>
-          <li>Team recognition and reflection</li>
-          <li>Closing and departure</li>
-        </ul>
-        <p class="body-sm" style="color:var(--teal); margin-bottom:0;">Best for: Teams looking for an active, engaging outdoor bonding experience.</p>
+    <div class="card solution-card team-panel reveal" id="team-panel-indoor" role="tabpanel" aria-labelledby="team-tab-indoor">
+      <div class="team-panel__gallery">
+        <img src="{{ url_for('static', filename='images/platforms/teambonding-indoor-lagos.webp') }}" alt="A joyful team bonding gathering indoors in Lagos, Nigeria" loading="lazy" style="object-position:center 18%;">
+        <img src="{{ url_for('static', filename='images/platforms/teambonding-indoor-cards.webp') }}" alt="Colleagues playing a card game together indoors" loading="lazy">
       </div>
+      <h3 style="color:var(--ink); font-size:1.1rem;">Curated Indoor Team Experience</h3>
+      <p class="solution-desc">A structured and comfortable indoor experience designed around interaction, collaboration and friendly competition.</p>
+      <p class="body-sm" style="color:var(--ink); margin-bottom:0.6rem; font-weight:600;">Activities include:</p>
+      <ul class="solution-features">
+        <li>Arrival and energiser</li>
+        <li>Team games</li>
+        <li>Refreshment break</li>
+        <li>Collaborative challenges</li>
+        <li>Lunch and social connection</li>
+        <li>Competition</li>
+        <li>Recognition and celebration</li>
+        <li>Group photograph</li>
+      </ul>
+      <p class="body-sm" style="color:var(--teal); margin-bottom:0;">Best for: Teams looking for a comfortable, structured bonding experience.</p>
+    </div>
+
+    <div class="card solution-card team-panel reveal" id="team-panel-outdoor" role="tabpanel" aria-labelledby="team-tab-outdoor" hidden>
+      <div class="team-panel__gallery">
+        <img src="{{ url_for('static', filename='images/platforms/teambonding-outdoor-sackrace.webp') }}" alt="A team playing a sack race together outdoors" loading="lazy">
+        <img src="{{ url_for('static', filename='images/platforms/teambonding-outdoor-basketball.webp') }}" alt="Teammates playing basketball together outdoors" loading="lazy">
+        <img src="{{ url_for('static', filename='images/platforms/teambonding-outdoor-basketball-dribble.webp') }}" alt="A teammate dribbling past a defender during an outdoor basketball game" loading="lazy">
+      </div>
+      <h3 style="color:var(--ink); font-size:1.1rem;">Outdoor Team Experience</h3>
+      <p class="solution-desc">An energetic, open-air experience that brings teams together through outdoor challenges, recreation and shared activities.</p>
+      <p class="body-sm" style="color:var(--ink); margin-bottom:0.6rem; font-weight:600;">Activities include:</p>
+      <ul class="solution-features">
+        <li>Arrival and team formation</li>
+        <li>Outdoor challenges</li>
+        <li>Lunch and relaxation</li>
+        <li>Recreation and strategy</li>
+        <li>Reset and refreshment</li>
+        <li>Team recognition and reflection</li>
+        <li>Closing and departure</li>
+      </ul>
+      <p class="body-sm" style="color:var(--teal); margin-bottom:0;">Best for: Teams looking for an active, engaging outdoor bonding experience.</p>
     </div>
   </div>
 </section>
