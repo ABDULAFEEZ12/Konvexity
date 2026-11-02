@@ -196,6 +196,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Green Enterprise Development",
+                        "image": "images/platforms/gesai-luanda-housing.webp",
+                        "image_alt": "Aerial view of sustainable residential development in Luanda, Angola",
                         "text": (
                             "We support the development of businesses that respond to "
                             "environmental challenges and emerging market needs. This includes "
@@ -254,6 +256,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "From Knowledge to Practice",
+                "image": "images/platforms/gesai-lagos-collaboration.webp",
+                "image_alt": "Two professionals collaborating over laptops in Lagos, Nigeria",
                 "paragraphs": [
                     "GESAI is being developed around a clear idea: people and businesses need "
                     "the right capabilities to respond to changes in the economy.",
@@ -291,6 +295,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "More Than a Getaway",
+                "image": "images/platforms/tab-lagos-beach-friends.webp",
+                "image_alt": "A joyful group of friends dancing in the surf on a Lagos beach, city skyline behind them",
                 "paragraphs": [
                     "A good trip is about more than where you go. It is also about the people "
                     "you meet, the things you try and the memories you bring home.",
@@ -325,6 +331,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Comfort and Convenience",
+                        "image": "images/platforms/tab-tanzania-pool.webp",
+                        "image_alt": "Luxury poolside view overlooking the Tanzanian ocean",
                         "text": (
                             "We coordinate the key details, including accommodation, activities "
                             "and the overall experience, so you spend less time planning and "
@@ -340,6 +348,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Good Company",
+                        "image": "images/platforms/tab-friends-laughing.webp",
+                        "image_alt": "Two friends laughing together outdoors",
                         "text": (
                             "Meet new people, make connections and enjoy the freedom of "
                             "travelling with a group without having to organise one yourself."
@@ -413,6 +423,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Business & Market Expeditions",
+                        "image": "images/platforms/lwb-conference-audience.webp",
+                        "image_alt": "Business conference audience engaging with a speaker",
                         "text": (
                             "Discover emerging markets, explore business ecosystems, engage with "
                             "industry leaders and identify opportunities for growth, "

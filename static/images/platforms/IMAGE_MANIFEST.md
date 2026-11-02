@@ -22,11 +22,14 @@ matched 1:1 to each named destination — see note at the end of this file.
 | `gesai-solar-eswatini.webp` | [pexels.com/photo/39382227](https://www.pexels.com/photo/solar-panels-in-rural-eswatini-landscape-39382227/) | Khaya Motsa | Brand Portfolio card (hero), GESAI detail page (hero) |
 | `gesai-farmer-crops.webp` | [pexels.com/photo/34411687](https://www.pexels.com/photo/african-farmer-inspecting-crops-in-field-34411687/) | mk_photoz | GESAI detail page, "Why GESAI?" section |
 | `gesai-luanda-housing.webp` | [pexels.com/photo/33052786](https://www.pexels.com/photo/aerial-view-of-kilamba-residential-area-in-luanda-33052786/) | Heibby Cris Marvel | GESAI detail page, "What We Do" grid (Green Enterprise Development card) |
+| `gesai-lagos-collaboration.webp` | [pexels.com/photo/30690398](https://www.pexels.com/photo/two-women-collaborating-with-laptops-in-lagos-30690398/) | Ninthgrid | GESAI detail page, "From Knowledge to Practice" section |
 
 **Why selected:** Rural solar installation + green hillside village (hero) communicates Africa actively
 building renewable infrastructure, not a generic panel close-up. The farmer photo grounds the "Why
 GESAI?" text in a real person and real work. The Luanda housing aerial shows planned, sustainable
-African urban development for the enterprise-development card.
+African urban development for the enterprise-development card. The Lagos collaboration photo was added
+to break up a run of three consecutive text-only sections at the end of the page; it closes the page on
+a genuine African working moment that matches "From Knowledge to Practice."
 
 ## TAB / TakeABreak
 
@@ -36,11 +39,16 @@ African urban development for the enterprise-development card.
 | `tab-eswatini-hikers.webp` | [pexels.com/photo/32872001](https://www.pexels.com/photo/hikers-exploring-scenic-trail-in-eswatini-32872001/) | Khaya Motsa | TAB detail page, "Who Is It For?" section |
 | `tab-tanzania-pool.webp` | [pexels.com/photo/34157348](https://www.pexels.com/photo/luxury-poolside-view-overlooking-tanzanian-ocean-34157348/) | Amani Allan | TAB detail page, "What to Expect" grid (Comfort and Convenience card) |
 | `tab-friends-laughing.webp` | [pexels.com/photo/12896324](https://www.pexels.com/photo/women-laughing-together-12896324/) | Josiah Matthew | TAB detail page, "What to Expect" grid (Good Company card) |
+| `tab-lagos-beach-friends.webp` | [pexels.com/photo/30493379](https://www.pexels.com/photo/joyful-group-enjoys-beach-in-lagos-30493379/) | Ben Iwara | TAB detail page, "More Than a Getaway" section |
 
 **Why selected:** A quiet boat-view of a Zanzibar beachfront reads as rest, not a tourist cliché — no
 airplanes, suitcases or departure boards. The Eswatini hikers show genuine "good company" on a trail.
 The Tanzanian poolside shot delivers the "premium short getaway" comfort note. The laughing-friends
-photo is a candid, unstaged reaction, chosen specifically to avoid a posed/fake-smile look.
+photo is a candid, unstaged reaction, chosen specifically to avoid a posed/fake-smile look. The Lagos
+beach-friends photo opens "More Than a Getaway" with unstaged joy and a visible city skyline, anchoring
+the brand's first section in a real African destination rather than starting the page on bare text. A
+similar beach-friends candidate (young men at colorful Cape Town beach huts) was reviewed and rejected
+for this slot — the subjects read as teenagers, not TAB's stated professional/executive audience.
 
 ## LWB / Leadership Without Borders
 
