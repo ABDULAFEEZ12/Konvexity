@@ -16,15 +16,15 @@ class WorkWithKonvexityForm(FlaskForm):
         validators=[DataRequired(message="Please enter your email."), Email(message="Enter a valid email."), Length(max=300)],
     )
     whatsapp_number = StringField(
-        "WhatsApp Number",
-        validators=[DataRequired(message="Please enter your WhatsApp number."), Length(max=50)],
+        "Phone Number",
+        validators=[Optional(), Length(max=50)],
     )
     company = StringField("Company / Organization", validators=[Optional(), Length(max=300)])
     job_title = StringField("Job Title", validators=[Optional(), Length(max=200)])
     country = StringField("Country", validators=[Optional(), Length(max=100)])
 
     service_interest = SelectField(
-        "What do you need?",
+        "What would you like to enquire about?",
         choices=SERVICE_CHOICES,
         validators=[DataRequired(message="Please select a service.")],
     )

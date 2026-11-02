@@ -1,12 +1,12 @@
 # app/blueprints/public/routes.py
 
-from flask import abort, flash, redirect, render_template, request, url_for
+from flask import abort, render_template, request, url_for
 
 from app.blueprints.public import public_bp
 from app.blueprints.public.forms import ScheduleConsultationForm, WorkWithKonvexityForm
 from app.extensions import db, limiter
 from app.models import ConsultationBooking, Lead
-from app.models.crm import ActivityLog
+from app.models.crm import SERVICE_CHOICES, ActivityLog
 from app.utils.identifiers import next_identifier
 
 
@@ -148,8 +148,10 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "Green Economy & Sustainability African Institute",
         "tagline": "Building Africa’s Green Economy.",
         "overview": "A Konvexity initiative advancing sustainability, green enterprise, and practical solutions for Africa’s economic future.",
-        "image": "images/platforms/gesai.jpg",
-        "image_alt": "GESAI — supporting Africa's green economy and clean energy enterprise",
+        "logo": "images/logos/gesai-logo-light.png",
+        "logo_dark": "images/logos/gesai-logo-dark.png",
+        "image": "images/platforms/gesai-solar-eswatini.webp",
+        "image_alt": "Solar panels installed on a rural landscape in Eswatini",
         "intro": (
             "The Green Economy & Sustainability African Institute (GESAI) works to help African "
             "people and organisations understand the changing green economy and find practical "
@@ -168,6 +170,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "Why GESAI?",
+                "image": "images/platforms/gesai-farmer-crops.webp",
+                "image_alt": "An African farmer inspecting crops in a field",
                 "paragraphs": [
                     "Africa’s green transition is creating new demands across industries. "
                     "Businesses are under growing pressure to improve their environmental "
@@ -192,6 +196,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Green Enterprise Development",
+                        "image": "images/platforms/gesai-luanda-housing.webp",
+                        "image_alt": "Aerial view of sustainable residential development in Luanda, Angola",
                         "text": (
                             "We support the development of businesses that respond to "
                             "environmental challenges and emerging market needs. This includes "
@@ -269,8 +275,10 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "TakeABreak",
         "tagline": "Work hard. Live well.",
         "overview": "Curated short getaways for professionals to reset, unwind, and connect.",
-        "image": "images/platforms/tab.jpg",
-        "image_alt": "TakeABreak — friends relaxing together on a curated getaway",
+        "logo": "images/logos/tab-logo-light.png",
+        "logo_dark": "images/logos/tab-logo-dark.png",
+        "image": "images/platforms/tab-zanzibar-beachfront.webp",
+        "image_alt": "Scenic beachfront view from a boat in Zanzibar",
         "intro": (
             "TakeABreak is Konvexity’s curated getaway and experience brand, created for "
             "working professionals, entrepreneurs and anyone who wants to step away from the "
@@ -296,6 +304,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "Who Is It For?",
+                "image": "images/platforms/tab-eswatini-hikers.webp",
+                "image_alt": "A group of friends hiking together on a scenic trail in Eswatini",
                 "paragraphs": [
                     "TakeABreak is for busy professionals, entrepreneurs, young executives and "
                     "anyone who wants to travel, unwind and connect with new people.",
@@ -317,6 +327,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Comfort and Convenience",
+                        "image": "images/platforms/tab-tanzania-pool.webp",
+                        "image_alt": "Luxury poolside view overlooking the Tanzanian ocean",
                         "text": (
                             "We coordinate the key details, including accommodation, activities "
                             "and the overall experience, so you spend less time planning and "
@@ -332,6 +344,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Good Company",
+                        "image": "images/platforms/tab-friends-laughing.webp",
+                        "image_alt": "Two friends laughing together outdoors",
                         "text": (
                             "Meet new people, make connections and enjoy the freedom of "
                             "travelling with a group without having to organise one yourself."
@@ -366,8 +380,10 @@ BRAND_PORTFOLIO_ITEMS = {
         "full_name": "Leadership Without Borders",
         "tagline": "Leadership. Exposure. Opportunity.",
         "overview": "Connecting African leaders to global markets, networks, and growth opportunities.",
-        "image": "images/platforms/lwb.jpg",
-        "image_alt": "Leadership Without Borders — an international leadership delegation on site",
+        "logo": "images/logos/lwb-logo-light.png",
+        "logo_dark": "images/logos/lwb-logo-dark.png",
+        "image": "images/platforms/lwb-lagos-meeting.webp",
+        "image_alt": "A diverse team in a business meeting at a Lagos office",
         "intro": (
             "Leadership Without Borders (LWB) is a curated international leadership and "
             "business-immersion experience connecting African leaders, entrepreneurs and "
@@ -403,6 +419,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Business & Market Expeditions",
+                        "image": "images/platforms/lwb-conference-audience.webp",
+                        "image_alt": "Business conference audience engaging with a speaker",
                         "text": (
                             "Discover emerging markets, explore business ecosystems, engage with "
                             "industry leaders and identify opportunities for growth, "
@@ -470,6 +488,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "Designed for Leaders Ready to Think Beyond.",
+                "image": "images/platforms/lwb-nairobi-skyline.webp",
+                "image_alt": "Aerial view of Nairobi's skyscrapers",
                 "paragraphs": [
                     "LWB is for founders, business owners, corporate executives, senior "
                     "managers, institutional leaders and professionals seeking fresh "
@@ -482,6 +502,8 @@ BRAND_PORTFOLIO_ITEMS = {
             {
                 "type": "text",
                 "title": "The Experience Doesn’t End at the Border.",
+                "image": "images/platforms/lwb-lagos-office-chat.webp",
+                "image_alt": "Colleagues in a casual office conversation in Lagos, Nigeria",
                 "paragraphs": [
                     "From curated engagements and peer learning to facilitated reflection and "
                     "practical action planning, LWB is designed to make insights count long "
@@ -571,24 +593,49 @@ def clients():
 
 
 @public_bp.route("/contact", methods=["GET", "POST"])
+@limiter.limit("10 per hour", methods=["POST"])
 def contact():
     seo = {
         "title": "Contact \u2014 Konvexity",
-        "description": "Start a conversation with Konvexity. Inquire about our programs, solutions, or how we can support your organization\u2019s transformation journey.",
+        "description": "Start a conversation with Konvexity. Enquire about our solutions, brands, or how we can support your organization\u2019s transformation journey.",
         "canonical_url": url_for("public.contact", _external=True),
         "og_type": "website",
         "og_image": url_for("static", filename="images/brand/konvexity-og.jpg", _external=True),
     }
-    if request.method == "POST":
-        name = request.form.get("name", "").strip()
-        email = request.form.get("email", "").strip()
-        message = request.form.get("message", "").strip()
-        if not name or not email or not message:
-            flash("Please complete all required fields.", "error")
-            return render_template("public/contact.html", seo=seo)
-        flash("Thank you for your message. We will respond within 24 hours.", "success")
-        return redirect(url_for("public.contact"))
-    return render_template("public/contact.html", seo=seo)
+
+    valid_types = {key for key, _ in SERVICE_CHOICES}
+    requested_type = request.args.get("type", "")
+    form = WorkWithKonvexityForm(service_interest=requested_type if requested_type in valid_types else None)
+    request_id = None
+
+    if form.validate_on_submit():
+        request_id = next_identifier(scope="lead", prefix="KVX")
+
+        lead = Lead(
+            request_id=request_id,
+            full_name=form.full_name.data.strip(),
+            email=form.email.data.strip().lower(),
+            whatsapp_number=(form.whatsapp_number.data or "").strip(),
+            company=(form.company.data or "").strip() or None,
+            job_title=(form.job_title.data or "").strip() or None,
+            country=(form.country.data or "").strip() or None,
+            service_interest=form.service_interest.data,
+            message=(form.message.data or "").strip() or None,
+        )
+        db.session.add(lead)
+        db.session.flush()
+
+        ActivityLog.record(
+            entity_type="lead",
+            entity_id=lead.id,
+            action="submitted",
+            description=f"New enquiry {lead.request_id} submitted via Contact.",
+        )
+        db.session.commit()
+
+        return render_template("public/contact.html", seo=seo, form=WorkWithKonvexityForm(formdata=None), request_id=request_id, submitted=True)
+
+    return render_template("public/contact.html", seo=seo, form=form, request_id=request_id, submitted=False)
 
 
 @public_bp.route("/resources")

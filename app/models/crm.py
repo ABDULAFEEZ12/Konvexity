@@ -108,23 +108,25 @@ class IdentifierSequence(db.Model):
         return f"<IdentifierSequence {self.scope}:{self.period}={self.last_value}>"
 
 
-# --- "Work With Konvexity" service options ------------------------------
+# --- Enquiry categories (used on both /contact and /work-with-konvexity) --
+# Keyed to match the site's actual named solutions and brands so a visitor's
+# enquiry type is unambiguous to a consultant reading the CRM record. Slugs
+# (gesai/tab/lwb/team_bonding/...) double as the `?type=` query parameter
+# value used to preselect this field when a visitor arrives from a specific
+# page — see public.contact().
 SERVICE_CHOICES = [
-    ("developing_stronger_leaders", "Developing stronger leaders"),
-    ("building_high_performing_teams", "Building high-performing teams"),
-    ("improving_organisational_performance", "Improving organisational performance"),
-    ("strengthening_organisational_culture", "Strengthening organisational culture"),
-    ("preparing_for_growth_and_expansion", "Preparing for growth and expansion"),
-    ("leading_organisational_change", "Leading organisational change"),
-    ("developing_future_leaders_succession", "Developing future leaders and succession pipelines"),
-    ("improving_communication_collaboration", "Improving communication and cross-functional collaboration"),
-    ("increasing_employee_engagement_retention", "Increasing employee engagement and retention"),
-    ("aligning_leadership_strategy_execution", "Aligning leadership around strategy and execution"),
-    ("coaching_executives_senior_leaders", "Coaching executives and senior leaders"),
-    ("facilitating_strategic_planning_retreats", "Facilitating strategic planning and leadership retreats"),
-    ("solving_other_challenge", "Solving another leadership or organisational challenge"),
-    ("not_sure_consultation", "Not sure yet, I'd like a consultation"),
-    ("other", "Other"),
+    ("corporate_training", "Corporate Training"),
+    ("team_bonding", "Team Bonding"),
+    ("leadership_lab", "Leadership Lab"),
+    ("accelerator", "Professional Accelerator"),
+    ("adi", "ADI Performance Model"),
+    ("clarity_room", "Konvexity Clarity Room"),
+    ("gesai", "GESAI"),
+    ("tab", "TAB / TakeABreak"),
+    ("lwb", "LWB / Leadership Without Borders"),
+    ("arakunrin", "ARÁKÙNRIN"),
+    ("partnership", "Partnership / Collaboration"),
+    ("general", "General Enquiry"),
 ]
 
 LEAD_STATUS_CHOICES = [

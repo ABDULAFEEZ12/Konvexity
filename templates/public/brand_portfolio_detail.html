@@ -28,7 +28,12 @@
       &larr; Brand Portfolio
     </a>
     <span class="eyebrow">By Konvexity</span>
+    {% if brand.logo %}
+    <img src="{{ url_for('static', filename=brand.logo) }}" alt="{{ brand.name }}" style="height:44px; width:auto; margin:0.6rem 0 1rem; display:block;">
+    <h1 style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;">{{ brand.name }}</h1>
+    {% else %}
     <h1>{{ brand.name }}</h1>
+    {% endif %}
     <p style="font-style:italic; color:var(--ink);">{{ brand.tagline }}</p>
   </div>
 </section>
@@ -55,7 +60,7 @@
         </p>
         {% endif %}
         <div style="display:flex; gap:0.9rem; flex-wrap:wrap; margin-top:1.6rem;">
-          <a href="{{ url_for('public.contact') }}" class="btn btn-secondary btn-sm">{{ brand.cta_label or 'Get in Touch' }}</a>
+          <a href="{{ url_for('public.contact', type=slug) }}" class="btn btn-secondary btn-sm">{{ brand.cta_label or 'Get in Touch' }}</a>
           <a href="{{ url_for('public.brand_portfolio') }}" class="btn btn-outline btn-sm">Back to Brand Portfolio</a>
         </div>
       </div>
@@ -65,14 +70,32 @@
 
 {% for section in brand.sections or [] %}
 <section class="section {{ 'section--alt' if loop.index0 is even else '' }}">
-  <div class="container" style="{{ '' if section.type == 'grid' else 'max-width:760px;' }}">
-    {% if section.title %}
-    <div class="section-header reveal">
-      <span class="eyebrow">{{ section.title }}</span>
-    </div>
-    {% endif %}
-
-    {% if section.type == 'grid' %}
+  <div class="container" style="{{ '' if section.type == 'grid' or section.image else 'max-width:760px;' }}">
+    {% if section.type == 'text' and section.image %}
+      {% if section.title %}
+      <div class="section-header reveal">
+        <span class="eyebrow">{{ section.title }}</span>
+      </div>
+      {% endif %}
+      <div class="founder-section reveal">
+        <div class="founder-portrait" style="height:300px; {{ 'order:2;' if loop.index0 is odd else '' }}">
+          <img src="{{ url_for('static', filename=section.image) }}"
+               alt="{{ section.image_alt }}"
+               loading="lazy"
+               style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          {% for para in section.paragraphs %}
+          <p>{{ para }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% elif section.type == 'grid' %}
+      {% if section.title %}
+      <div class="section-header reveal">
+        <span class="eyebrow">{{ section.title }}</span>
+      </div>
+      {% endif %}
       {% if section.intro %}
       <p class="reveal" style="max-width:720px; margin-bottom:2.2rem;">{{ section.intro }}</p>
       {% endif %}
@@ -97,6 +120,11 @@
       </div>
       {% endif %}
     {% else %}
+      {% if section.title %}
+      <div class="section-header reveal">
+        <span class="eyebrow">{{ section.title }}</span>
+      </div>
+      {% endif %}
       {% for para in section.paragraphs %}
       <p class="reveal">{{ para }}</p>
       {% endfor %}
@@ -108,7 +136,7 @@
 {% if brand.sections %}
 <section class="section {{ 'section--alt' if brand.sections|length is even else '' }}">
   <div class="container text-center">
-    <a href="{{ url_for('public.contact') }}" class="btn btn-primary">{{ brand.cta_label or 'Get in Touch' }}</a>
+    <a href="{{ url_for('public.contact', type=slug) }}" class="btn btn-primary">{{ brand.cta_label or 'Get in Touch' }}</a>
   </div>
 </section>
 {% endif %}
