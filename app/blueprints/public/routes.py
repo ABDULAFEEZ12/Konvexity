@@ -187,6 +187,8 @@ BRAND_PORTFOLIO_ITEMS = {
                 "cards": [
                     {
                         "title": "Professional and Corporate Sustainability",
+                        "image": "images/platforms/gesai-sustainability-team-lagos.webp",
+                        "image_alt": "Colleagues in a Lagos office collaborating around a laptop during a meeting",
                         "text": (
                             "We help professionals and businesses build the skills needed to "
                             "integrate sustainability into their work. Our areas of focus include "
@@ -207,6 +209,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Mobility and Clean Energy Enterprise",
+                        "image": "images/platforms/gesai-solar-installer.webp",
+                        "image_alt": "A technician installing solar panels on a rooftop",
                         "text": (
                             "The shift towards cleaner energy and transport presents "
                             "opportunities for new businesses. GESAI focuses on areas such as "
@@ -217,6 +221,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Research, Policy and Advisory",
+                        "image": "images/platforms/gesai-advisory-discussion-lagos.webp",
+                        "image_alt": "Two professionals in a focused advisory discussion over a laptop in a Lagos office",
                         "text": (
                             "Good decisions depend on reliable information and a clear "
                             "understanding of the problem. We work towards supporting "
@@ -323,6 +329,8 @@ BRAND_PORTFOLIO_ITEMS = {
                 "cards": [
                     {
                         "title": "Curated Getaways",
+                        "image": "images/platforms/tab-dar-es-salaam-resort.webp",
+                        "image_alt": "A palm-lined waterfront resort terrace overlooking the ocean in Dar es Salaam",
                         "text": (
                             "Enjoy thoughtfully planned 2 to 3-day trips, usually scheduled for "
                             "weekends or public holidays so you never have to worry about the "
@@ -341,6 +349,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Local Experiences and Adventure",
+                        "image": "images/platforms/tab-kaduna-spice-market.webp",
+                        "image_alt": "A vibrant outdoor spice market stall in Kaduna, Nigeria",
                         "text": (
                             "Discover destinations through local food, cultural activities, "
                             "sightseeing, social events and optional adventures."
@@ -357,6 +367,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Take Time for Yourself",
+                        "image": "images/platforms/tab-mombasa-beach-walkway.webp",
+                        "image_alt": "A quiet palm-shaded walkway leading to the beach in Mombasa, Kenya",
                         "text": (
                             "You do not have to wait for a long holiday to get away. Sometimes, "
                             "a well-planned weekend is enough to give you a different "
@@ -415,6 +427,8 @@ BRAND_PORTFOLIO_ITEMS = {
                 "cards": [
                     {
                         "title": "Leadership Immersions",
+                        "image": "images/platforms/lwb-conference-qa.webp",
+                        "image_alt": "A professional speaking into a microphone during a conference Q&A session",
                         "text": (
                             "Explore leadership practices, organisational culture, strategy and "
                             "performance through executive learning, peer exchange and "
@@ -433,6 +447,8 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Private Corporate Experiences",
+                        "image": "images/platforms/lwb-team-portrait.webp",
+                        "image_alt": "A confident group of senior professionals posing together indoors",
                         "text": (
                             "Purpose-built international experiences for companies, executive "
                             "teams, boards and institutions seeking leadership development, "
