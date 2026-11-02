@@ -196,8 +196,6 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Green Enterprise Development",
-                        "image": "images/platforms/gesai-luanda-housing.webp",
-                        "image_alt": "Aerial view of sustainable residential development in Luanda, Angola",
                         "text": (
                             "We support the development of businesses that respond to "
                             "environmental challenges and emerging market needs. This includes "
@@ -327,8 +325,6 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Comfort and Convenience",
-                        "image": "images/platforms/tab-tanzania-pool.webp",
-                        "image_alt": "Luxury poolside view overlooking the Tanzanian ocean",
                         "text": (
                             "We coordinate the key details, including accommodation, activities "
                             "and the overall experience, so you spend less time planning and "
@@ -344,8 +340,6 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Good Company",
-                        "image": "images/platforms/tab-friends-laughing.webp",
-                        "image_alt": "Two friends laughing together outdoors",
                         "text": (
                             "Meet new people, make connections and enjoy the freedom of "
                             "travelling with a group without having to organise one yourself."
@@ -419,8 +413,6 @@ BRAND_PORTFOLIO_ITEMS = {
                     },
                     {
                         "title": "Business & Market Expeditions",
-                        "image": "images/platforms/lwb-conference-audience.webp",
-                        "image_alt": "Business conference audience engaging with a speaker",
                         "text": (
                             "Discover emerging markets, explore business ecosystems, engage with "
                             "industry leaders and identify opportunities for growth, "
